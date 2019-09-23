@@ -1,13 +1,16 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import './App.css';
 
 import Dashboard from './Components/dashboard/dashboard.component'
+import './App.css';
+import Header from './Components/Header';
+import Routes from './utils/Routes';
 
 function App() {
   return (
     <div className="App">
       <Dashboard></Dashboard>
+      <Header />
+      <Routes />
     </div>
   );
 }
