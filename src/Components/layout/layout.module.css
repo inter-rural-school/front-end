@@ -1,0 +1,12 @@
+.layoutWrapper{
+  min-height: 100vh;
+}
+
+.layoutHeader{
+  background-color: #c5dcd9;
+}
+
+.layoutContent{
+  flex-grow: 1;
+  background-color: #c5dcd9;
+}
