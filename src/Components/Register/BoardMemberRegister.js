@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getLogin } from '../store/actions';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const Container = styled.div`
   background-color: #c5dcd9;
@@ -50,13 +48,42 @@ const C = props => {
     touched,
     errors
   } = props;
-
   return (
     <Container>
       <Image src="/images/rsz_school.jpg" alt="School" />
       <InnerDiv>
-        <Title>International Rural School</Title>
+        <Title>Register as School Staff</Title>
         <form onSubmit={handleSubmit}>
+          <Form.Item
+            help={touched.name && errors.name ? errors.name : ''}
+            validateStatus={touched.name && errors.name ? 'error' : undefined}
+          >
+            <Input
+              size="large"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Full Name"
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />
+          </Form.Item>
+
+          <Form.Item
+            help={touched.email && errors.email ? errors.email : ''}
+            validateStatus={touched.email && errors.email ? 'error' : undefined}
+          >
+            <Input
+              size="large"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Email"
+              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />
+          </Form.Item>
+
           <Form.Item
             help={touched.username && errors.username ? errors.username : ''}
             validateStatus={
@@ -73,6 +100,7 @@ const C = props => {
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
           </Form.Item>
+
           <Form.Item
             help={touched.password && errors.password ? errors.password : ''}
             validateStatus={
@@ -89,11 +117,26 @@ const C = props => {
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
           </Form.Item>
+
+          <Form.Item
+            help={touched.password2 && errors.password2 ? errors.password2 : ''}
+            validateStatus={
+              touched.password2 && errors.password2 ? 'error' : undefined
+            }
+          >
+            <Input.Password
+              size="large"
+              name="password2"
+              placeholder="Confirm Password"
+              value={values.password2}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />
+          </Form.Item>
           <StyledButton type="primary" htmlType="submit">
-            Login
+            Register
           </StyledButton>
-          <p>Need to register? </p>
-          <Link to="./new_user">Register</Link>
         </form>
       </InnerDiv>
     </Container>
@@ -101,33 +144,37 @@ const C = props => {
 };
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required('Please provide a name'),
+  username: yup.string().required('Please provide a username'),
+  name: yup
+    .string()
+    .required('Please provide your name')
+    .min(3, 'Name is too short'),
+  email: yup
+    .string()
+    .email('Email is not valid')
+    .required('Please provide an email'),
   password: yup
     .string()
     .required('Please provide a password')
-    .min(8, 'Password too short')
+    .min(8, 'Password too short'),
+  password2: yup
+    .string()
+    .required('Confirm password')
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
-const LoginAction = info => {
-  console.log(info);
-  axiosWithAuth()
-    .post('/login', info)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-const Login = withFormik({
-  mapPropsToValues: () => ({ username: '', password: '' }),
+const BoardMemberRegister = withFormik({
+  mapPropsToValues: () => ({
+    username: '',
+    password: '',
+    email: '',
+    name: '',
+    password2: ''
+  }),
   handleSubmit: (values, { setSubmitting }) => {
     console.log(values);
-    LoginAction(values);
     setSubmitting(false);
   },
-
   validationSchema: validationSchema
 })(C);
 
@@ -136,5 +183,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { getLogin }
-)(Login);
+  {}
+)(BoardMemberRegister);
