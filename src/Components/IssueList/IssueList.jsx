@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col , Button, Icon} from 'antd';
 import styled from 'styled-components'
 
-import styles from './IssueList.module.css'
+import styles from './IssueList.module.less'
 
 import IssueListItem from './IssueList-Item.component'
 
@@ -10,7 +10,8 @@ const IssuesContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin : 1rem;
-  border: 1px solid lightcoral;
+  border: 1px solid #3cc93e;
+  background-color: #fff;
 `;
 
 /*

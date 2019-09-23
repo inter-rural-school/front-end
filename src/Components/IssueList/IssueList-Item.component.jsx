@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Col, Button, Icon } from 'antd'
 
-import styles from './IssueList-Item.module.css'
+import styles from './IssueList-Item.module.less'
 
 /*
       <Icon type="close-circle" />
@@ -38,19 +38,87 @@ export default function IssuesListItem( props) {
   return (
       <Row className={styles['issues--item--wrapper']}>
         <Col 
-        span={24} 
+         xs={{
+          span: 24,
+          }}
+         xl={{
+          span: 6,
+          }}
         className={ styles['issues--item--first-col']}
         >
           <p>{ props.data.dateCreated.toDateString() }</p>
         </Col>
-        <Col span={24}><p>{ props.data.title}</p></Col>
-        <Col span={8}>
+        <Col 
+         xs={{
+          span: 20,
+          }}
+         xl={{
+          span: 6,
+         }}
+        ><p>{ props.data.title}</p></Col>
+        <Col 
+         xs={{
+          span: 4,
+          }}
+         xl={{
+          span: 0,
+          }}
+        >
           <Icon type={ iconType } style={{fontSize: '2rem'}}/>
         </Col>
-        <Col span={16}>
-          <Button>Delete</Button>
+        <Col 
+         xs={{
+          span: 0,
+          }}
+         xl={{
+          span: 4,
+          }}
+        >
+          <p> { props.data.status } </p>
+        </Col>
+ 
+        <Col 
+         xs={{
+          span: 10,
+          }}
+         xl={{
+          span: 0,
+          }}
+          >
           <Button>View</Button>
         </Col>
+        <Col 
+         xs={{
+          span: 10,
+          }}
+         xl={{
+          span: 0,
+          }}
+          >
+          <Button>Delete</Button>
+        </Col>
+        <Col 
+         xs={{
+          span: 0,
+          }}
+         xl={{
+          span: 2,
+          }}
+          >
+            <Icon type="eye" style={{fontSize: '2rem'}}/>
+        </Col>
+        <Col 
+         xs={{
+          span: 0,
+          }}
+         xl={{
+          span: 2,
+          }}
+          >
+            <Icon type="delete" style={{fontSize: '2rem'}}/>
+        </Col>
+
+
       </Row>
   )
 }

@@ -1,0 +1,51 @@
+
+.issues--item--wrapper{
+  text-align: left;
+  margin: 1rem;
+  border: 1px solid @success;
+  padding-bottom:  1rem;
+  background-color: #fff;
+
+  @media screen and (min-width: 1200px){
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+  }
+
+  p{
+    padding: 0.5rem;
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  button {
+    margin: 0 0.5rem;
+    background-color: @warning;
+  }
+
+  svg{
+    margin: 0 0.5rem;
+    color: @danger;
+  }
+
+}
+
+
+.issues--item--first-col{
+    background-color:@success; 
+    color:#000;
+    text-align: right;
+
+  @media screen and (min-width: 1200px){
+    background-color:#fff; 
+      text-align: left;
+      color: rgba(0,0,0,0.65);
+  }
+}
+
+.issues--item--second-col{
+
+  
+}

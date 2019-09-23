@@ -11,8 +11,7 @@ flex-direction: column;
 justify-content: center;
 align-items:center;
 margin: 1rem;
-background-color: lightgreen;
-border: 1px solid lightsteelblue;
+background-color: #3cc93e;
 
 `;
 

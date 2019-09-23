@@ -38,7 +38,11 @@ const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: lightgray;
+  background-color: #6fa0d0;
+
+  @media screen and (min-width: 1200px){
+    flex-direction: row;
+  }
 `;
 
 const IssueContainer = styled.div`
@@ -47,7 +51,7 @@ const IssueContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: lightgreen;
+  background-color: #6fa0d0;
 `;
 
 export default function Dashboard( props) {
