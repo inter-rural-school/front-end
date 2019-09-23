@@ -1,0 +1,22 @@
+
+.issues--item--wrapper{
+  text-align: left;
+  margin: 1rem;
+  border: 1px solid blue;
+}
+
+p{
+  padding: 1rem;
+  margin: 0;
+}
+
+.issues--item--first-col{
+    background-color:#000; 
+    color:#fff;
+    text-align: right
+}
+
+.issues--item--second-col{
+
+  
+}

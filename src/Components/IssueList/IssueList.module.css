@@ -1,0 +1,11 @@
+.issues--header{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+  align-items: center;
+  background-color: lightcoral;
+}
+
+.issues--header--btn{
+  background-color: aqua;
+}

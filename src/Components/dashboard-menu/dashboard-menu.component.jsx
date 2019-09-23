@@ -10,6 +10,10 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items:center;
+margin: 1rem;
+background-color: lightgreen;
+border: 1px solid lightsteelblue;
+
 `;
 
 export default function DashBoardMenu( props) {
@@ -26,14 +30,17 @@ export default function DashBoardMenu( props) {
 
           render={props => (
             <Form 
-              style={{padding: '1rem'}}
+              style={{padding: '1rem', textAlign:'left'}}
             >
-              <label htmlFor='statusFilter'>Sort By:</label>
+              <label
+               htmlFor='statusFilter'
+                style={{paddingLeft: '1rem',display:'inline-block', marginBottom: '1rem' }} 
+               >Sort By:</label>
               <Select 
                 id='statusfilter'
                 name='statusfilter'
                 defaultValue={ props.values.status }  
-                style={{ width: '150px', paddingLeft: '1rem' }} 
+                style={{ width: '100%', paddingLeft: '1rem' }} 
                 onChange={ props.handleChange }>
                 <Option value="needsAttention">Needs Attention</Option>
                 <Option value="inProgress">In Progress</Option>

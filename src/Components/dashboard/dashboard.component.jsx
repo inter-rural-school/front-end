@@ -5,11 +5,12 @@ import styled from 'styled-components'
 
 import DashBoardMenu from '../dashboard-menu/dashboard-menu.component'
 import SingleIssue from '../single-issue/single-issue.component'
+import IssueList from '../IssueList/IssueList'
 
 
 const user = {
   isBoardMember: false,
-  name: 'Tom',
+  name: 'Tom Steve',
   school: 'Country School'
 }
 
@@ -19,7 +20,7 @@ const issues = [
     title : 'Broken toilet',
     description: 'The toilet is broken',
     dateCreated: (new Date()),
-    status: 'Needs Attention'
+    status: 'Needs Attention',
   },
 {
     id : 201,
@@ -51,6 +52,10 @@ const IssueContainer = styled.div`
 
 export default function Dashboard( props) {
   // store local state of dashboard
+  /*
+  The string used to filter the issues list in the Issues List component
+  filterTerm: string
+  */
   const [ dashBoardState, setDashBoardState ] = useState({})
 
   return (
@@ -61,6 +66,12 @@ export default function Dashboard( props) {
           setDash={ setDashBoardState }
           />
       <IssueContainer>
+        <IssueList 
+          userData={ user }
+          issueData={ issues }
+          dashState={ dashBoardState }
+          setDash={ setDashBoardState }
+        />
         <SingleIssue 
           dashState={ dashBoardState }
           setDash={ setDashBoardState }
