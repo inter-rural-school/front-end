@@ -52,7 +52,7 @@ const C = props => {
     <Container>
       <Image src="/images/rsz_school.jpg" alt="School" />
       <InnerDiv>
-        <Title>Register as School Staff</Title>
+        <Title>Register as Board Member</Title>
         <form onSubmit={handleSubmit}>
           <Form.Item
             help={touched.name && errors.name ? errors.name : ''}
@@ -60,11 +60,25 @@ const C = props => {
           >
             <Input
               size="large"
-              name="name"
-              value={values.name}
+              name="first_name"
+              value={values.first_name}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Full Name"
+              placeholder="First Name"
+              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            />
+          </Form.Item>
+          <Form.Item
+            help={touched.name && errors.name ? errors.name : ''}
+            validateStatus={touched.name && errors.name ? 'error' : undefined}
+          >
+            <Input
+              size="large"
+              name="last_name"
+              value={values.last_name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Last Name"
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
           </Form.Item>
@@ -145,10 +159,14 @@ const C = props => {
 
 const validationSchema = yup.object().shape({
   username: yup.string().required('Please provide a username'),
-  name: yup
+  first_name: yup
     .string()
-    .required('Please provide your name')
-    .min(3, 'Name is too short'),
+    .required('Please provide your first name')
+    .min(2, 'Name is too short'),
+  last_name: yup
+    .string()
+    .required('Please provide your last name')
+    .min(2, 'Name is too short'),
   email: yup
     .string()
     .email('Email is not valid')
@@ -163,16 +181,30 @@ const validationSchema = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
+const RegisterAction = info => {
+  console.log(info);
+  axiosWithAuth()
+    .post('/register', info)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 const BoardMemberRegister = withFormik({
   mapPropsToValues: () => ({
-    username: '',
+    first_name: '',
+    last_name: '',
     password: '',
     email: '',
-    name: '',
-    password2: ''
+    username: '',
+    isBoardMember: 1
   }),
   handleSubmit: (values, { setSubmitting }) => {
     console.log(values);
+    RegisterAction(values);
     setSubmitting(false);
   },
   validationSchema: validationSchema

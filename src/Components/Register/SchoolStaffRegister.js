@@ -132,7 +132,7 @@ const C = props => {
             />
           </Form.Item>
 
-          <Form.Item
+          {/* <Form.Item
             help={touched.password2 && errors.password2 ? errors.password2 : ''}
             validateStatus={
               touched.password2 && errors.password2 ? 'error' : undefined
@@ -147,7 +147,7 @@ const C = props => {
               onChange={handleChange}
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
-          </Form.Item>
+          </Form.Item> */}
           <StyledButton type="primary" htmlType="submit">
             Register
           </StyledButton>
@@ -174,11 +174,11 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required('Please provide a password')
-    .min(8, 'Password too short'),
-  password2: yup
-    .string()
-    .required('Confirm password')
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .min(8, 'Password too short')
+  // password2: yup
+  //   .string()
+  //   .required('Confirm password')
+  //   .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
 const RegisterAction = info => {
@@ -199,8 +199,8 @@ const SchoolStaffRegister = withFormik({
     last_name: '',
     password: '',
     email: '',
-    name: '',
-    isBoardMember: false
+    username: '',
+    isBoardMember: 0
   }),
   handleSubmit: (values, { setSubmitting }) => {
     console.log(values);

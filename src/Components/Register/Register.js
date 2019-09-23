@@ -40,13 +40,13 @@ const Register = () => {
       <Image src="/images/rsz_school.jpg" alt="School" />
       <InnerDiv>
         <p>I am a </p>
-        <Link to="./new_user/school_staff">
+        <Link to="/new_user/school_staff">
           <StyledButton>School Staff Member</StyledButton>
         </Link>
-        <Link to="./new_user/board_member">
+        <Link to="/new_user/board_member">
           <StyledButton>Board Member</StyledButton>
         </Link>
-        <p>Already registered? </p> <Link to="./login">Login Here!</Link>
+        <p>Already registered? </p> <Link to="/login">Login Here!</Link>
       </InnerDiv>
     </Container>
   );

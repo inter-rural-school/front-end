@@ -23,11 +23,11 @@ const Routes = () => {
         path="/new_user/school_staff"
         component={SchoolStaffRegister}
       />
-      {/* <Route
+      <Route
         exact
         path="/new_user/board_member"
         component={BoardMemberRegister}
-      /> */}
+      />
 
       {/* <PrivateRoute exact path="/schoolstaffpage" component={SchoolStaffPage} />
       <PrivateRoute
