@@ -1,6 +1,6 @@
 import React from 'react'
-import { Row, Col , Button, Icon, Input, Select } from 'antd'
-import { Form, ErrorMessage } from 'formik'
+import { Row, Col , Button, Icon, Form, Input, Select } from 'antd'
+import {  ErrorMessage } from 'formik'
 
 import styles from './singleissue-form.module.less'
 
@@ -27,7 +27,7 @@ export default function SingleIssueForm( props ) {
     handleSubmit,
   } = props;
 
-  const currentIssue= issues[0];
+  const currentIssue= issues[1];
 
   /* flag to see if current user is board member or school staff
   reads from Redux Store or wherever data is stored
@@ -58,10 +58,11 @@ export default function SingleIssueForm( props ) {
                >Status:</label>
               <Select 
                 id='statusfilter'
+                defaultValue={ currentIssue.status }
                 name='statusfilter'
                 style={{ width: '100%', paddingLeft: '1rem' }} 
                 onChange={ props.handleChange }>
-                <Option default value="needsAttention">Needs Attention</Option>
+                <Option value="needsAttention">Needs Attention</Option>
                 <Option value="inProgress">In Progress</Option>
                 <Option value="resolved">Resolved</Option>
                 <Option value="dismissed">Dismissed</Option>
@@ -78,14 +79,28 @@ export default function SingleIssueForm( props ) {
           xl={16}
           className={ styles['form--body']}
           >
-          <p>Title</p>
-          <p>Need English Teacher</p>
-          <p>Description</p>
-          <p>Board Comment</p>
+            { isBM && <Stat label='Title: ' data={ currentIssue.title }/> }
+            { isBM && <Stat label='Description: ' data={ currentIssue.description }/> }
+            { isBM && (
+              <div className={ styles.bmCommentDiv }>
+                <label
+                htmlFor='bmComment'
+                  style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
+                >Board Comment: </label>
+                 <Input.TextArea
+                  autosize={{ 
+                    minRows: 3,
+                  }}
+                  placeholder="" 
+                  value={ currentIssue.boardComment }
+                  id="bmComment" 
+                  />
+                </div>
+            ) }
         </Col>
       </Row>
       <div className={styles['singleIssue--footer']}>
-          <Button>Delete</Button>
+          { !isBM && <Button>Delete</Button>}
           <Button 
              type='submit'
              >Submit Changes</Button>
@@ -95,3 +110,17 @@ export default function SingleIssueForm( props ) {
 
   )
 }
+/*
+                <Form.Item
+                  layout='horizontal'
+                  label="Board Comment"
+                  // validateStatus=""
+                  help=""
+                >
+                  <Input.TextArea
+                  placeholder="" 
+                  value={ currentIssue.boardComment }
+                  id="boardComment" 
+                  />
+                </Form.Item>
+*/
