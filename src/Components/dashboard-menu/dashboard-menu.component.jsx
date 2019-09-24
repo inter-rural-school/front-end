@@ -35,7 +35,11 @@ export default function DashBoardMenu( props) {
 
           render={props => (
             <Form 
-              style={{padding: '1rem', textAlign:'left'}}
+              style={{
+                padding: '1rem', 
+                textAlign:'left',
+                width: '100%',
+                }}
             >
               <label
                htmlFor='statusFilter'
