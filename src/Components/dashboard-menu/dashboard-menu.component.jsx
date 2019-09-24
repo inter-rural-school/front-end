@@ -12,6 +12,11 @@ justify-content: center;
 align-items:center;
 margin: 1rem;
 background-color: #3cc93e;
+@media screen and (min-width: 1200px){
+  min-width: 220px;
+  width: 20%;
+  max-width: 270px;
+}
 
 `;
 
@@ -21,9 +26,10 @@ export default function DashBoardMenu( props) {
        <Formik
           initialValues={{ status: 'Needs Attention' }}
           onSubmit={(values, actions) => {
+            console.log(values.status);
             props.setDash( {
               ...props.dashState,
-              filterTerm: values.status ,
+              filterTerm: values.status,
             })
           }}
 
@@ -38,7 +44,7 @@ export default function DashBoardMenu( props) {
               <Select 
                 id='statusfilter'
                 name='statusfilter'
-                defaultValue={ props.values.status }  
+                // defaultValue={ props.values.status }  
                 style={{ width: '100%', paddingLeft: '1rem' }} 
                 onChange={ props.handleChange }>
                 <Option value="needsAttention">Needs Attention</Option>

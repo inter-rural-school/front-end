@@ -1,7 +1,8 @@
 export const user = {
   isBoardMember: false,
   name: 'Tom Steve',
-  school: 'Country School'
+  school: 'Country School',
+  isBoardMember: 0,
 }
 
 export const issues = [
