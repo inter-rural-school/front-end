@@ -6,13 +6,6 @@ import SingleIssueForm from './singleissue-form.component'
 
 import styles from './single-issue.module.less'
 
-const newIssueInit = {
-  title: '',
-  status: 'Needs Attention',
-  description: '',
-
-
-}
 export default function SingleIssue( props ) {
   //set the initial values for the form
 /*
@@ -74,16 +67,14 @@ export default function SingleIssue( props ) {
        */}
        <Formik
       initialValues={{ 
-        bmComment: `${ props.issueData.boardComment}`,
-        statusFilter: 'Needs Attention' }}
+        statusSelect: 'Needs Attention',
+        name: 'Needs Attention',
+       }}
       onSubmit={ (values, { resetForm }) => {
         console.log(values)
       } }
-      render={ props => (
-        <SingleIssueForm 
-          {...props}
-          onSubmit={ props.handleSubmit }
-          />
+      render={ (props) => (
+        <SingleIssueForm {...props}/>
       )}
     />
     </div>
