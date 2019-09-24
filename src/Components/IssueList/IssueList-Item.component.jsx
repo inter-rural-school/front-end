@@ -42,7 +42,7 @@ export default function IssuesListItem( props) {
           span: 24,
           }}
          xl={{
-          span: 6,
+          span: 5,
           }}
         className={ styles['issues--item--first-col']}
         >
@@ -58,7 +58,7 @@ export default function IssuesListItem( props) {
         ><p>{ props.data.title}</p></Col>
         <Col 
          xs={{
-          span: 4,
+          span: 5,
           }}
          xl={{
           span: 0,
@@ -71,7 +71,7 @@ export default function IssuesListItem( props) {
           span: 0,
           }}
          xl={{
-          span: 4,
+          span: 5,
           }}
         >
           <p> { props.data.status } </p>
@@ -79,7 +79,8 @@ export default function IssuesListItem( props) {
  
         <Col 
          xs={{
-          span: 10,
+          span: 8,
+          offset: 3,
           }}
          xl={{
           span: 0,
@@ -89,7 +90,7 @@ export default function IssuesListItem( props) {
         </Col>
         <Col 
          xs={{
-          span: 10,
+          span: 8,
           }}
          xl={{
           span: 0,

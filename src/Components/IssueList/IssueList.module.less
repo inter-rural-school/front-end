@@ -1,11 +1,46 @@
+.issues--header--btn{
+  background-color: @warning;
+}
+
+.issues--container{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin : 1rem;
+  border: 1px solid @success;
+  background-color: #fff;
+  
+
+  @media screen and (min-width: 1200px){
+    height: 45vh;
+    overflow: hidden scroll;
+  }
+
+}
+
 .issues--header{
   display: flex;
   justify-content: space-evenly;
   padding: 1rem 0;
   align-items: center;
   background-color: @success;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
-.issues--header--btn{
-  background-color: @warning;
+.issues--col-names{
+  display: none;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid @success;
+  justify-content: space-evenly;
+
+  div{
+    // border: 1px solid red;
+  }
+
+  @media screen and (min-width: 1200px){
+    display: flex;
+  }
 }
