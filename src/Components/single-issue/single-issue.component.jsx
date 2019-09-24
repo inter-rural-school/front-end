@@ -6,7 +6,7 @@ import SingleIssueForm from './singleissue-form.component'
 
 import styles from './single-issue.module.less'
 
-export default function SingleIssue( props ) {
+export default function SingleIssue(props ) {
   //set the initial values for the form
 /*
  let newIssueInit = {
@@ -42,8 +42,6 @@ export default function SingleIssue( props ) {
   // determine which onSubmit function to use
   let submitAction = ( props.dashState.newIssueRequest === true)? createNewIssue : editIssue;
 
-  console.log('issueData in singeIssue', props.issueData);
-  console.log('dashState in singeIssue', props.dashState);
   return (
     // hide the single issue view on mobile until user clicks view or edit button
     // <div className={ (props.dashState.viewIssue )? styles['singleIssue--container']: styles.hide }>
@@ -67,35 +65,17 @@ export default function SingleIssue( props ) {
        */}
        <Formik
       initialValues={{ 
-        statusSelect: 'Needs Attention',
-        name: 'Needs Attention',
        }}
-      onSubmit={ (values, { resetForm }) => {
-        console.log(values)
+
+        // bmComment: 'Initial value test',
+      onSubmit={ (values, actions ) => {
+        console.log('form values:', values)
       } }
-      render={ (props) => (
+
+      render={ props => (
         <SingleIssueForm {...props}/>
       )}
     />
     </div>
   )
 }
-/*
-      <Row className={ styles['singleIssue--body-container']}>
-        <Col xs={24} xl={8}>
-          <p>Status</p>
-          <p>Resolution in Progress</p>
-          <p>Created By</p>
-          <p>Date Created</p>
-        </Col>
-        <Col xs={24} xl={16}>
-          <p>Title</p>
-          <p>Need English Teacher</p>
-          <p>Description</p>
-        </Col>
-      </Row>
-        <div className={styles['singleIssue--footer']}>
-            <Button>Delete</Button>
-            <Button>Submit Changes</Button>
-        </div>
-*/

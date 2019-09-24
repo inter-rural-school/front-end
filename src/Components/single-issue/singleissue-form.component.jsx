@@ -1,5 +1,12 @@
 import React from 'react'
-import { Row, Col , Button, Icon, Input, Select } from 'antd'
+import { 
+  Row, 
+  Col , 
+  // Button, 
+  Icon, 
+  Input, 
+  Select 
+} from 'antd'
 import {  Form, Field, ErrorMessage } from 'formik'
 
 import styles from './singleissue-form.module.less'
@@ -18,14 +25,6 @@ function Stat( { label, data }){
 }
 
 export default function SingleIssueForm( props ) {
-  const {
-    values,
-    touched,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit,
-  } = props;
 
   const currentIssue= issues[1];
 
@@ -58,14 +57,12 @@ export default function SingleIssueForm( props ) {
                >Status:</label>
               <Field 
                 name="statusSelect"
-                render={({ field}) => (
-              <BMSelectStatus {...field} placeholder="" />
+                render={ props => (
+              <BMSelectStatus {...props} placeholder="" />
             )}
                 />
                 </>
             )}
-
-
 
             { !isBM && <Stat label='Status: ' data={ currentIssue.status}/>}
             <Stat label='Created By: ' data={ user.name}/>
@@ -90,8 +87,8 @@ export default function SingleIssueForm( props ) {
                 >Board Comment: </label>
                 <Field 
                 name="bmComment"
-                render={({ field}) => (
-              <BMComment {...field} placeholder="" />
+                render={ props => (
+              <BMComment {...props} placeholder="Enter a Comment" />
             )}
                 /> 
                 </div>
@@ -106,7 +103,7 @@ export default function SingleIssueForm( props ) {
                 >Title: </label>
                  <Input
                   placeholder="" 
-                  onChange={ handleChange }
+                  // onChange={ handleChange }
                   value={ currentIssue.title }
                   id="singleIssueTitle" 
                   name="singleIssueTitle"
@@ -126,10 +123,10 @@ export default function SingleIssueForm( props ) {
         </Col>
       </Row>
       <div className={styles['singleIssue--footer']}>
-          { !isBM && <Button>Delete</Button>}
-          <Button 
+          { !isBM && <button>Delete</button>}
+          <button 
              type='submit'
-             >Submit Changes</Button>
+             >Submit Changes</button>
       </div>
     </Form>
 
@@ -137,11 +134,41 @@ export default function SingleIssueForm( props ) {
   )
 }
 
-function BMSelectStatus({  field, 
-  form,
-  ...props} ){
+function BMSelectStatus({  field, form, ...props} ){
+
     return (
-             <Select 
+             <select 
+              { ...field}
+              {...props}
+                style={{ width: '100%', paddingLeft: '1rem' }} 
+                >
+                <option value="Needs Attention">Needs Attention</option>
+                <option value="Resolution In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Dismissed">Dismissed</option>
+              </select>
+    )
+}
+
+function BMComment({  field, form, ...props} ){
+
+    return (
+   <Input.TextArea 
+    {...field}
+    {...props}
+    autosize={{ 
+      minRows: 1,
+    }}
+    />
+  )
+}
+/*
+    autosize={{ 
+      minRows: 1,
+    }}
+    */
+/*
+      <Select 
               { ...field}
               {...props}
                 style={{ width: '100%', paddingLeft: '1rem' }} 
@@ -151,19 +178,4 @@ function BMSelectStatus({  field,
                 <Option value="Resolved">Resolved</Option>
                 <Option value="Dismissed">Dismissed</Option>
               </Select>
-    )
-}
-/*
-  form:{
-    values
-  },
-  */
-function BMComment({  field, form, ...props} ){
-    return (
-   <Input.TextArea
-                  autosize={{ 
-                    minRows: 1,
-                  }}
-                  />
-  )
-}
+*/
