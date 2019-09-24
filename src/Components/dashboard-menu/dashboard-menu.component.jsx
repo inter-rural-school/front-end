@@ -41,10 +41,11 @@ export default function DashBoardMenu( props) {
                 defaultValue={ props.values.status }  
                 style={{ width: '100%', paddingLeft: '1rem' }} 
                 onChange={ props.handleChange }>
-                <Option value="needsAttention">Needs Attention</Option>
-                <Option value="inProgress">In Progress</Option>
-                <Option value="resolved">Resolved</Option>
-                <Option value="dismissed">Dismissed</Option>
+                <Option value="Needs Attention">Needs Attention</Option>
+                <Option value="In Progress">In Progress</Option>
+                <Option value="Resolved">Resolved</Option>
+                <Option value="Dismissed">Dismissed</Option>
+                <Option value="All Issues">All Issues</Option>
               </Select>
               <button 
                 type="submit"

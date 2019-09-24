@@ -6,7 +6,6 @@ import * as yup from 'yup';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getLogin } from '../store/actions';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const Container = styled.div`
   background-color: #c5dcd9;
@@ -49,6 +48,9 @@ const Image = styled.img`
 
 const StyledButton = styled(Button)`
   font-family: 'Open Sans', sans-serif;
+`;
+const ErrorMessageBox = styled.div`
+  color: red;
 `;
 const { Title } = Typography;
 
@@ -103,7 +105,13 @@ const C = props => {
           <StyledButton type="primary" htmlType="submit">
             Login
           </StyledButton>
+          <ErrorMessageBox>
+            {props.getErrorMessage ? (
+              <p>Error! Please check your username or password!</p>
+            ) : null}
+          </ErrorMessageBox>
         </form>
+
         <div>
           <p>Need to register? </p>
           <Link to="./new_user">
@@ -123,23 +131,11 @@ const validationSchema = yup.object().shape({
     .min(8, 'Password too short')
 });
 
-const LoginAction = info => {
-  console.log(info);
-  axiosWithAuth()
-    .post('/login', info)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
 const Login = withFormik({
   mapPropsToValues: () => ({ username: '', password: '' }),
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { props, setSubmitting }) => {
     console.log(values);
-    LoginAction(values);
+    props.getLogin(values, props);
     setSubmitting(false);
   },
 
@@ -147,8 +143,12 @@ const Login = withFormik({
 })(C);
 
 const mapStateToProps = state => {
-  return {};
+  console.log(state);
+  return {
+    getErrorMessage: state.getErrorMessage
+  };
 };
+
 export default connect(
   mapStateToProps,
   { getLogin }

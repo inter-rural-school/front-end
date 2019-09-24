@@ -10,7 +10,7 @@ import BoardMemberRegister from '../Components/Register/BoardMemberRegister';
 // import SSIssueView from "../components/SchoolStaff/SSIssueView";
 // import BoardMemberPage from '../components/BoardMember/BoardMemberPage';
 // import BMIssueView from '../components/BoardMember/BMIssueView'
-import Dashboard from '../Components/dashboard/dashboard.component'
+import Dashboard from '../Components/dashboard/dashboard.component';
 
 const Routes = () => {
   return (

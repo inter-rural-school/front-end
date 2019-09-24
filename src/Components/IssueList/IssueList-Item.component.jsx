@@ -110,7 +110,7 @@ export default function IssuesListItem( props) {
           }}
           >
             <Icon 
-              type="eye" 
+              type="eye"
               id={ props.data.id }
               onClick={ props.setViewIssue }
               style={{fontSize: '2rem'}}/>

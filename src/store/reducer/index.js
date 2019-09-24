@@ -1,25 +1,51 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions';
+import {
+  REGISTER_START,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  LOGIN_START,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from '../actions';
 
 const initialState = {
+  isLogined: false,
   isLoading: false,
-  loginError: false
+  getErrorMessage: false,
+  userName: ''
 };
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_START:
+    case REGISTER_START:
       return {
         ...state,
-        loginError: false
+        getErrorMessage: false
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state
+      };
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        getErrorMessage: true
+      };
+    case LOGIN_START:
+      console.log(action.payload);
+      return {
+        ...state,
+        getErrorMessage: false,
+        isLogined: false
       };
     case LOGIN_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLogined: true
       };
     case LOGIN_FAILURE:
       return {
         ...state,
-        loginError: true
+        getErrorMessage: true
       };
     default:
       return state;
