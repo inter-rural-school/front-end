@@ -10,6 +10,7 @@ import BoardMemberRegister from '../Components/Register/BoardMemberRegister';
 // import SSIssueView from "../components/SchoolStaff/SSIssueView";
 // import BoardMemberPage from '../components/BoardMember/BoardMemberPage';
 // import BMIssueView from '../components/BoardMember/BMIssueView'
+import Dashboard from '../Components/dashboard/dashboard.component'
 
 const Routes = () => {
   return (
@@ -18,6 +19,7 @@ const Routes = () => {
       <Route exact path="/" render={() => <Redirect to="/login" />} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/new_user" component={Register} />
+      <Route exact path="/dashboard" component={Dashboard} />
       <Route
         exact
         path="/new_user/school_staff"
