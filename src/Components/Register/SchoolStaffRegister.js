@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Input, Icon, Typography, Form } from 'antd';
 import styled from 'styled-components';
 import { withFormik } from 'formik';
-import { Link } from 'react-router-dom';
+
 import * as yup from 'yup';
 import { connect } from 'react-redux';
 

@@ -107,7 +107,7 @@ const C = props => {
           </StyledButton>
           <ErrorMessageBox>
             {props.getErrorMessage ? (
-              <p>Error! Please check your username or password!</p>
+              <p>Error! Incorrect username or password</p>
             ) : null}
           </ErrorMessageBox>
         </form>
