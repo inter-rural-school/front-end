@@ -14,6 +14,7 @@ module.exports = override(
       '@info':'#6BACFF',
       '@warning': '#FF9E02',
       '@danger': '#FF496E',
+      '@border-round': '10px',
     }
   })
 );

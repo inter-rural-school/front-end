@@ -24,13 +24,13 @@ export default function Dashboard( props) {
   const [ dashBoardState, setDashBoardState ] = useState({})
 
   function setViewIssue(e){
-    console.log(e.target.id);
+    console.log('setViewIssue event',e.target.id);
     setDashBoardState({
       ...dashBoardState,
       viewIssue: +e.target.id
     })
   }
-  console.log(dashBoardState.viewIssue);
+  console.log(dashBoardState);
   return (
     <LayoutWrapper>
       <div className={ styles.contentContainer}>
@@ -47,6 +47,8 @@ export default function Dashboard( props) {
           setDash={ setDashBoardState }
         />
         <SingleIssue 
+          userData={ user }
+          issueData={ issues }
           dashState={ dashBoardState }
           setDash={ setDashBoardState }
           />

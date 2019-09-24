@@ -1,38 +1,12 @@
 @import '../../less/mixins.less';
 
-.singleIssue--container{
+.singleIssue-form{
   display: flex;
-  position: relative;
   flex-direction: column;
-  margin : 1rem;
-  border: 1px solid @success;
-  background-color: #fff;
-  
-
-  @media screen and (min-width: 1200px){
-    height: 35vh;
-  }
+  flex-grow: 1;
 }
 
-.hide{
-  #hideMobileOnly( @dType: flex )
-}
-
-.singleIssue--header{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 1rem ;
-  font-size: 1.25rem;
-  align-items: center;
-  background-color: @success;
-  flex-grow: 0;
-  p{
-    margin: 0;
-  }
-}
-
-.singleIssue--body-container{
+.form--body-container{
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -42,6 +16,17 @@
 }
 }
 
+
+.form--stats{
+  padding: 1rem;
+  #devBorder()  
+}
+
+.form--body{
+  padding: 1rem;
+  overflow: hidden scroll;
+  #devBorder()  
+}
 
 .singleIssue--footer{
   display: flex;
@@ -60,4 +45,28 @@
   @media screen and (min-width: 1200px){
     justify-content: flex-end;
 }
+}
+
+.statRow{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 1rem 0;
+
+  p{
+    margin-bottom: 0;
+  }
+
+  p:nth-of-type(2){
+    margin-left: 1rem;
+  }
+
+  @media screen and (min-width: 1200px){
+    flex-direction: row;
+    align-items: center;
+}
+}
+
+.bmCommentDiv{
+  display: flex;
 }

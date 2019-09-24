@@ -1,7 +1,8 @@
 export const user = {
   isBoardMember: false,
   name: 'Tom Steve',
-  school: 'Country School'
+  school: 'Country School',
+  isBoardMember: 0,
 }
 
 export const issues = [
@@ -17,7 +18,8 @@ export const issues = [
     title : 'Need paper',
     description: 'The school is out of paper',
     dateCreated: (new Date()),
-    status: 'Resolution In Progress'
+    status: 'Resolution In Progress',
+    boardComment: 'A shipment of paper has been sent to the school. bdfsa f df   feew    d ccc  eewe   lllld  feee  ddsss   llle   lyyy  oooww   llnnnnn iiii .A shipment of paper has been sent to the school. bdfsa f df   feew    d ccc  eewe   lllld  feee  ddsss   llle   lyyy  oooww   llnnnnn iiii .A shipment of paper has been sent to the school. bdfsa f df   feew    d ccc  eewe   lllld  feee  ddsss   llle   lyyy  oooww   llnnnnn iiii .'
   },
 {
     id : 301,
