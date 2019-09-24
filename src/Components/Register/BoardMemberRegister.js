@@ -8,7 +8,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 100vh;
+  height: 92vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -17,8 +17,8 @@ const Container = styled.div`
 `;
 
 const InnerDiv = styled.div`
-  height: 70vh;
-  width: 30vw;
+  height: 80vh;
+  flex-basis: 40vw;
   background-color: white;
   border: 1px solid grey;
   display: flex;
@@ -27,11 +27,22 @@ const InnerDiv = styled.div`
   align-items: center;
   padding: 0 50px;
   border-radius: 0 10px 10px 0;
+  @media (max-width: 1200px) {
+    flex-basis: 100%;
+    height: 100%;
+    background-color: #c5dcd9;
+  }
 `;
 
 const Image = styled.img`
-  height: 70%;
+  max-width: 100%;
+  display: block;
+  height: 80vh;
+  width: 38.2%;
   border-radius: 10px 0 0 10px;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 const StyledButton = styled(Button)`

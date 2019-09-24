@@ -6,7 +6,7 @@ import { Button, Input, Icon, Typography, Form } from 'antd';
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 100vh;
+  height: 92vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const InnerDiv = styled.div`
   height: 70vh;
-  width: 30vw;
+  flex-basis: 40vw;
   background-color: white;
   border: 1px solid grey;
   display: flex;
@@ -25,11 +25,22 @@ const InnerDiv = styled.div`
   align-items: center;
   padding: 0 50px;
   border-radius: 0 10px 10px 0;
+  @media (max-width: 1200px) {
+    flex-basis: 100%;
+    height: 100%;
+    background-color: #c5dcd9;
+  }
 `;
 
 const Image = styled.img`
-  height: 70%;
+  max-width: 100%;
+  display: block;
+  height: 70vh;
+  width: 38.2%;
   border-radius: 10px 0 0 10px;
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 const StyledButton = styled(Button)`
   font-family: 'Open Sans', sans-serif;
@@ -41,12 +52,21 @@ const Register = () => {
       <InnerDiv>
         <p>I am a </p>
         <Link to="/new_user/school_staff">
-          <StyledButton>School Staff Member</StyledButton>
+          <StyledButton type="primary" htmlType="submit">
+            School Staff Member
+          </StyledButton>
         </Link>
         <Link to="/new_user/board_member">
-          <StyledButton>Board Member</StyledButton>
+          <StyledButton type="primary" htmlType="submit">
+            Board Member
+          </StyledButton>
         </Link>
-        <p>Already registered? </p> <Link to="/login">Login Here!</Link>
+        <div>
+          <p>Already registered? </p>
+          <Link to="/login">
+            <StyledButton htmlType="submit">Login here!</StyledButton>
+          </Link>
+        </div>
       </InnerDiv>
     </Container>
   );
