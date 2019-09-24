@@ -1,38 +1,12 @@
 @import '../../less/mixins.less';
 
-.singleIssue--container{
+.singleIssue-form{
   display: flex;
-  position: relative;
   flex-direction: column;
-  margin : 1rem;
-  border: 1px solid @success;
-  background-color: #fff;
-  
-
-  @media screen and (min-width: 1200px){
-    height: 35vh;
-  }
+  flex-grow: 1;
 }
 
-.hide{
-  #hideMobileOnly( @dType: flex )
-}
-
-.singleIssue--header{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 1rem ;
-  font-size: 1.25rem;
-  align-items: center;
-  background-color: @success;
-  flex-grow: 0;
-  p{
-    margin: 0;
-  }
-}
-
-.singleIssue--body-container{
+.form--body-container{
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -43,11 +17,11 @@
 }
 
 
-.singleIssue--stats{
+.form--stats{
   
 }
 
-.singleIssue--body{
+.form--body{
 
 }
 

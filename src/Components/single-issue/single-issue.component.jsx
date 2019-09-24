@@ -1,6 +1,8 @@
 import React from 'react'
 import { Row, Col, Button, Icon } from 'antd'
 
+import SingleIssueForm from './singleissue-form.component'
+
 import styles from './single-issue.module.less'
 
 export default function SingleIssue( props ) {
@@ -22,7 +24,11 @@ export default function SingleIssue( props ) {
           </>
           )}
       </div>
-
+      <SingleIssueForm />
+    </div>
+  )
+}
+/*
       <Row className={ styles['singleIssue--body-container']}>
         <Col xs={24} xl={8}>
           <p>Status</p>
@@ -40,6 +46,4 @@ export default function SingleIssue( props ) {
             <Button>Delete</Button>
             <Button>Submit Changes</Button>
         </div>
-    </div>
-  )
-}
+*/

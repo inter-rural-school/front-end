@@ -17,8 +17,7 @@
 
 .issues--header{
   display: flex;
-  justify-content: space-evenly;
-  padding: 1rem ;
+  flex-direction: column;
   font-size: 1.25rem;
   align-items: center;
   background-color: @success;
@@ -26,6 +25,21 @@
   top: 0;
   left: 0;
   z-index: 100;
+  
+  &:first-child{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  p{
+    text-align: left;
+  }
+
+  button{
+    display: block;
+    margin-left: auto
+  }
 
   button{
     background-color: @warning;
@@ -36,14 +50,12 @@
   }
 }
 
-.issues--header--btn{
-}
-
 .issues--col-names{
   display: none;
   padding: 0.5rem 1rem;
   border-bottom: 1px solid @success;
   justify-content: space-evenly;
+  background-color: #fff;
 
   div{
     // border: 1px solid red;
@@ -51,5 +63,6 @@
 
   @media screen and (min-width: 1200px){
     display: flex;
+    width: 100%;
   }
 }
