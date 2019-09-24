@@ -1,6 +1,3 @@
-.issues--header--btn{
-  background-color: @warning;
-}
 
 .issues--container{
   display: flex;
@@ -21,13 +18,25 @@
 .issues--header{
   display: flex;
   justify-content: space-evenly;
-  padding: 1rem 0;
+  padding: 1rem ;
+  font-size: 1.25rem;
   align-items: center;
   background-color: @success;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 100;
+
+  button{
+    background-color: @warning;
+  }
+
+  @media screen and (min-width: 1200px){
+    justify-content: space-between;
+  }
+}
+
+.issues--header--btn{
 }
 
 .issues--col-names{

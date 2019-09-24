@@ -86,7 +86,10 @@ export default function IssuesListItem( props) {
           span: 0,
           }}
           >
-          <Button>View</Button>
+          <Button 
+           id={ props.data.id }
+           onClick={ props.setViewIssue }
+           >View</Button>
         </Col>
         <Col 
          xs={{
@@ -96,7 +99,7 @@ export default function IssuesListItem( props) {
           span: 0,
           }}
           >
-          <Button>Delete</Button>
+          <Button id={ props.data.id }>Delete</Button>
         </Col>
         <Col 
          xs={{
@@ -106,7 +109,11 @@ export default function IssuesListItem( props) {
           span: 2,
           }}
           >
-            <Icon type="eye" style={{fontSize: '2rem'}}/>
+            <Icon 
+              type="eye" 
+              id={ props.data.id }
+              onClick={ props.setViewIssue }
+              style={{fontSize: '2rem'}}/>
         </Col>
         <Col 
          xs={{
@@ -116,7 +123,10 @@ export default function IssuesListItem( props) {
           span: 2,
           }}
           >
-            <Icon type="delete" style={{fontSize: '2rem'}}/>
+            <Icon 
+              type="delete" 
+              id={ props.data.id }
+              style={{fontSize: '2rem'}}/>
         </Col>
 
 
