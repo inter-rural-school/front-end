@@ -33,8 +33,8 @@ export default function SingleIssueForm( props ) {
   reads from Redux Store or wherever data is stored
   */
 
-  // let isBM =  false;
-  let isBM =  true;
+  let isBM =  false;
+  // let isBM =  true;
 
 
   console.log('singleIssue-form issueData',props.issueData);
@@ -58,7 +58,7 @@ export default function SingleIssueForm( props ) {
                >Status:</label>
               <Select 
                 id='statusfilter'
-                defaultValue={ currentIssue.status }
+                // defaultValue={ currentIssue.status }
                 name='statusfilter'
                 style={{ width: '100%', paddingLeft: '1rem' }} 
                 onChange={ props.handleChange }>
@@ -89,14 +89,51 @@ export default function SingleIssueForm( props ) {
                 >Board Comment: </label>
                  <Input.TextArea
                   autosize={{ 
-                    minRows: 3,
+                    minRows: 1,
                   }}
                   placeholder="" 
+                  onChange={ handleChange }
                   value={ currentIssue.boardComment }
                   id="bmComment" 
+                  name="bmComment"
                   />
                 </div>
             ) }
+            { !isBM && (
+              <div className={ styles.bmCommentDiv }>
+                <label
+                htmlFor='singleIssueTitle'
+                  style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
+                >Title: </label>
+                 <Input
+                  placeholder="" 
+                  onChange={ handleChange }
+                  value={ currentIssue.title }
+                  id="singleIssueTitle" 
+                  name="singleIssueTitle"
+                  />
+                </div>
+            ) }
+               { !isBM && (
+              <div className={ styles.bmCommentDiv }>
+                <label
+                htmlFor='singleIssueDescription'
+                  style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
+                >Description: </label>
+                 <Input.TextArea
+                  autosize={{ 
+                    minRows: 1,
+                  }}
+                  placeholder="" 
+                  onChange={ handleChange }
+                  value={ currentIssue.description }
+                  id="singleIssueDescription" 
+                  name="singleIssueDescription"
+                  />
+                </div>
+            ) }
+
+            {(!isBM && currentIssue.boardComment) &&<Stat label='Board Comment: ' data={ currentIssue.boardComment }/> }
         </Col>
       </Row>
       <div className={styles['singleIssue--footer']}>

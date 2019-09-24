@@ -9,8 +9,9 @@ import IssueListItem from './IssueList-Item.component'
 import { user, issues } from '../../test-data'
 
 
-const isBM = true;
-// const isBM = false;
+// const isBM = true;
+const isBM = false;
+
 /*
 
       <Icon type="close-circle" />
@@ -42,13 +43,14 @@ export default function IssueList(props) {
           <Col xl={6}>Title</Col>
           <Col xl={5}>Status</Col>
           <Col xl={2}>View</Col>
-          <Col xl={2}>Delete</Col>
+          { !isBM && <Col xl={2}>Delete</Col>}
         </Row>      
       </div>
 
       { props.issueData && props.issueData.map( issue => {
         return (
           <IssueListItem 
+              isBM={ isBM }
               data={ issue}
               key={ issue.id }
               setViewIssue={ props.setViewIssue }

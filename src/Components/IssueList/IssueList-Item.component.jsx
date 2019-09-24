@@ -33,8 +33,10 @@ export default function IssuesListItem( props) {
 
     default:
         iconType='exclamation-circle'
-
   }
+
+  console.log('isBM in IssueList', props.isBM );
+
   return (
       <Row className={styles['issues--item--wrapper']}>
         <Col 
@@ -91,6 +93,7 @@ export default function IssuesListItem( props) {
            onClick={ props.setViewIssue }
            >View</Button>
         </Col>
+
         <Col 
          xs={{
           span: 8,
@@ -101,6 +104,8 @@ export default function IssuesListItem( props) {
           >
           <Button id={ props.data.id }>Delete</Button>
         </Col>
+        
+
         <Col 
          xs={{
           span: 0,
@@ -115,6 +120,7 @@ export default function IssuesListItem( props) {
               onClick={ props.setViewIssue }
               style={{fontSize: '2rem'}}/>
         </Col>
+      { !props.isBM && 
         <Col 
          xs={{
           span: 0,
@@ -128,6 +134,7 @@ export default function IssuesListItem( props) {
               id={ props.data.id }
               style={{fontSize: '2rem'}}/>
         </Col>
+            }
 
 
       </Row>

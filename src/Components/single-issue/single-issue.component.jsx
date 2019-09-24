@@ -15,7 +15,21 @@ const newIssueInit = {
 }
 export default function SingleIssue( props ) {
   //set the initial values for the form
- let initState = {}
+/*
+ let newIssueInit = {
+   dateCreated: new Date(),
+   createdBy: 'currentUser'
+ }
+ let SSView = {
+   dateCreated: 'issue date',
+   createdBy: 'currentUser'
+ }
+
+ let BMView = {
+   dateCreated: 'issue date',
+   createdBy: 'currentUser'
+ }
+*/
 
    /*
    Change handleSubmit function based on props
@@ -55,10 +69,16 @@ export default function SingleIssue( props ) {
           </>
           )}
       </div>
+      {/* initialValues must change based on user type 
+      and if the user wants to create a new issue or edit an existing one.
+       */}
        <Formik
-      { ...props }
-      initialValues={{ name: 'jared' }}
-      onSubmit={  submitAction  }
+      initialValues={{ 
+        bmComment: `${ props.issueData.boardComment}`,
+        statusFilter: 'Needs Attention' }}
+      onSubmit={ (values, { resetForm }) => {
+        console.log(values)
+      } }
       render={ props => (
         <SingleIssueForm 
           {...props}
