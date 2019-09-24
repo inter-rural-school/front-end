@@ -32,51 +32,109 @@ export default function IssuesListItem(props) {
       break;
 
     default:
-      iconType = 'exclamation-circle';
+        iconType='exclamation-circle'
   }
+
+  console.log('isBM in IssueList', props.isBM );
+
   return (
-    <Row className={styles['issues--item--wrapper']}>
-      <Col
-        xs={{
-          span: 24
-        }}
-        xl={{
-          span: 5
-        }}
-        className={styles['issues--item--first-col']}
-      >
-        <p>{props.data.dateCreated.toDateString()}</p>
-      </Col>
-      <Col
-        xs={{
-          span: 20
-        }}
-        xl={{
-          span: 6
-        }}
-      >
-        <p>{props.data.title}</p>
-      </Col>
-      <Col
-        xs={{
-          span: 5
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Icon type={iconType} style={{ fontSize: '2rem' }} />
-      </Col>
-      <Col
-        xs={{
-          span: 0
-        }}
-        xl={{
-          span: 5
-        }}
-      >
-        <p> {props.data.status} </p>
-      </Col>
+      <Row className={styles['issues--item--wrapper']}>
+        <Col 
+         xs={{
+          span: 24,
+          }}
+         xl={{
+          span: 5,
+          }}
+        className={ styles['issues--item--first-col']}
+        >
+          <p>{ props.data.dateCreated.toDateString() }</p>
+        </Col>
+        <Col 
+         xs={{
+          span: 20,
+          }}
+         xl={{
+          span: 6,
+         }}
+        ><p>{ props.data.title}</p></Col>
+        <Col 
+         xs={{
+          span: 5,
+          }}
+         xl={{
+          span: 0,
+          }}
+        >
+          <Icon type={ iconType } style={{fontSize: '2rem'}}/>
+        </Col>
+        <Col 
+         xs={{
+          span: 0,
+          }}
+         xl={{
+          span: 5,
+          }}
+        >
+          <p> { props.data.status } </p>
+        </Col>
+ 
+        <Col 
+         xs={{
+          span: 8,
+          offset: 3,
+          }}
+         xl={{
+          span: 0,
+          }}
+          >
+          <Button 
+           id={ props.data.id }
+           onClick={ props.setViewIssue }
+           >View</Button>
+        </Col>
+
+        <Col 
+         xs={{
+          span: 8,
+          }}
+         xl={{
+          span: 0,
+          }}
+          >
+          <Button id={ props.data.id }>Delete</Button>
+        </Col>
+        
+
+        <Col 
+         xs={{
+          span: 0,
+          }}
+         xl={{
+          span: 2,
+          }}
+          >
+            <Icon 
+              type="eye" 
+              id={ props.data.id }
+              onClick={ props.setViewIssue }
+              style={{fontSize: '2rem'}}/>
+        </Col>
+      { !props.isBM && 
+        <Col 
+         xs={{
+          span: 0,
+          }}
+         xl={{
+          span: 2,
+          }}
+          >
+            <Icon 
+              type="delete" 
+              id={ props.data.id }
+              style={{fontSize: '2rem'}}/>
+        </Col>
+            }
 
       <Col
         xs={{
