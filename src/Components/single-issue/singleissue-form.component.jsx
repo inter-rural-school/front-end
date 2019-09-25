@@ -9,6 +9,7 @@ import {
 } from 'antd'
 import {  Form, Field, ErrorMessage } from 'formik'
 
+import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
 
 import { issues, user } from '../../test-data'
@@ -24,7 +25,15 @@ function Stat( { label, data }){
   )
 }
 
-export default function SingleIssueForm( props ) {
+function SingleIssueForm( props ) {
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
 
   const currentIssue= issues[1];
 
@@ -161,6 +170,18 @@ function BMComment({  field, form, ...props} ){
     />
   )
 }
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    getErrorMessage: state.getErrorMessage
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {  }
+)(SingleIssueForm);
+
 /*
     autosize={{ 
       minRows: 1,

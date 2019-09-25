@@ -25,10 +25,8 @@ background-color: #3cc93e;
 export default function DashBoardMenu( props) {
 
   const handleChange = (value) => {
-    value === "All Issues" ? props.setIssues(issues) : 
-            props.setIssues( 
-              issues.filter(issue => issue.status === value )
-              )
+
+    props.setQuery(value);
   }
   return (
     <MenuContainer style={{padding: '1rem', textAlign:'left'}}>
@@ -47,7 +45,7 @@ export default function DashBoardMenu( props) {
           <Option value="Resolution In Progress">Resolution In Progress</Option>
           <Option value="Resolved">Resolved</Option>
           <Option value="Dismissed">Dismissed</Option>
-          <Option value="All Issues">All Issues</Option>
+          <Option value="">All Issues</Option>
       </Select>
 
     </MenuContainer>

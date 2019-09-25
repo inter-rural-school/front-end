@@ -65,11 +65,10 @@ export default function SingleIssue(props ) {
        */}
        <Formik
       initialValues={{ 
-       }}
-
-        // bmComment: 'Initial value test',
-      onSubmit={ (values, actions ) => {
-        console.log('form values:', values)
+        bmComment: ``,
+        statusFilter: 'Needs Attention' }}
+      onSubmit={ (values, { resetForm }) => {
+        console.log(values)
       } }
 
       render={ props => (
