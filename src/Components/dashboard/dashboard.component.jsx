@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import LayoutWrapper from '../layout/layout.component'
 import styled from 'styled-components'
 
@@ -11,6 +12,8 @@ import IssueList from '../IssueList/IssueList'
 import { user , issues} from  '../../test-data'
 
 export default function Dashboard( props) {
+  console.clear()
+  console.log('Dashboard props :', props);
   // store local state of dashboard
   /*
   The string used to filter the issues list in the Issues List component
@@ -22,6 +25,15 @@ export default function Dashboard( props) {
   viewIssue: int
   */
   const [ dashBoardState, setDashBoardState ] = useState({})
+
+
+  useEffect( ()=>{
+    // fetch issue list from server
+    axios
+      .get(' https://internationalrsr.herokuapp.com/issues/')
+      .then( res => console.log( 'issues list from server : ', res.data ))
+      .catch( err => console.log( err));
+  },[])
 
   function setViewIssue(e){
     console.log('setViewIssue event',e.target.id);

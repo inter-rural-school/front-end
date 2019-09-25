@@ -32,11 +32,9 @@ export default function SingleIssueForm( props ) {
   reads from Redux Store or wherever data is stored
   */
 
-  // let isBM =  false;
-  let isBM =  true;
+  let isBM =  false;
+  // let isBM =  true;
 
-
-  console.log('singleIssue-form issueData',props.issueData);
   return (
     <Form
       className={ styles['singleIssue-form']}

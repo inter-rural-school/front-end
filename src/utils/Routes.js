@@ -19,7 +19,7 @@ const Routes = () => {
       <Route exact path="/" render={() => <Redirect to="/login" />} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/new_user" component={Register} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/dashboard"  render={ props => <Dashboard { ...props }/>} />
       <Route
         exact
         path="/new_user/school_staff"

@@ -35,8 +35,6 @@ export default function IssuesListItem( props) {
         iconType='exclamation-circle'
   }
 
-  console.log('isBM in IssueList', props.isBM );
-
   return (
       <Row className={styles['issues--item--wrapper']}>
         <Col 
