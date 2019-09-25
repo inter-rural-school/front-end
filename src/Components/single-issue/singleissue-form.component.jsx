@@ -160,20 +160,3 @@ function BMComment({  field, form, ...props} ){
     />
   )
 }
-/*
-    autosize={{ 
-      minRows: 1,
-    }}
-    */
-/*
-      <Select 
-              { ...field}
-              {...props}
-                style={{ width: '100%', paddingLeft: '1rem' }} 
-                >
-                <Option value="Needs Attention">Needs Attention</Option>
-                <Option value="Resolution In Progress">In Progress</Option>
-                <Option value="Resolved">Resolved</Option>
-                <Option value="Dismissed">Dismissed</Option>
-              </Select>
-*/

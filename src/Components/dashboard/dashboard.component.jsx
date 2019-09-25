@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react'
+<<<<<<< HEAD
 import axios from 'axios'
+=======
+>>>>>>> victor-arowo
 import LayoutWrapper from '../layout/layout.component'
 import styled from 'styled-components'
-
+import { connect } from 'react-redux';
 import styles from './dashboard.module.less'
 
 import DashBoardMenu from '../dashboard-menu/dashboard-menu.component'
 import SingleIssue from '../single-issue/single-issue.component'
 import IssueList from '../IssueList/IssueList'
 
-import { user , issues} from  '../../test-data'
+//import { user , issues} from  '../../test-data'
 
+<<<<<<< HEAD
 export default function Dashboard( props) {
   console.clear()
   console.log('Dashboard props :', props);
+=======
+function Dashboard( props) {
+  console.log('Dashboard props:', props);
+>>>>>>> victor-arowo
   // store local state of dashboard
   /*
   The string used to filter the issues list in the Issues List component
@@ -24,7 +32,8 @@ export default function Dashboard( props) {
   ID of the issue the user want to view
   viewIssue: int
   */
-  const [ dashBoardState, setDashBoardState ] = useState({})
+  const [ dashBoardState, setDashBoardState ] = useState({});
+  const [issueList, setIssues] = useState(props.issues);
 
 
   useEffect( ()=>{
@@ -42,25 +51,29 @@ export default function Dashboard( props) {
       viewIssue: +e.target.id
     })
   }
+<<<<<<< HEAD
   console.log('Dashboard state :',dashBoardState);
+=======
+
+>>>>>>> victor-arowo
   return (
     <LayoutWrapper>
       <div className={ styles.contentContainer}>
         <DashBoardMenu 
           dashState={ dashBoardState }
           setDash={ setDashBoardState }
+          setIssues={setIssues}
+          issues={issueList}
           />
       <div className={ styles.issueContainer }>
         <IssueList 
           setViewIssue={ setViewIssue}
-          userData={ user }
-          issueData={ issues }
+          userData={ props.userInfo }
+          issueData={ issueList }
           dashState={ dashBoardState }
           setDash={ setDashBoardState }
         />
-        <SingleIssue 
-          userData={ user }
-          issueData={ issues }
+        <SingleIssue  
           dashState={ dashBoardState }
           setDash={ setDashBoardState }
           />
@@ -69,3 +82,16 @@ export default function Dashboard( props) {
     </LayoutWrapper>
   )
 }
+
+
+const mapStateToProps = state => {
+  console.log('current store', state)
+  return {
+    issues: state.issues,
+    userInfo: state.userInfo,
+  };
+};
+export default connect(
+  mapStateToProps,
+  { }
+)(Dashboard);

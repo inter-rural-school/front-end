@@ -1,7 +1,7 @@
-import React from 'react'
-import { Row, Col, Button, Icon } from 'antd'
+import React from 'react';
+import { Row, Col, Button, Icon } from 'antd';
 
-import styles from './IssueList-Item.module.less'
+import styles from './IssueList-Item.module.less';
 
 /*
       <Icon type="close-circle" />
@@ -10,25 +10,25 @@ import styles from './IssueList-Item.module.less'
       <Icon type="exclamation-circle" />
       */
 
-export default function IssuesListItem( props) {
+export default function IssuesListItem(props) {
   let iconType = '';
 
   // set the correct status icon
-  switch ( props.data.status ){
+  switch (props.data.status) {
     case 'Needs Attention':
-      iconType='exclamation-circle';
+      iconType = 'exclamation-circle';
       break;
 
     case 'Resolution In Progress':
-      iconType='clock-circle';
+      iconType = 'clock-circle';
       break;
 
     case 'Dismissed':
-      iconType='close-circle';
+      iconType = 'close-circle';
       break;
 
     case 'Resolved':
-      iconType='check-circle';
+      iconType = 'check-circle';
       break;
 
     default:
@@ -134,7 +134,29 @@ export default function IssuesListItem( props) {
         </Col>
             }
 
-
-      </Row>
-  )
+      <Col
+        xs={{
+          span: 8,
+          offset: 3
+        }}
+        xl={{
+          span: 0
+        }}
+      >
+        <Button id={props.data.id} onClick={props.setViewIssue}>
+          View
+        </Button>
+      </Col>
+      <Col
+        xs={{
+          span: 8
+        }}
+        xl={{
+          span: 0
+        }}
+      >
+        <Button id={props.data.id}>Delete</Button>
+      </Col>
+          </Row>
+  );
 }

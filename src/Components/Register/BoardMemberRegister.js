@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
+
+import { getRegister } from '../../store/actions';
 
 const Container = styled.div`
   background-color: #c5dcd9;
@@ -47,6 +48,9 @@ const Image = styled.img`
 
 const StyledButton = styled(Button)`
   font-family: 'Open Sans', sans-serif;
+`;
+const ErrorMessageBox = styled.div`
+  color: red;
 `;
 const { Title } = Typography;
 
@@ -143,7 +147,7 @@ const C = props => {
             />
           </Form.Item>
 
-          <Form.Item
+          {/* <Form.Item
             help={touched.password2 && errors.password2 ? errors.password2 : ''}
             validateStatus={
               touched.password2 && errors.password2 ? 'error' : undefined
@@ -158,10 +162,15 @@ const C = props => {
               onChange={handleChange}
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
-          </Form.Item>
+          </Form.Item> */}
           <StyledButton type="primary" htmlType="submit">
             Register
           </StyledButton>
+          <ErrorMessageBox>
+            {props.getErrorMessage ? (
+              <p>Error! Please check your infomation!</p>
+            ) : null}
+          </ErrorMessageBox>
         </form>
       </InnerDiv>
     </Container>
@@ -185,24 +194,12 @@ const validationSchema = yup.object().shape({
   password: yup
     .string()
     .required('Please provide a password')
-    .min(8, 'Password too short'),
-  password2: yup
-    .string()
-    .required('Confirm password')
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .min(8, 'Password too short')
+  // password2: yup
+  //   .string()
+  //   .required('Confirm password')
+  //   .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
-
-const RegisterAction = info => {
-  console.log(info);
-  axiosWithAuth()
-    .post('/register', info)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
 
 const BoardMemberRegister = withFormik({
   mapPropsToValues: () => ({
@@ -213,18 +210,21 @@ const BoardMemberRegister = withFormik({
     username: '',
     isBoardMember: 1
   }),
-  handleSubmit: (values, { setSubmitting }) => {
+  handleSubmit: (values, { props, setSubmitting }) => {
     console.log(values);
-    RegisterAction(values);
+
+    props.getRegister(values, props);
     setSubmitting(false);
   },
   validationSchema: validationSchema
 })(C);
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    getErrorMessage: state.getErrorMessage
+  };
 };
 export default connect(
   mapStateToProps,
-  {}
+  { getRegister }
 )(BoardMemberRegister);
