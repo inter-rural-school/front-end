@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react'
-import LayoutWrapper from '../layout/layout.component'
-import styled from 'styled-components'
-=======
 import React, { useState, useEffect } from 'react';
 import LayoutWrapper from '../layout/layout.component';
 import styled from 'styled-components';
->>>>>>> origin/victor-arowo
 import { connect } from 'react-redux';
 import styles from './dashboard.module.less';
 
@@ -17,12 +11,7 @@ import IssueList from '../IssueList/IssueList';
 import { getIssueView, getIssueList } from '../../store/actions';
 //import { user , issues} from  '../../test-data'
 
-<<<<<<< HEAD
-function Dashboard( props) {
-  console.log('Dashboard props:', props);
-=======
 function Dashboard(props) {
->>>>>>> origin/victor-arowo
   // store local state of dashboard
   /*
   The string used to filter the issues list in the Issues List component
@@ -58,12 +47,9 @@ const{getIssueList}=props
     });
   }
 
-<<<<<<< HEAD
-=======
   console.log('dashboard', props);
 
   console.log(dashBoardState.viewIssue);
->>>>>>> origin/victor-arowo
   return (
     <LayoutWrapper>
       <div className={styles.contentContainer}>
@@ -89,11 +75,7 @@ const{getIssueList}=props
 }
 
 const mapStateToProps = state => {
-<<<<<<< HEAD
-  console.log('current store', state)
-=======
   console.log(state);
->>>>>>> origin/victor-arowo
   return {
     issues: state.issues,
     userInfo: state.userInfo,

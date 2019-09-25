@@ -22,11 +22,6 @@ const Routes = () => {
       <Route exact path="/" render={() => <Redirect to="/login" />} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/new_user" component={Register} />
-<<<<<<< HEAD
-      <Route exact path="/dashboard" render={ props => <Dashboard {...props} />} />
-=======
-
->>>>>>> origin/victor-arowo
       <Route
         exact
         path="/new_user/school_staff"
