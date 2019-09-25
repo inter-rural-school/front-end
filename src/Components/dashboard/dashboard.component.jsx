@@ -30,7 +30,7 @@ export default function Dashboard( props) {
       viewIssue: +e.target.id
     })
   }
-  console.log(dashBoardState);
+  console.log('Dashboard state :',dashBoardState);
   return (
     <LayoutWrapper>
       <div className={ styles.contentContainer}>
