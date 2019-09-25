@@ -14,14 +14,8 @@ import IssueList from '../IssueList/IssueList'
 
 //import { user , issues} from  '../../test-data'
 
-<<<<<<< HEAD
-export default function Dashboard( props) {
-  console.clear()
-  console.log('Dashboard props :', props);
-=======
 function Dashboard( props) {
   console.log('Dashboard props:', props);
->>>>>>> victor-arowo
   // store local state of dashboard
   /*
   The string used to filter the issues list in the Issues List component
@@ -51,11 +45,9 @@ function Dashboard( props) {
       viewIssue: +e.target.id
     })
   }
-<<<<<<< HEAD
-  console.log('Dashboard state :',dashBoardState);
-=======
 
->>>>>>> victor-arowo
+  console.log('Dashboard state :',dashBoardState);
+
   return (
     <LayoutWrapper>
       <div className={ styles.contentContainer}>
