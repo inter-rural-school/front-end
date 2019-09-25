@@ -134,30 +134,6 @@ export default function IssuesListItem(props) {
               style={{fontSize: '2rem'}}/>
         </Col>
             }
-
-      <Col
-        xs={{
-          span: 8,
-          offset: 3
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Button id={props.data.id} onClick={props.setViewIssue}>
-          View
-        </Button>
-      </Col>
-      <Col
-        xs={{
-          span: 8
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Button id={props.data.id}>Delete</Button>
-      </Col>
           </Row>
   );
 }
