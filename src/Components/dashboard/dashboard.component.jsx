@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import LayoutWrapper from '../layout/layout.component'
 import styled from 'styled-components'
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import IssueList from '../IssueList/IssueList'
 //import { user , issues} from  '../../test-data'
 
 function Dashboard( props) {
+  console.log('Dashboard props:', props);
   // store local state of dashboard
   /*
   The string used to filter the issues list in the Issues List component
@@ -32,9 +33,6 @@ function Dashboard( props) {
     })
   }
 
-
-
-  console.log(dashBoardState.viewIssue);
   return (
     <LayoutWrapper>
       <div className={ styles.contentContainer}>
@@ -64,7 +62,7 @@ function Dashboard( props) {
 
 
 const mapStateToProps = state => {
-  console.log(state)
+  console.log('current store', state)
   return {
     issues: state.issues,
     userInfo: state.userInfo,
