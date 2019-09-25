@@ -4,55 +4,25 @@ import {
   REGISTER_FAILURE,
   LOGIN_START,
   LOGIN_SUCCESS,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  SAVE_ISSUE,
+  FETCHING_ISSUES_START,
+  FETCHING_ISSUES_SUCCESS,
+  FETCHING_ISSUES_FAILURE
 } from '../actions';
 
 const initialState = {
+  isFetching: false,
   isLogined: false,
   isLoading: false,
   getErrorMessage: false,
   userInfo: {
     isBoardMember: false,
     name: 'Tom Steve',
-    school: 'Country School'
+    school: 'Country School',
+    school_id: 100000000
   },
-  issues: [
-    {
-      id: 101,
-      title: 'Broken toilet',
-      description: 'The toilet is broken',
-      dateCreated: new Date(),
-      status: 'Needs Attention'
-    },
-    {
-      id: 201,
-      title: 'Need paper',
-      description: 'The school is out of paper',
-      dateCreated: new Date(),
-      status: 'Resolution In Progress'
-    },
-    {
-      id: 301,
-      title: 'Computer Exploded',
-      description: 'The computer in the library exploded.',
-      dateCreated: new Date(),
-      status: 'Resolved'
-    },
-    {
-      id: 401,
-      title: 'Need English Teacher',
-      description: 'Last one got eaten by lion',
-      dateCreated: new Date(),
-      status: 'Dismissed'
-    },
-    {
-      id: 501,
-      title: 'Pack of Hyenas',
-      description: 'A pack of hyenas moved into the math room.',
-      dateCreated: new Date(),
-      status: 'Resolution In Progress'
-    }
-  ]
+  issues: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -87,6 +57,23 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         getErrorMessage: true
+      };
+
+    case SAVE_ISSUE:
+      return {
+        ...state,
+        issues: [...state.issues, action.payload]
+      };
+    case FETCHING_ISSUES_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case FETCHING_ISSUES_SUCCESS:
+      return {
+        ...state,
+        issues: [...state.issues, action.payload],
+        isFetching: false
       };
     default:
       return state;

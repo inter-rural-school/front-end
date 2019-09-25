@@ -46,7 +46,7 @@ export default function IssuesListItem(props) {
           }}
         className={ styles['issues--item--first-col']}
         >
-          <p>{ props.data.dateCreated.toDateString() }</p>
+        <p>{props.data.date }</p>
         </Col>
         <Col 
          xs={{
@@ -55,7 +55,7 @@ export default function IssuesListItem(props) {
          xl={{
           span: 6,
          }}
-        ><p>{ props.data.title}</p></Col>
+      ><p>{props.data.issue_title}</p></Col>
         <Col 
          xs={{
           span: 5,
@@ -133,30 +133,6 @@ export default function IssuesListItem(props) {
               style={{fontSize: '2rem'}}/>
         </Col>
             }
-
-      <Col
-        xs={{
-          span: 8,
-          offset: 3
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Button id={props.data.id} onClick={props.setViewIssue}>
-          View
-        </Button>
-      </Col>
-      <Col
-        xs={{
-          span: 8
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Button id={props.data.id}>Delete</Button>
-      </Col>
           </Row>
   );
 }
