@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
+import Header from '../Components/Header.js';
 
 import Login from '../Components/Login';
 import Register from '../Components/Register/Register';
@@ -32,6 +33,7 @@ const Routes = () => {
         path="/new_user/board_member"
         component={BoardMemberRegister}
       />
+      <Route path="/dashboard" component={Header} />
       <Route exact path="/dashboard" component={Dashboard} />
       <Route
         exact

@@ -3,7 +3,7 @@ import LayoutWrapper from '../layout/layout.component';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import styles from './dashboard.module.less';
-
+import axios from 'axios'
 import DashBoardMenu from '../dashboard-menu/dashboard-menu.component';
 import SingleIssue from '../single-issue/single-issue.component';
 import IssueList from '../IssueList/IssueList';
@@ -14,17 +14,26 @@ function Dashboard(props) {
 
   const [dashBoardState, setDashBoardState] = useState({});
   const [query, setQuery] = useState('');
-  const [token, setToken] = useState('');
+  const [issuesList, setIssuesList] = useState([]);
+  const [newIssues, setNewIssues] = useState({});
   const [ viewIssue, setViewIssue ] = useState(0)
   const{getIssueList}=props
 
   useEffect(() => {
     
     if (localStorage.getItem('token')) {
-      getIssueList();
+      axios
+        .get('https://internationalrsr.herokuapp.com/issues/')
+        .then(res => {
+          console.log(res.data);
+          setIssuesList(res.data)
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
     
-  }, [dashBoardState]);
+  }, []);
 
 
   console.log('viewIssue :', viewIssue);
@@ -41,16 +50,17 @@ function Dashboard(props) {
           <IssueList
             setViewIssue={setViewIssue}
             userData={props.userInfo}
-            issueData={props.issues}
+            issueData={issuesList}
             dashState={dashBoardState}
             setDash={setDashBoardState}
             query={query}
+            updateIssues={setNewIssues}
           />
-          <SingleIssue 
-            dashState={dashBoardState} 
-            setDash={setDashBoardState} 
+          <SingleIssue
+            dashState={dashBoardState}
+            setDash={setDashBoardState}
             viewIssue={viewIssue}
-            />
+          />
         </div>
       </div>
     </LayoutWrapper>
@@ -60,7 +70,7 @@ function Dashboard(props) {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    issues: state.issues,
+    //issues: state.issues,
     userInfo: state.userInfo,
     isFetching: state.isFetching
   };

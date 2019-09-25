@@ -20,12 +20,18 @@ const isBM = false;
 
 function IssueList(props) {
 
+  console.log(props)
   
   return (
     <div className={styles['issues--container']}>
       <div className={styles['issues--header']}>
         <p style={{ margin: 0 }}>{props.userData.school}</p>
-        <Link to="/dashboard/issue_form">
+        <Link
+          to={{
+            pathname: '/dashboard/issue_form',
+            props: {...props}
+          }}
+        >
           <Button className={styles['issues--header--btn']}>New Issue</Button>
         </Link>
       </div>
@@ -38,15 +44,17 @@ function IssueList(props) {
       </Row>
 
       {props.issueData &&
-        props.issueData.filter(issue => issue.status.includes(props.query)).map(issue => {
-          return (
-            <IssueListItem
-              data={issue}
-              key={issue.id}
-              setViewIssue={props.setViewIssue}
-            />
-          );
-        })}
+        props.issueData
+          .filter(issue => issue.status.includes(props.query))
+          .map(issue => {
+            return (
+              <IssueListItem
+                data={issue}
+                key={issue.id}
+                setViewIssue={props.setViewIssue}
+              />
+            );
+          })}
     </div>
   );
 }

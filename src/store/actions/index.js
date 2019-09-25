@@ -49,11 +49,12 @@ export const saveIssue = (info, props) => dispatch => {
     .post('https://internationalrsr.herokuapp.com/issues/', info)
     .then(res => {
       console.log(res);
-      dispatch({ type: SAVE_ISSUE, payload: info });
+      console.log(props);
+      //props.location.props.updateIssues(info);
       props.history.push('/dashboard');
     })
     .catch(err => {
-      console.log(err.response.status);
+      console.log(err);
     });
 };
 
@@ -62,18 +63,18 @@ export const FETCHING_ISSUES_SUCCESS = 'FETCHING_ISSUES_SUCCESS';
 export const FETCHING_ISSUES_FAILURE = 'FETCHING_ISSUES_FAILURE';
 
 export const getIssueList = () => dispatch => {
-  dispatch({ type: FETCHING_ISSUES_START });
-  axios
-    .get('https://internationalrsr.herokuapp.com/issues/')
-    .then(res => {
-      console.log(res);
-      res.data.forEach(data => {
-        dispatch({ type: FETCHING_ISSUES_SUCCESS, payload: data });
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+  // dispatch({ type: FETCHING_ISSUES_START });
+  // axios
+  //   .get('https://internationalrsr.herokuapp.com/issues/')
+  //   .then(res => {
+  //     console.log(res);
+  //     res.data.forEach(data => {
+  //       dispatch({ type: FETCHING_ISSUES_SUCCESS, payload: data });
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
 };
 
 export const getIssueView = props => {
