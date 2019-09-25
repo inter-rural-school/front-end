@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import LayoutWrapper from '../layout/layout.component'
-import styled from 'styled-components'
-=======
 import React, { useState, useEffect } from 'react';
 import LayoutWrapper from '../layout/layout.component';
 import styled from 'styled-components';
->>>>>>> victor-arowo
 import { connect } from 'react-redux';
 import styles from './dashboard.module.less';
 
@@ -29,23 +22,6 @@ function Dashboard(props) {
   ID of the issue the user want to view
   viewIssue: int
   */
-<<<<<<< HEAD
-  const [ dashBoardState, setDashBoardState ] = useState({});
-
-  const [issueList, setIssues] = useState(props.issues);
-
-
-  useEffect( ()=>{
-    // fetch issue list from server
-    axios
-      .get(' https://internationalrsr.herokuapp.com/issues/')
-      .then( res => console.log( 'issues list from server : ', res.data ))
-      .catch( err => console.log( err));
-  },[])
-
-  function setViewIssue(e){
-    console.log('setViewIssue event',e.target.id);
-=======
 
   const [dashBoardState, setDashBoardState] = useState({});
   const [query, setQuery] = useState('');
@@ -65,7 +41,6 @@ const{getIssueList}=props
     console.log('setViewIssue event', e.target.id);
     //will pass to single issue view(need endpoint)
     //props.getIssueView(props);
->>>>>>> victor-arowo
     setDashBoardState({
       ...dashBoardState,
       viewIssue: +e.target.id
