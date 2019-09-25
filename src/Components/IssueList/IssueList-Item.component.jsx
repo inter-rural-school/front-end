@@ -48,7 +48,7 @@ export default function IssuesListItem(props) {
           }}
         className={ styles['issues--item--first-col']}
         >
-          <p>{ props.data.dateCreated.toDateString() }</p>
+        <p>{props.data.date }</p>
         </Col>
         <Col 
          xs={{
@@ -57,7 +57,7 @@ export default function IssuesListItem(props) {
          xl={{
           span: 6,
          }}
-        ><p>{ props.data.title}</p></Col>
+      ><p>{props.data.issue_title}</p></Col>
         <Col 
          xs={{
           span: 5,
