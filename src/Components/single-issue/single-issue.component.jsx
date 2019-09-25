@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Button, Icon } from 'antd'
+import {  Icon } from 'antd'
 import { Formik } from 'formik'
 
 import SingleIssueForm from './singleissue-form.component'

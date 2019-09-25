@@ -1,4 +1,6 @@
 
+@import '../../less/mixins.less';
+
 .issues--container{
   display: flex;
   position: relative;
@@ -44,7 +46,7 @@
   }
 
   button{
-    background-color: @warning;
+    #yellowButton();
   }
 
   @media screen and (min-width: 1200px){

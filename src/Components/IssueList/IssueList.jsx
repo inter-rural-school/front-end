@@ -1,6 +1,5 @@
 import React from 'react'
-import { Row, Col , Button, Icon} from 'antd';
-import styled from 'styled-components'
+import { Row, Col , Button} from 'antd';
 import { connect } from 'react-redux';
 import styles from './IssueList.module.less'
 import { Link } from 'react-router-dom';
@@ -8,21 +7,10 @@ import { Link } from 'react-router-dom';
 
 import IssueListItem from './IssueList-Item.component'
 
-import { user, issues } from '../../test-data'
-
 
 // const isBM = true;
 const isBM = false;
 
-/*
-const IssuesContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin : 1rem;
-  border: 1px solid #3cc93e;
-  background-color: #fff;
-`;
-*/
 /*
       <Icon type="close-circle" />
       <Icon type="clock-circle" />

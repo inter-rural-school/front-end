@@ -9,25 +9,14 @@ import SingleIssue from '../single-issue/single-issue.component';
 import IssueList from '../IssueList/IssueList';
 
 import { getIssueView, getIssueList } from '../../store/actions';
-//import { user , issues} from  '../../test-data'
 
 function Dashboard(props) {
-  // store local state of dashboard
-  /*
-  The string used to filter the issues list in the Issues List component
-  filterTerm: string
-
-  newIssueRequest: bool
-  
-  ID of the issue the user want to view
-  viewIssue: int
-  */
 
   const [dashBoardState, setDashBoardState] = useState({});
   const [query, setQuery] = useState('');
-  // const [issueList, setIssues] = useState(props.issues);
   const [token, setToken] = useState('');
-const{getIssueList}=props
+  const [ viewIssue, setViewIssue ] = useState(0)
+  const{getIssueList}=props
 
   useEffect(() => {
     
@@ -37,19 +26,9 @@ const{getIssueList}=props
     
   }, []);
 
-  function setViewIssue(e) {
-    console.log('setViewIssue event', e.target.id);
-    //will pass to single issue view(need endpoint)
-    //props.getIssueView(props);
-    setDashBoardState({
-      ...dashBoardState,
-      viewIssue: +e.target.id
-    });
-  }
 
-  console.log('dashboard', props);
+  console.log('viewIssue :', viewIssue);
 
-  console.log(dashBoardState.viewIssue);
   return (
     <LayoutWrapper>
       <div className={styles.contentContainer}>
@@ -67,7 +46,11 @@ const{getIssueList}=props
             setDash={setDashBoardState}
             query={query}
           />
-          <SingleIssue dashState={dashBoardState} setDash={setDashBoardState} />
+          <SingleIssue 
+            dashState={dashBoardState} 
+            setDash={setDashBoardState} 
+            viewIssue={viewIssue}
+            />
         </div>
       </div>
     </LayoutWrapper>

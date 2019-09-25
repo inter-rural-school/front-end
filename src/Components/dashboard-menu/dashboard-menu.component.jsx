@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Formik , withFormik } from 'formik';
-import { Select, Input, Form, Button } from 'antd';
-import { issues} from  '../../test-data'
+import { Select} from 'antd';
 
 
 const { Option } = Select;
@@ -52,4 +50,3 @@ export default function DashBoardMenu( props) {
       
   )
 }
-
