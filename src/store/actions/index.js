@@ -31,7 +31,7 @@ export const getLogin = (info, props) => dispatch => {
     .post('/login', info)
     .then(res => {
       console.log(res);
-      dispatch({ type: LOGIN_SUCCESS });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
       localStorage.setItem('token', res.data.token);
       props.history.push('/dashboard');
     })
@@ -77,5 +77,5 @@ export const getIssueList = () => dispatch => {
 };
 
 export const getIssueView = props => {
-  props.history.push('/dashboard/issue_view/101');
+  props.history.push('/dashboard/issue_view/:id');
 };

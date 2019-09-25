@@ -24,7 +24,7 @@ function Dashboard(props) {
       getIssueList();
     }
     
-  }, []);
+  }, [dashBoardState]);
 
 
   console.log('viewIssue :', viewIssue);

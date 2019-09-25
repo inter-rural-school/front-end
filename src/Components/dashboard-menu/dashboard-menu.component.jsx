@@ -23,7 +23,6 @@ background-color: #3cc93e;
 export default function DashBoardMenu( props) {
 
   const handleChange = (value) => {
-
     props.setQuery(value);
   }
   return (
