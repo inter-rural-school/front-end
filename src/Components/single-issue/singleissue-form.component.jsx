@@ -41,11 +41,9 @@ function SingleIssueForm( props ) {
   reads from Redux Store or wherever data is stored
   */
 
-  // let isBM =  false;
-  let isBM =  true;
+  let isBM =  false;
+  // let isBM =  true;
 
-
-  console.log('singleIssue-form issueData',props.issueData);
   return (
     <Form
       className={ styles['singleIssue-form']}
@@ -132,10 +130,11 @@ function SingleIssueForm( props ) {
         </Col>
       </Row>
       <div className={styles['singleIssue--footer']}>
-          { !isBM && <button>Delete</button>}
+          { !isBM &&  <button>Delete</button>}
+          <button>Close</button>
           <button 
              type='submit'
-             >Submit Changes</button>
+             >Submit</button>
       </div>
     </Form>
 
@@ -182,21 +181,3 @@ export default connect(
   mapStateToProps,
   {  }
 )(SingleIssueForm);
-
-/*
-    autosize={{ 
-      minRows: 1,
-    }}
-    */
-/*
-      <Select 
-              { ...field}
-              {...props}
-                style={{ width: '100%', paddingLeft: '1rem' }} 
-                >
-                <Option value="Needs Attention">Needs Attention</Option>
-                <Option value="Resolution In Progress">In Progress</Option>
-                <Option value="Resolved">Resolved</Option>
-                <Option value="Dismissed">Dismissed</Option>
-              </Select>
-*/

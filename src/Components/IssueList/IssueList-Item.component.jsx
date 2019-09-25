@@ -35,8 +35,7 @@ export default function IssuesListItem(props) {
         iconType='exclamation-circle'
   }
 
-  console.log('isBM in IssueList', props.isBM );
-
+    console.log( typeof(props.setViewIssue));
   return (
       <Row className={styles['issues--item--wrapper']}>
         <Col 
@@ -88,10 +87,10 @@ export default function IssuesListItem(props) {
           span: 0,
           }}
           >
-          <Button 
+          <button 
            id={ props.data.id }
-           onClick={ props.setViewIssue }
-           >View</Button>
+           onClick={()=> props.setViewIssue( props.data.id) }
+           >View</button>
         </Col>
 
         <Col 
@@ -117,7 +116,7 @@ export default function IssuesListItem(props) {
             <Icon 
               type="eye" 
               id={ props.data.id }
-              onClick={ props.setViewIssue }
+              onClick={ ()=> props.setViewIssue( props.data.id ) }
               style={{fontSize: '2rem'}}/>
         </Col>
       { !props.isBM && 
@@ -135,55 +134,6 @@ export default function IssuesListItem(props) {
               style={{fontSize: '2rem'}}/>
         </Col>
             }
-
-      <Col
-        xs={{
-          span: 8,
-          offset: 3
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Button id={props.data.id} onClick={props.setViewIssue}>
-          View
-        </Button>
-      </Col>
-      <Col
-        xs={{
-          span: 8
-        }}
-        xl={{
-          span: 0
-        }}
-      >
-        <Button id={props.data.id}>Delete</Button>
-      </Col>
-      <Col
-        xs={{
-          span: 0
-        }}
-        xl={{
-          span: 2
-        }}
-      >
-        <Icon
-          type="eye"
-          id={props.data.id}
-          onClick={props.setViewIssue}
-          style={{ fontSize: '2rem' }}
-        />
-      </Col>
-      <Col
-        xs={{
-          span: 0
-        }}
-        xl={{
-          span: 2
-        }}
-      >
-        <Icon type="delete" id={props.data.id} style={{ fontSize: '2rem' }} />
-      </Col>
-    </Row>
+          </Row>
   );
 }
