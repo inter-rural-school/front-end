@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-<<<<<<< HEAD
 import axios from 'axios'
-=======
->>>>>>> victor-arowo
 import LayoutWrapper from '../layout/layout.component'
 import styled from 'styled-components'
 import { connect } from 'react-redux';
@@ -27,6 +24,7 @@ function Dashboard( props) {
   viewIssue: int
   */
   const [ dashBoardState, setDashBoardState ] = useState({});
+
   const [issueList, setIssues] = useState(props.issues);
 
 
@@ -45,8 +43,6 @@ function Dashboard( props) {
       viewIssue: +e.target.id
     })
   }
-
-  console.log('Dashboard state :',dashBoardState);
 
   return (
     <LayoutWrapper>
