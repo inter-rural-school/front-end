@@ -20,20 +20,18 @@ function Dashboard(props) {
   const{getIssueList}=props
 
   useEffect(() => {
-    
     if (localStorage.getItem('token')) {
       axios
         .get('https://internationalrsr.herokuapp.com/issues/')
         .then(res => {
           console.log(res.data);
-          setIssuesList(res.data)
+          setIssuesList(res.data);
         })
         .catch(err => {
           console.log(err);
         });
     }
-    
-  }, []);
+  }, [newIssues]);
 
 
   console.log('viewIssue :', viewIssue);

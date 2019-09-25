@@ -48,7 +48,7 @@ function IssueList(props) {
           .filter(issue => issue.status.includes(props.query))
           .map(issue => {
             return (
-              <IssueListItem
+              <IssueListItem {...props}
                 data={issue}
                 key={issue.id}
                 setViewIssue={props.setViewIssue}

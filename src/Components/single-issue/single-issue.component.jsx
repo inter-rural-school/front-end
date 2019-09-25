@@ -1,12 +1,14 @@
 import React from 'react'
 import {  Icon } from 'antd'
 import { Formik } from 'formik'
+import { connect } from 'react-redux';
+
 
 import SingleIssueForm from './singleissue-form.component'
 
 import styles from './single-issue.module.less'
 
-export default function SingleIssue(props ) {
+function SingleIssue(props ) {
   //set the initial values for the form
 /*
  let newIssueInit = {
@@ -78,3 +80,14 @@ export default function SingleIssue(props ) {
     </div>
   )
 }
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+   
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { }
+)(SingleIssue);

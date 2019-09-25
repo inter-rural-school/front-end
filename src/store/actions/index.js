@@ -77,6 +77,21 @@ export const getIssueList = () => dispatch => {
   //   });
 };
 
-export const getIssueView = props => {
+export const getIssueView = props => dispatch => {
   props.history.push('/dashboard/issue_view/:id');
+};
+
+export const deleteIssue = (id, props) => dispatch => {
+  console.log(props);
+  axios
+    .delete(`https://internationalrsr.herokuapp.com/issues/${id}`)
+    .then(res => {
+      console.log(res);
+      props.updateIssues({ id });
+      //dispatch({ type: DELETING_FRIENDS, payload: friend });
+      // props.history.push('/dashboard');
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
