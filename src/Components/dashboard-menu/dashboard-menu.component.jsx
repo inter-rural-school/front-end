@@ -50,6 +50,38 @@ export default function DashBoardMenu( props) {
           <Option value="All Issues">All Issues</Option>
       </Select>
 
+          render={props => (
+            <Form 
+              style={{
+                padding: '1rem', 
+                textAlign:'left',
+                width: '100%',
+                }}
+            >
+              <label
+               htmlFor='statusFilter'
+                style={{paddingLeft: '1rem',display:'inline-block', marginBottom: '1rem' }} 
+               >Sort By:</label>
+              <Select 
+                id='statusfilter'
+                name='statusfilter'
+                // defaultValue={ props.values.status }  
+                style={{ width: '100%', paddingLeft: '1rem' }} 
+                onChange={ props.handleChange }>
+                <Option value="needsAttention">Needs Attention</Option>
+                <Option value="inProgress">In Progress</Option>
+                <Option value="resolved">Resolved</Option>
+                <Option value="dismissed">Dismissed</Option>
+              </Select>
+              <button 
+                type="submit"
+                style={{ display: 'block',
+                margin: '1rem auto',
+              }}
+                >Apply</button>
+            </Form>
+          )}
+        />
 
     </MenuContainer>
       

@@ -9,8 +9,8 @@ import IssueListItem from './IssueList-Item.component'
 import { user, issues } from '../../test-data'
 
 
-// const isBM = true;
-const isBM = false;
+const isBM = true;
+// const isBM = false;
 
 /*
 
