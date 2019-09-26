@@ -6,8 +6,8 @@
   flex-direction: column;
   margin : 1rem;
   border: 1px solid @success;
-  background-color: #fff;
-  
+  background-color: @success;
+  border-radius: @border-round;
 
   @media screen and (min-width: 1200px){
     height: 35vh;
@@ -22,7 +22,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem ;
+  padding: 0.5rem 1rem ;
+  border-radius: @border-round @border-round 0 0;
   font-size: 1.25rem;
   align-items: center;
   background-color: @success;
@@ -30,34 +31,4 @@
   p{
     margin: 0;
   }
-}
-
-.singleIssue--body-container{
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-
-  @media screen and (min-width: 1200px){
-    flex-direction: row;
-}
-}
-
-
-.singleIssue--footer{
-  display: flex;
-  justify-content: space-evenly;
-  padding: 1rem;
-  font-size: 1.25rem;
-  align-items: center;
-  background-color: @success;
-  flex-grow: 0;
-
-  button{
-    background-color: @warning;
-    margin: 0 1rem;
-  }
-
-  @media screen and (min-width: 1200px){
-    justify-content: flex-end;
-}
 }

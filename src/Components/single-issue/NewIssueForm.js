@@ -6,8 +6,9 @@ import styles from './singleissue-form.module.less';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
 
+import { formatDate } from '../../utils/utils'
+
 import { saveIssue } from '../../store/actions';
-//import { user } from '../../test-data';
 
 const { Title } = Typography;
 
@@ -41,7 +42,7 @@ const C = props => {
 
             <Stat label="Created By: " data={props.userInfo.name} />
 
-            <Stat label="Date Created:" data={new Date().toDateString()} />
+            <Stat label="Date Created:" data={ formatDate()} />
           </Col>
           <Col xs={24} xl={16} className={styles['form--body']}>
             <Form.Item
@@ -117,17 +118,7 @@ const validationSchema = yup.object().shape({
   title: yup.string().required('Please provide a title'),
   description: yup.string().required('Please provide decription')
 });
-function formatDate(date) {
-  var d = new Date(date),
-    month = '' + (d.getMonth() + 1),
-    day = '' + d.getDate(),
-    year = d.getFullYear();
 
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-
-  return [year, month, day].join('-');
-}
 
 const NewIssueForm = withFormik({
   mapPropsToValues: user => ({ user, title: '', description: '' }),
@@ -135,7 +126,7 @@ const NewIssueForm = withFormik({
     const issueInfo = {
       issue_title: values.title,
       issue_description: values.description,
-      date: formatDate(new Date()),
+      date: formatDate(),
       status: 'Needs Attention',
       school_id: 1 //values.user.userInfo.school_id
     };

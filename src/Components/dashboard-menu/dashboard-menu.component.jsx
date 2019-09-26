@@ -12,6 +12,12 @@ justify-content: center;
 align-items:center;
 margin: 1rem;
 background-color: #3cc93e;
+border-radius: 10px;
+
+label{
+  font-size: 1.25rem;
+}
+
 @media screen and (min-width: 1200px){
   min-width: 220px;
   width: 20%;

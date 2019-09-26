@@ -2,6 +2,8 @@ import React , { useState, useEffect } from 'react'
 import {  Icon } from 'antd'
 import { Formik } from 'formik'
 
+import { formatDate } from '../../utils/utils'
+
 import SingleIssueForm from './singleissue-form.component'
 
 import styles from './single-issue.module.less'
@@ -22,13 +24,21 @@ let {
     date
   } = props.issue;
 
- let SSView = {
+  let InitNewIssue ={
+      statusSelect: 'Needs Attention',
+      createdBy: name,
+      date: formatDate(), 
+      description:  '',
+      title:  '',
+  } 
+  
+  let SSView = {
         statusSelect: status,
         createdBy: name,
         date: date,
         description:  props.issue.issue_description,
         title:  props.issue.issue_title
- }
+  }
 
 
   // console.log( 'single-issue issue: ', issue);

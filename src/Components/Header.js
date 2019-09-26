@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const Header = () => {
   return (
     <div className="HeaderContainer">
-      <h1>This is Header</h1>
+      <h1>International Rural School Report</h1>
     </div>
   );
 };
