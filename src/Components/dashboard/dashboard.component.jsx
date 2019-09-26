@@ -12,10 +12,9 @@ import { getIssueView, getIssueList } from '../../store/actions';
 
 function Dashboard(props) {
 
-  const [dashBoardState, setDashBoardState] = useState({});
+  const [currentIssue, setCurrentIssue ] = useState({})
   const [query, setQuery] = useState('');
   const [token, setToken] = useState('');
-  const [ viewIssue, setViewIssue ] = useState(0)
   const{getIssueList}=props
 
   useEffect(() => {
@@ -24,32 +23,40 @@ function Dashboard(props) {
       getIssueList();
     }
     
+    
   }, []);
 
+  function findIssue( id ){
+    return props.issues.reduce( ( match , issue) => {
+        return issue.id === id ? match = issue : match;
+    }, {})
+  }
 
-  console.log('viewIssue :', viewIssue);
+  function setIssue( id ){
+    let result = findIssue(id);
+    setCurrentIssue(  result );
+  }
+
+  // console.log('issues in Redux state: ',props.issues);
+
+// console.log('currentIssue',currentIssue);
 
   return (
     <LayoutWrapper>
       <div className={styles.contentContainer}>
         <DashBoardMenu
-          dashState={dashBoardState}
-          setDash={setDashBoardState}
           setQuery={setQuery}
         />
         <div className={styles.issueContainer}>
           <IssueList
-            setViewIssue={setViewIssue}
+            setIssue= {setIssue }
             userData={props.userInfo}
             issueData={props.issues}
-            dashState={dashBoardState}
-            setDash={setDashBoardState}
             query={query}
           />
           <SingleIssue 
-            dashState={dashBoardState} 
-            setDash={setDashBoardState} 
-            viewIssue={viewIssue}
+            userData={props.userInfo}
+            issue={ currentIssue }
             />
         </div>
       </div>

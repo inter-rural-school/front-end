@@ -43,7 +43,7 @@ function IssueList(props) {
             <IssueListItem
               data={issue}
               key={issue.id}
-              setViewIssue={props.setViewIssue}
+              setIssue={ props.setIssue }
             />
           );
         })}

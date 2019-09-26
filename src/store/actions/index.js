@@ -66,7 +66,7 @@ export const getIssueList = () => dispatch => {
   axios
     .get('https://internationalrsr.herokuapp.com/issues/')
     .then(res => {
-      console.log(res);
+      console.log('issues  from server :',res);
       res.data.forEach(data => {
         dispatch({ type: FETCHING_ISSUES_SUCCESS, payload: data });
       });

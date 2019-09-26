@@ -11,8 +11,7 @@ import {  Form, Field, ErrorMessage } from 'formik'
 
 import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
-
-import { issues, user } from '../../test-data'
+import { stat } from 'fs';
 
 const { Option } = Select;
 
@@ -26,7 +25,7 @@ function Stat( { label, data }){
 }
 
 function SingleIssueForm( props ) {
-  const {
+  let {
     values,
     touched,
     errors,
@@ -35,13 +34,27 @@ function SingleIssueForm( props ) {
     handleSubmit,
   } = props;
 
-  const currentIssue= issues[1];
+  let {
+    createdBy,
+    title ,
+    bmComment,
+    date ,
+    description ,
+    statusSelect,
+  } = props.values;
+/*
+    createdBy,
+    title = 'test',
+    bmComment='test',
+    date = new Date().toDateString(),
+    description = 'test',
+    statusSelect = 'Needs Attention',
+    */
 
-  /* flag to see if current user is board member or school staff
-  reads from Redux Store or wherever data is stored
-  */
+console.log('single issue form props', props);
 
-  let isBM =  false;
+
+  let isBM =  props.isBM;
   // let isBM =  true;
 
   return (
@@ -65,27 +78,31 @@ function SingleIssueForm( props ) {
               <Field 
                 name="statusSelect"
                 render={ props => (
-              <BMSelectStatus {...props} placeholder="" />
+              <BMSelectStatus {...props} placeholder={ statusSelect } />
             )}
                 />
                 </>
             )}
+{/* issue status for SS */}
+            { !isBM && <Stat label='Status: ' data={ statusSelect}/>}
 
-            { !isBM && <Stat label='Status: ' data={ currentIssue.status}/>}
-            <Stat label='Created By: ' data={ user.name}/>
+{/* issue 'created by for SS */}
+            <Stat label='Created By: ' data={ createdBy }/>
 
-            <Stat label='Date Created:' data={currentIssue.dateCreated.toDateString() }/>
+            <Stat label='Date Created:' data={ date }/>
         </Col>
         <Col 
           xs={24} 
           xl={16}
           className={ styles['form--body']}
           >
+{/*issue title for BM */}
+            { isBM && <Stat label='Title: ' data={ title}/> }
 
-            { isBM && <Stat label='Title: ' data={ currentIssue.title }/> }
+{/*issue description for BM */}
+            { isBM && <Stat label='Description: ' data={ description}/> }
 
-            { isBM && <Stat label='Description: ' data={ currentIssue.description }/> }
-
+{/*issue comment for BM */}
             { isBM && (
               <div className={ styles.bmCommentDiv }>
                 <label
@@ -95,7 +112,7 @@ function SingleIssueForm( props ) {
                 <Field 
                 name="bmComment"
                 render={ props => (
-              <BMComment {...props} placeholder="Enter a Comment" />
+              <CustomTextArea {...props} placeholder={ bmComment } />
             )}
                 /> 
                 </div>
@@ -105,33 +122,44 @@ function SingleIssueForm( props ) {
             { !isBM && (
               <div className={ styles.bmCommentDiv }>
                 <label
-                htmlFor='singleIssueTitle'
+                htmlFor='title'
                   style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
                 >Title: </label>
                  <Input
-                  placeholder="" 
-                  // onChange={ handleChange }
-                  value={ currentIssue.title }
-                  id="singleIssueTitle" 
-                  name="singleIssueTitle"
+                  placeholder={ 'issue title' }
+                  onChange={ handleChange}
+                  value={ values.title }
+                  id="title" 
+                  name="title"
                   />
                 </div>
             ) }
                { !isBM && (
               <div className={ styles.bmCommentDiv }>
                 <label
-                htmlFor='singleIssueDescription'
+                htmlFor='description'
                   style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
                 >Description: </label>
+              <Input.TextArea 
+                  name="description"
+                  placeholder={ 'issue description' }
+                  onChange={ handleChange}
+                  value={ values.description}
+                  autosize={{ 
+                    minRows: 6,
+                    maxRows:6
+                  }}
+              /> 
+
               </div>
             ) }
 
-            {(!isBM && currentIssue.boardComment) &&<Stat label='Board Comment: ' data={ currentIssue.boardComment }/> }
+            {/* {(!isBM && currentIssue.boardComment) &&<Stat label='Board Comment: ' data={ currentIssue.boardComment }/> } */}
         </Col>
       </Row>
       <div className={styles['singleIssue--footer']}>
           { !isBM &&  <button>Delete</button>}
-          <button>Close</button>
+          <button className={ styles.closeBtn }>Close</button>
           <button 
              type='submit'
              >Submit</button>
@@ -158,11 +186,12 @@ function BMSelectStatus({  field, form, ...props} ){
     )
 }
 
-function BMComment({  field, form, ...props} ){
+function CustomTextArea({  field, form, ...props} ){
 
     return (
    <Input.TextArea 
     {...field}
+    {...form}
     {...props}
     autosize={{ 
       minRows: 1,

@@ -35,7 +35,6 @@ export default function IssuesListItem(props) {
         iconType='exclamation-circle'
   }
 
-    console.log( typeof(props.setViewIssue));
   return (
       <Row className={styles['issues--item--wrapper']}>
         <Col 
@@ -89,7 +88,7 @@ export default function IssuesListItem(props) {
           >
           <button 
            id={ props.data.id }
-           onClick={()=> props.setViewIssue( props.data.id) }
+           onClick={ ()=> props.setIssue( props.data.id ) }
            >View</button>
         </Col>
 
@@ -116,7 +115,7 @@ export default function IssuesListItem(props) {
             <Icon 
               type="eye" 
               id={ props.data.id }
-              onClick={ ()=> props.setViewIssue( props.data.id ) }
+              onClick={ ()=> props.setIssue( props.data.id ) }
               style={{fontSize: '2rem'}}/>
         </Col>
       { !props.isBM && 
