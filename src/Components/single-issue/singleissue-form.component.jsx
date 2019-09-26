@@ -10,6 +10,7 @@ import { updateForm, saveIssue } from '../../store/actions'
 import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
 import { formatDate } from '../../utils/utils'
+import { differenceInCalendarDays } from 'date-fns'
 
 const { Option } = Select;
 
@@ -80,6 +81,10 @@ function SingleIssueForm( props ) {
 
 {/* issue 'date created'  */}
             <Stat label='Date Created:' data={ date }/>
+
+{/* issue 'days passed'  */}
+            <Stat label='Days Passed:' data={ differenceInCalendarDays( new Date(), new  Date(date)) }/>
+
         </Col>
         <Col 
           xs={24} 
@@ -166,6 +171,7 @@ function SingleIssueForm( props ) {
              type='submit' 
              onClick={() => {
                const issueInfo = {
+                id: id,
                 issue_title: title,
                 issue_description: description,
                 date: date,
@@ -182,6 +188,7 @@ function SingleIssueForm( props ) {
              type='submit' 
              onClick={() => {
                const issueInfo = {
+                id: id,
                 issue_title: title,
                 issue_description: description,
                 date: date,

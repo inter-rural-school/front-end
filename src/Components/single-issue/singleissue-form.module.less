@@ -17,7 +17,6 @@
 }
 }
 
-
 .form--stats{
   padding: 1rem;
   border-right: 1px solid @success;
@@ -62,7 +61,8 @@
 
   p{
     margin-bottom: 0;
-    min-width: 90px;
+    min-width: 125px;
+    font-size: 1.15rem;
   }
 
   p:nth-of-type(2){
@@ -77,11 +77,27 @@
 
 .bmCommentDiv{
   display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
 
   label{
-    min-width: 90px;
+    min-width: 125px;
     padding-right: 1rem;
+    font-size: 1.15rem;
   }
+
+  input{
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  textarea{
+    font-size: 1rem;
+  }
+
+  @media screen and (min-width: 1200px){
+    flex-direction: row;
+}
 }
 
 .closeBtn{

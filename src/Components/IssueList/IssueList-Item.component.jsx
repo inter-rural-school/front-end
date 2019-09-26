@@ -88,6 +88,7 @@ export default function IssuesListItem(props) {
           >
           <button 
            id={ props.data.id }
+           align='middle'
            onClick={ ()=> props.setIssue( props.data.id ) }
            >View</button>
         </Col>
@@ -100,7 +101,9 @@ export default function IssuesListItem(props) {
           span: 0,
           }}
           >
-          <Button id={ props.data.id }>Delete</Button>
+          <button 
+            id={ props.data.id }
+            >Delete</button>
         </Col>
         
 

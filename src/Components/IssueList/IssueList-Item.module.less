@@ -1,3 +1,4 @@
+@import '../../less/mixins';
 
 .issues--item--wrapper{
   text-align: left;
@@ -26,7 +27,14 @@
   }
 
   button {
+    padding: 0.25rem 0.5rem;
+    margin-top: 0.25rem;
     background-color: @warning;
+    #yellowButton();
+
+  @media screen and (min-width: 1200px){
+    margin-top: 0;
+  }
   }
 
   i{

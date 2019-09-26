@@ -10,7 +10,6 @@ import IssueList from '../IssueList/IssueList';
 import { getIssueView, getIssueList, getCommentList } from '../../store/actions';
 
 function Dashboard(props) {
-
   const [currentIssue, setCurrentIssue ] = useState({})
   const [ issueType, setIssueType ] = useState('clear');
   const [query, setQuery] = useState('');
@@ -53,7 +52,7 @@ function Dashboard(props) {
 
   // console.log('issues in Redux state: ',props.issues);
   // console.log('Comments in Redux state: ',props.comments);
-
+// console.log('User Info:', props.userInfo );
 // console.log('currentIssue',currentIssue);
 // console.log( 'issueType :', issueType);
 
