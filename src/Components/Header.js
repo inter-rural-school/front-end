@@ -4,7 +4,6 @@ import { Button } from "antd";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
 const Div = styled.div`
   display: flex;
   justify-content: space-between;
@@ -14,32 +13,36 @@ const Div = styled.div`
 `;
 
 const BlueBtn = styled(Button)`
-    background-color: #6FA0D0;
-    border-radius: 10px;
-    color: #fff;
-    border: 2px solid #6FA0D0 !important;
-    transition: background-color 0.5s;
+  background-color: #6fa0d0;
+  border-radius: 10px;
+  color: #fff;
+  border: 2px solid #6fa0d0 !important;
+  transition: background-color 0.5s;
 
-    &:hover{
-      background-color: #fff;
-      color:  #6FA0D0;
-    }
+  &:hover {
+    background-color: #fff;
+    color: #6fa0d0;
+  }
 
-    &:focus{
-      background-color: #fff;
-      color: #6FA0D0;
-    }
+  &:focus {
+    background-color: #fff;
+    color: #6fa0d0;
+  }
 `;
 
 const Header = () => {
   return (
     <Div className="HeaderContainer">
-      <img src="https://ibb.co/bQ3CGYj" alt="logo" width="50px" />
+      <img src="/images/logo.png" alt="logo" width="50px" />
       <h1>International Rural School</h1>
-      <Link to="/" >
-        <BlueBtn >
-          Log Out
-        </BlueBtn>
+
+      <Link
+        to="/"
+        onClick={() => {
+          localStorage.removeItem("token");
+        }}
+      >
+        <BlueBtn>Log Out</BlueBtn>
       </Link>
     </Div>
   );
