@@ -41,13 +41,15 @@
   }
 
   button{
-    display: block;
-    margin-left: auto
-  }
-
-  button{
     font-size: 1.25rem;
+    margin-left: auto;
+    display: block;
     #yellowButton();
+
+    &:focus{
+      color: @warning;
+      background-color: #fff;
+    }
   }
 
   @media screen and (min-width: 1200px){

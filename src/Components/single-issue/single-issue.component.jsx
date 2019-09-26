@@ -1,6 +1,9 @@
-import React , { useState, useEffect } from 'react'
-import {  Icon } from 'antd'
+import React   from 'react'
 import { Formik } from 'formik'
+import * as yup from 'yup'
+import { connect } from 'react-redux'
+import { updateForm } from "../../store/actions";
+
 
 import { formatDate } from '../../utils/utils'
 
@@ -9,89 +12,138 @@ import SingleIssueForm from './singleissue-form.component'
 import styles from './single-issue.module.less'
 
 
-export default function SingleIssue(props ) {
+function SingleIssue( props ) {
 
-let { 
+  let issueType = props.issueType;
+  let showForm = ( issueType === 'clear')? false : true;
+  //storing function in variable so that it can be passed to SingleIssueForm 
+  const SIT = props.Set_IssueType; 
+
+  // destructuring user data
+  let { 
     name ,
     school,
     isBoardMember,
   } = props.userData;
 
+  // destructuring user issue data
   let {
+    id,
     status,
     issue_title,
     issue_description,
     date
   } = props.issue;
 
+  // inital values for new issues
   let InitNewIssue ={
-      statusSelect: 'Needs Attention',
+    // create random number new issues
+      id: Math.floor(Math.random()*10000),
+      status: 'Needs Attention',
       createdBy: name,
       date: formatDate(), 
       description:  '',
       title:  '',
   } 
-  
-  let SSView = {
-        statusSelect: status,
-        createdBy: name,
+ 
+  //initial values for existing issues 
+  let InitEdit = {
+        id: id,
+        status : status,
+        createdBy: name || '',
         date: date,
-        description:  props.issue.issue_description,
-        title:  props.issue.issue_title
+        description:  issue_description,
+        title:  issue_title
   }
 
+  let initObject = ( issueType === 'edit' ) ? InitEdit : InitNewIssue;
 
-  // console.log( 'single-issue issue: ', issue);
+  function submitNew( values ){
+    const issueInfo = {
+      issue_title: values.title,
+      issue_description: values.description,
+      date: values.date,
+      status: values.status,
+      school_id: 1 //values.user.userInfo.school_id
+    };
+    console.log('data to be submitted:', issueInfo );
+    // props.saveIssue(issueInfo, props);
+  }
+
+  function editExisting(values){
+    const issueInfo = {
+      issue_title: values.title,
+      issue_description: values.description,
+      date: values.date,
+      status: values.status,
+      school_id: 1 //values.user.userInfo.school_id
+    };
+    console.log('data to be submitted:', issueInfo );
+  }
+
+  // set handleSubmit function
+  let submitAction = (issueType === 'edit')? editExisting : submitNew;
+
   console.log( 'single-issue props.issue: ', props.issue);
   // console.log( 'single-issue props.userData: ',props.userData);
+  // console.log('issueType prop of singleIssue:', props.issueType);
 
   return (
     // hide the single issue view on mobile until user clicks view or edit button
     // <div className={ (props.dashState.viewIssue )? styles['singleIssue--container']: styles.hide }>
-    <div className={  styles['singleIssue--container'] }>
-      <div className={ styles['singleIssue--header']}>
-          <p>ID: { props.issue.id || "#"}</p>
+    <div className={styles["singleIssue--container"]}>
+      <div className={styles["singleIssue--header"]}>
+        {showForm && <p>ID: {props.issue.id}</p>}
+        {/* Message which shows when page first renders, user click 'close',  
+    or submits the form, or deletes an issue */}
+        {!showForm && (
+          <p style={{ width: "100%" }}>
+            Please select an issue from the list or create a new issue.
+          </p>
+        )}
       </div>
-      {/* initialValues must change based on user type 
-      and if the user wants to create a new issue or edit an existing one.
-       */}
-       <Formik
-        enableReinitialize
-        initialValues={    {...SSView}  }
-        status={ {stuff:'test status'}}
 
-        onSubmit={ (values, { resetForm }) => {
-          console.log(values)
-          resetForm()
-        } }
-
-        render={ props => (
-          <SingleIssueForm 
-          {...props}
-          isBM={ isBoardMember }
+      {showForm && (
+        <Formik
+          enableReinitialize
+          initialValues={{ ...initObject }}
+          onSubmit={(values, { resetForm, setSubmitting, updateData }) => {
+            setSubmitting(true);
+            console.log(values);
+            // send data to server
+            submitAction(values);
+            // reset form
+            props.Set_IssueType("clear");
+            setSubmitting(false);
+            resetForm();
+          }}
+          validationSchema={yup.object().shape({
+            title: yup.string().required("Please provide a title"),
+            description: yup.string().required("Please provide decription")
+          })}
+          render={props => (
+            <SingleIssueForm
+              {...props}
+              isBM={isBoardMember}
+              issueType={issueType}
+              Set_IssueType={ SIT }
+              //updateData={updateData}
+            />
+          )}
         />
       )}
-
-    />
-
     </div>
-  )
+  );
 }
-/*
-      */
 
-/*
-      initialValues={{ 
-        bmComment: ``,
-        statusFilter: 'Needs Attention' }}
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    getErrorMessage: state.getErrorMessage
+  };
+};
 
-      initialValues={{
-        statusSelect: status,
-        createdBy: name,
-        date: date,
-        description: issue_description,
-        title: props.issue.issue_title
-      }}
-
-
-        */
+export default connect(
+  mapStateToProps,
+  { updateForm }
+)(SingleIssue);

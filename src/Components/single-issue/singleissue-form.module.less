@@ -43,6 +43,10 @@
   button{
     #yellowButton();
     margin: 0 0.5rem;
+    &:focus{
+      background-color: #fff;
+      color: @warning;
+    }
   }
 
   @media screen and (min-width: 1200px){
@@ -74,14 +78,9 @@
 .bmCommentDiv{
   display: flex;
 
-  input{ 
-    // max-width: 588px;
-  }
-
   label{
     min-width: 90px;
     padding-right: 1rem;
-
   }
 }
 

@@ -50,7 +50,7 @@ export const saveIssue = (info, props) => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: SAVE_ISSUE, payload: info });
-      props.history.push('/dashboard');
+      // props.history.push('/dashboard');
     })
     .catch(err => {
       console.log(err.response.status);
@@ -85,8 +85,10 @@ export const getCommentList = () => dispatch => {
   axios
     .get('https://internationalrsr.herokuapp.com/comments/')
     .then(res => {
-      console.log('comments  from server :',res);
-      dispatch({ type: FETCHING_COMMENTS_SUCCESS, payload: res.data });
+      console.log('comments  from server :', res);
+      res.data.forEach(data => {
+        dispatch({ type: FETCHING_COMMENTS_SUCCESS, payload: res.data });
+        });
       })
     .catch(err => {
       console.log(err);
@@ -95,3 +97,24 @@ export const getCommentList = () => dispatch => {
 export const getIssueView = props => {
   props.history.push('/dashboard/issue_view/101');
 };
+
+export const updateForm = (id, data) => dispatch => {
+  
+  console.log("updateform :", id, data);
+  const updatedData = {
+   
+    date: data.date,
+    issue_description: data.description,
+    status: data.statusSelect,
+    issue_title: data.title
+  };
+         axios
+           .put(`https://internationalrsr.herokuapp.com/issues/${id}`,updatedData)
+           .then(res => {
+             console.log("updateform :", res);
+             
+           })
+           .catch(err => {
+             console.log(err);
+           });
+       };

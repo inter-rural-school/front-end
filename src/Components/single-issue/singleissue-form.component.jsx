@@ -2,16 +2,14 @@ import React from 'react'
 import { 
   Row, 
   Col , 
-  // Button, 
-  Icon, 
   Input, 
   Select 
 } from 'antd'
 import {  Form, Field, ErrorMessage } from 'formik'
-
+import { updateForm, saveIssue } from '../../store/actions'
 import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
-import { stat } from 'fs';
+import { formatDate } from '../../utils/utils'
 
 const { Option } = Select;
 
@@ -25,37 +23,28 @@ function Stat( { label, data }){
 }
 
 function SingleIssueForm( props ) {
+
+    console.log('SingleIssueForm props', props);
+
   let {
     values,
-    touched,
-    errors,
     handleChange,
-    handleBlur,
-    handleSubmit,
   } = props;
 
   let {
+    id,
     createdBy,
     title ,
     bmComment,
     date ,
     description ,
-    statusSelect,
+    status,
   } = props.values;
-/*
-    createdBy,
-    title = 'test',
-    bmComment='test',
-    date = new Date().toDateString(),
-    description = 'test',
-    statusSelect = 'Needs Attention',
-    */
 
-console.log('single issue form props', props);
+// console.log('single issue form props', props);
 
 
   let isBM =  props.isBM;
-  // let isBM =  true;
 
   return (
     <Form
@@ -67,28 +56,29 @@ console.log('single issue form props', props);
           xl={8}
           className={ styles['form--stats']}
           >
-            {/*if user is Boardmember, display as <select>, else <p>  */}
-
+{/*issue status for Boardmember */}
             { isBM && (
               <>
                 <label
-               htmlFor='statusSelect'
+               htmlFor='status'
                 style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
                >Status:</label>
               <Field 
-                name="statusSelect"
+                name="status"
                 render={ props => (
-              <BMSelectStatus {...props} placeholder={ statusSelect } />
+              <BMSelectStatus {...props} placeholder={ status } />
             )}
                 />
                 </>
             )}
-{/* issue status for SS */}
-            { !isBM && <Stat label='Status: ' data={ statusSelect}/>}
 
-{/* issue 'created by for SS */}
+{/* issue status for SS */}
+            { !isBM && <Stat label='Status: ' data={ status}/>}
+
+{/* issue 'created by'  */}
             <Stat label='Created By: ' data={ createdBy }/>
 
+{/* issue 'date created'  */}
             <Stat label='Date Created:' data={ date }/>
         </Col>
         <Col 
@@ -96,6 +86,7 @@ console.log('single issue form props', props);
           xl={16}
           className={ styles['form--body']}
           >
+
 {/*issue title for BM */}
             { isBM && <Stat label='Title: ' data={ title}/> }
 
@@ -109,16 +100,21 @@ console.log('single issue form props', props);
                 htmlFor='bmComment'
                   style={{textAlign: 'left',display:'block', marginBottom: '1rem' }} 
                 >Board Comment: </label>
-                <Field 
-                name="bmComment"
-                render={ props => (
-              <CustomTextArea {...props} placeholder={ bmComment } />
-            )}
+              <Input.TextArea 
+                  name="bmComment"
+                  placeholder={ 'Board Member Comment' }
+                  onChange={ handleChange}
+                  value={ values.bmComment}
+                  autosize={{ 
+                    minRows: 2,
+                    maxRows:2
+                  }}
                 /> 
+              <ErrorMessage component='p' name='bmComment'/>
                 </div>
             ) }
 
-
+{/* issue title for SS */}
             { !isBM && (
               <div className={ styles.bmCommentDiv }>
                 <label
@@ -132,8 +128,11 @@ console.log('single issue form props', props);
                   id="title" 
                   name="title"
                   />
+              <ErrorMessage component='p' name='title'/>
                 </div>
             ) }
+
+{/* issue description for SS */}
                { !isBM && (
               <div className={ styles.bmCommentDiv }>
                 <label
@@ -146,10 +145,11 @@ console.log('single issue form props', props);
                   onChange={ handleChange}
                   value={ values.description}
                   autosize={{ 
-                    minRows: 6,
-                    maxRows:6
+                    minRows: 4,
+                    maxRows:4
                   }}
               /> 
+              <ErrorMessage component='p' name='description'/>
 
               </div>
             ) }
@@ -159,16 +159,44 @@ console.log('single issue form props', props);
       </Row>
       <div className={styles['singleIssue--footer']}>
           { !isBM &&  <button>Delete</button>}
-          <button className={ styles.closeBtn }>Close</button>
-          <button 
-             type='submit'
-             >Submit</button>
+
+          <button type='button' onClick={ () => props.Set_IssueType('clear')}>Close</button>
+
+          { props.issueType === 'edit' && <button 
+             type='submit' 
+             onClick={() => {
+               const issueInfo = {
+                issue_title: title,
+                issue_description: description,
+                date: date,
+                status: status,
+                school_id: 1 //values.user.userInfo.school_id
+              };
+              props.updateForm( id, issueInfo);
+             }}
+             >Submit Changes</button>
+                }
+
+          { props.issueType === 'createnew' && 
+           <button 
+             type='submit' 
+             onClick={() => {
+               const issueInfo = {
+                issue_title: title,
+                issue_description: description,
+                date: date,
+                status: status,
+                school_id: 1 //values.user.userInfo.school_id
+              };
+              props.saveIssue( issueInfo );
+             }}
+             >Create</button>}
       </div>
     </Form>
 
 
   )
-}
+}// end SingleIssueForm
 
 function BMSelectStatus({  field, form, ...props} ){
 
@@ -186,19 +214,7 @@ function BMSelectStatus({  field, form, ...props} ){
     )
 }
 
-function CustomTextArea({  field, form, ...props} ){
 
-    return (
-   <Input.TextArea 
-    {...field}
-    {...form}
-    {...props}
-    autosize={{ 
-      minRows: 1,
-    }}
-    />
-  )
-}
 const mapStateToProps = state => {
   console.log(state);
   return {
@@ -208,5 +224,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {  }
+  { updateForm , saveIssue}
 )(SingleIssueForm);
