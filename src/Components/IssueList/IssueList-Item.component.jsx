@@ -2,7 +2,8 @@ import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
 import { connect } from "react-redux";
 import styles from './IssueList-Item.module.less';
-import { deleteIssue} from '../../store/actions'
+import { deleteIssue } from '../../store/actions'
+import {  showDeleteConfirmIssueList } from "../../utils/utils";
 /*
       <Icon type="close-circle" />
       <Icon type="clock-circle" />
@@ -104,7 +105,8 @@ function IssuesListItem(props) {
           <button 
           id={props.data.id}
           onClick={() => {
-            props.deleteIssue(props.data.id, props);
+            showDeleteConfirmIssueList(props.data.id, props)
+            //props.deleteIssue(props.data.id, props);
           }}
             >Delete</button>
         </Col>
@@ -136,8 +138,9 @@ function IssuesListItem(props) {
             <Icon 
               type="delete" 
               id={ props.data.id }
-              onClick={() => {
-                props.deleteIssue(props.data.id, props);
+            onClick={() => {
+              showDeleteConfirmIssueList(props.data.id, props)
+                //props.deleteIssue(props.data.id, props);
               }}
               style={{fontSize: '2rem'}}/>
         </Col>
