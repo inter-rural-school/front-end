@@ -44,12 +44,12 @@ export default function DashBoardMenu( props) {
           defaultValue={ "All Issues" }  
         style={{ width: '100%', paddingLeft: '1rem' }} 
         onChange={ handleChange }>
+          <Option value="">All Issues</Option>
           <Option value="Needs Attention">Needs Attention</Option>
           <Option value="In Progress">In Progress</Option>
           <Option value="Resolution In Progress">Resolution In Progress</Option>
           <Option value="Resolved">Resolved</Option>
           <Option value="Dismissed">Dismissed</Option>
-          <Option value="">All Issues</Option>
       </Select>
 
     </MenuContainer>

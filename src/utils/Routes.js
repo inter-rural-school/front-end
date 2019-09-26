@@ -22,7 +22,7 @@ const Routes = () => {
       <Route exact path="/home" render={() => <Redirect to="/" />} />
       <Route exact path="/" render={() => <Redirect to="/login" />} />
       <Route exact path="/login" component={Login} />
-      <Route path="/dashboard" component={Header} />
+      {/* <Route path="/dashboard" component={Header} /> */}
       <Route exact path="/new_user" component={Register} />
       <Route
         exact
@@ -34,14 +34,14 @@ const Routes = () => {
         path="/new_user/board_member"
         component={BoardMemberRegister}
       />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <PrivateRoute exact path="/dashboard" component={Dashboard} />
       {/* <Route
         exact
         path="/dashboard/issue_view/:id"
         component={SingleIssueView}
       /> */}
-      <Route exact path="/dashboard/issue_form" component={newIssueForm} />
-      <Route
+      <PrivateRoute exact path="/dashboard/issue_form" component={newIssueForm} />
+      <PrivateRoute
         exact
         path="/dashboard/issue_view/101"
         component={SingleIssueForm}

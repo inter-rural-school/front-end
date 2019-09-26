@@ -45,7 +45,7 @@ function SingleIssueForm( props ) {
 // console.log('single issue form props', props);
 
 
-  let isBM =  props.isBM;
+  let isBM = props.userInfo.isBoardMember; 
 
   return (
     <Form
@@ -234,6 +234,7 @@ function BMSelectStatus({  field, form, ...props} ){
 const mapStateToProps = state => {
   console.log(state);
   return {
+    userInfo: state.userInfo,
     getErrorMessage: state.getErrorMessage
   };
 };
