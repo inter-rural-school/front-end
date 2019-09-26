@@ -18,7 +18,7 @@ console.log("singleIssue component:", props)
   let showForm = ( issueType === 'clear')? false : true;
   //storing function in variable so that it can be passed to SingleIssueForm 
   const SIT = props.Set_IssueType; 
-
+  const updateIssues = props.updateIssues;
   // destructuring user data
   let { 
     first_name ,
@@ -86,7 +86,7 @@ console.log("singleIssue component:", props)
   // set handleSubmit function
   let submitAction = (issueType === 'edit')? editExisting : submitNew;
 
-  console.log( 'single-issue props.issue: ', props.issue);
+  // console.log( 'single-issue props.issue: ', props.issue);
   // console.log( 'single-issue props.userData: ',props.userData);
   // console.log('issueType prop of singleIssue:', props.issueType);
 
@@ -130,7 +130,7 @@ console.log("singleIssue component:", props)
               issueType={issueType}
               Set_IssueType={SIT}
               //updateData={updateData}
-              //updateIssues={props.updateIssues}
+              updateIssues={updateIssues}
             />
           )}
         />

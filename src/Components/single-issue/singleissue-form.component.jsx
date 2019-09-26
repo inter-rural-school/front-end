@@ -177,9 +177,11 @@ function SingleIssueForm( props ) {
                 date: date,
                 status: status,
                 school_id: 1 //values.user.userInfo.school_id
-              };
+               };
+               console.log("submit button update", props.values)
+               console.log("update form", issueInfo)
                props.updateForm(id, issueInfo);
-               props.values.updateIssues(issueInfo);
+               props.updateIssues(issueInfo);
              }}
              >Submit Changes</button>
                 }
@@ -196,8 +198,9 @@ function SingleIssueForm( props ) {
                                 status: status,
                                 school_id: 1 //values.user.userInfo.school_id
                               };
+               console.log("submit button",props.values)
                               props.saveIssue(issueInfo);
-                              //props.values.updateIssues(issueInfo)
+                              props.updateIssues(issueInfo)
                             }}
              >Create</button>}
       </div>

@@ -15,7 +15,7 @@ const Div = styled.div`
 const Header = () => {
   return (
     <Div className="HeaderContainer">
-      <img src="/images/logo.png" alt="logo" width="50px" />
+      <img src="https://ibb.co/bQ3CGYj" alt="logo" width="50px" />
       <h3>International Rural School</h3>
       <Link to="/">
         <Button type="primary">Log out</Button>
