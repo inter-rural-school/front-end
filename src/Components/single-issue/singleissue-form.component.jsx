@@ -178,7 +178,8 @@ function SingleIssueForm( props ) {
                 status: status,
                 school_id: 1 //values.user.userInfo.school_id
               };
-              props.updateForm( id, issueInfo);
+               props.updateForm(id, issueInfo);
+               props.values.updateIssues(issueInfo);
              }}
              >Submit Changes</button>
                 }
@@ -187,16 +188,17 @@ function SingleIssueForm( props ) {
            <button 
              type='submit' 
              onClick={() => {
-               const issueInfo = {
-                id: id,
-                issue_title: title,
-                issue_description: description,
-                date: date,
-                status: status,
-                school_id: 1 //values.user.userInfo.school_id
-              };
-              props.saveIssue( issueInfo );
-             }}
+                              const issueInfo = {
+                                id: id,
+                                issue_title: title,
+                                issue_description: description,
+                                date: date,
+                                status: status,
+                                school_id: 1 //values.user.userInfo.school_id
+                              };
+                              props.saveIssue(issueInfo);
+                              //props.values.updateIssues(issueInfo)
+                            }}
              >Create</button>}
       </div>
     </Form>

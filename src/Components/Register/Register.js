@@ -1,12 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { Button, Input, Icon, Typography, Form } from 'antd';
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Button, Input, Icon, Typography, Form } from "antd";
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 92vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -38,12 +38,13 @@ const Image = styled.img`
   height: 70vh;
   width: 38.2%;
   border-radius: 10px 0 0 10px;
+  object-fit: cover;
   @media (max-width: 1200px) {
     display: none;
   }
 `;
 const StyledButton = styled(Button)`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 `;
 const Register = () => {
   return (

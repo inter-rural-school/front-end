@@ -1,15 +1,15 @@
-import React from 'react';
-import { Button, Input, Icon, Typography, Form } from 'antd';
-import styled from 'styled-components';
-import { withFormik } from 'formik';
-import * as yup from 'yup';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getLogin } from '../store/actions';
+import React from "react";
+import { Button, Input, Icon, Typography, Form } from "antd";
+import styled from "styled-components";
+import { withFormik } from "formik";
+import * as yup from "yup";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { getLogin } from "../store/actions";
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 92vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -47,7 +47,7 @@ const Image = styled.img`
 `;
 
 const StyledButton = styled(Button)`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 `;
 const ErrorMessageBox = styled.div`
   color: red;
@@ -66,14 +66,18 @@ const C = props => {
 
   return (
     <Container>
-      <Image src="/images/rsz_school.jpg" alt="School" />
+      <Image
+        style={{ objectFit: "cover" }}
+        src="/images/rsz_school.jpg"
+        alt="School"
+      />
       <InnerDiv>
         <Title>International Rural School</Title>
         <form onSubmit={handleSubmit}>
           <Form.Item
-            help={touched.username && errors.username ? errors.username : ''}
+            help={touched.username && errors.username ? errors.username : ""}
             validateStatus={
-              touched.username && errors.username ? 'error' : undefined
+              touched.username && errors.username ? "error" : undefined
             }
           >
             <Input
@@ -83,13 +87,13 @@ const C = props => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Username"
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
           <Form.Item
-            help={touched.password && errors.password ? errors.password : ''}
+            help={touched.password && errors.password ? errors.password : ""}
             validateStatus={
-              touched.password && errors.password ? 'error' : undefined
+              touched.password && errors.password ? "error" : undefined
             }
           >
             <Input.Password
@@ -99,7 +103,7 @@ const C = props => {
               value={values.password}
               onBlur={handleBlur}
               onChange={handleChange}
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
           <StyledButton type="primary" htmlType="submit">
@@ -124,15 +128,15 @@ const C = props => {
 };
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required('Please provide a name'),
+  username: yup.string().required("Please provide a name"),
   password: yup
     .string()
-    .required('Please provide a password')
-    .min(8, 'Password too short')
+    .required("Please provide a password")
+    .min(8, "Password too short")
 });
 
 const Login = withFormik({
-  mapPropsToValues: () => ({ username: '', password: '' }),
+  mapPropsToValues: () => ({ username: "", password: "" }),
   handleSubmit: (values, { props, setSubmitting }) => {
     console.log(values);
     props.getLogin(values, props);

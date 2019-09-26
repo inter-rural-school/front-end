@@ -13,7 +13,7 @@ import styles from './single-issue.module.less'
 
 
 function SingleIssue( props ) {
-
+console.log("singleIssue component:", props)
   let issueType = props.issueType;
   let showForm = ( issueType === 'clear')? false : true;
   //storing function in variable so that it can be passed to SingleIssueForm 
@@ -21,7 +21,8 @@ function SingleIssue( props ) {
 
   // destructuring user data
   let { 
-    name ,
+    first_name ,
+    last_name,
     school,
     isBoardMember,
   } = props.userData;
@@ -35,12 +36,13 @@ function SingleIssue( props ) {
     date
   } = props.issue;
 
+  let userName = ( first_name && last_name)? `${first_name.replace(/^[a-z]/, match=> match.toUpperCase())} ${last_name.replace(/^[a-z]/, match=> match.toUpperCase())}`: '';
   // inital values for new issues
   let InitNewIssue ={
     // create random number new issues
       id: Math.floor(Math.random()*10000),
       status: 'Needs Attention',
-      createdBy: name,
+      createdBy: userName,
       date: formatDate(), 
       description:  '',
       title:  '',
@@ -50,7 +52,7 @@ function SingleIssue( props ) {
   let InitEdit = {
         id: id,
         status : status,
-        createdBy: name || '',
+        createdBy: userName,
         date: date,
         description:  issue_description,
         title:  issue_title
@@ -106,8 +108,8 @@ function SingleIssue( props ) {
       {showForm && (
         <Formik
           enableReinitialize
-          initialValues={{ ...initObject }}
-          onSubmit={(values, { resetForm, setSubmitting, updateData }) => {
+          initialValues={{ ...initObject, props}}
+          onSubmit={(values, { resetForm, setSubmitting  }) => {
             setSubmitting(true);
             console.log(values);
             // send data to server
@@ -126,8 +128,9 @@ function SingleIssue( props ) {
               {...props}
               isBM={isBoardMember}
               issueType={issueType}
-              Set_IssueType={ SIT }
+              Set_IssueType={SIT}
               //updateData={updateData}
+              //updateIssues={props.updateIssues}
             />
           )}
         />

@@ -12,20 +12,16 @@ import {
   FETCHING_COMMENTS_START,
   FETCHING_COMMENTS_SUCCESS,
   FETCHING_COMMENTS_FAILURE
-} from '../actions';
+} from "../actions";
 
 export const initialState = {
   isFetching: false,
   isLogined: false,
   isLoading: false,
   getErrorMessage: false,
-  userInfo: {
-    isBoardMember: false,
-    name: 'Tom Steve',
-    school: 'Country School',
-    school_id: 100000000
-  },
-  issues: []
+  userInfo: {},
+  issues: [],
+  comments: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -45,16 +41,27 @@ function rootReducer(state = initialState, action) {
         getErrorMessage: true
       };
     case LOGIN_START:
-      console.log(action.payload);
       return {
         ...state,
         getErrorMessage: false,
         isLogined: false
       };
     case LOGIN_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
-        isLogined: true
+        isLogined: true,
+        userInfo: {
+          admin_id: action.payload.admin_id,
+          board_id: action.payload.board_id,
+          email: action.payload.email,
+          first_name: action.payload.first_name,
+
+          isBoardMember: action.payload.isBoardMember,
+          last_name: action.payload.last_name,
+          school: "Country School",
+          school_id: 100000000
+        }
       };
     case LOGIN_FAILURE:
       return {
@@ -86,7 +93,7 @@ function rootReducer(state = initialState, action) {
     case FETCHING_COMMENTS_SUCCESS:
       return {
         ...state,
-        comments: [...state.comments, ...action.payload],
+        comments: [...state.comments, action.payload],
         isFetching: false
       };
 

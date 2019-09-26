@@ -1,15 +1,15 @@
-import React from 'react';
-import { Button, Input, Icon, Typography, Form } from 'antd';
-import styled from 'styled-components';
-import { withFormik } from 'formik';
-import * as yup from 'yup';
-import { connect } from 'react-redux';
+import React from "react";
+import { Button, Input, Icon, Typography, Form } from "antd";
+import styled from "styled-components";
+import { withFormik } from "formik";
+import * as yup from "yup";
+import { connect } from "react-redux";
 
-import { getRegister } from '../../store/actions';
+import { getRegister } from "../../store/actions";
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 92vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -41,13 +41,14 @@ const Image = styled.img`
   height: 80vh;
   width: 38.2%;
   border-radius: 10px 0 0 10px;
+  object-fit: cover;
   @media (max-width: 1200px) {
     display: none;
   }
 `;
 
 const StyledButton = styled(Button)`
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 `;
 const ErrorMessageBox = styled.div`
   color: red;
@@ -70,8 +71,8 @@ const C = props => {
         <Title>Register as Board Member</Title>
         <form onSubmit={handleSubmit}>
           <Form.Item
-            help={touched.name && errors.name ? errors.name : ''}
-            validateStatus={touched.name && errors.name ? 'error' : undefined}
+            help={touched.name && errors.name ? errors.name : ""}
+            validateStatus={touched.name && errors.name ? "error" : undefined}
           >
             <Input
               size="large"
@@ -80,12 +81,12 @@ const C = props => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="First Name"
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
           <Form.Item
-            help={touched.name && errors.name ? errors.name : ''}
-            validateStatus={touched.name && errors.name ? 'error' : undefined}
+            help={touched.name && errors.name ? errors.name : ""}
+            validateStatus={touched.name && errors.name ? "error" : undefined}
           >
             <Input
               size="large"
@@ -94,13 +95,13 @@ const C = props => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Last Name"
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
 
           <Form.Item
-            help={touched.email && errors.email ? errors.email : ''}
-            validateStatus={touched.email && errors.email ? 'error' : undefined}
+            help={touched.email && errors.email ? errors.email : ""}
+            validateStatus={touched.email && errors.email ? "error" : undefined}
           >
             <Input
               size="large"
@@ -109,14 +110,14 @@ const C = props => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Email"
-              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="mail" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
 
           <Form.Item
-            help={touched.username && errors.username ? errors.username : ''}
+            help={touched.username && errors.username ? errors.username : ""}
             validateStatus={
-              touched.username && errors.username ? 'error' : undefined
+              touched.username && errors.username ? "error" : undefined
             }
           >
             <Input
@@ -126,14 +127,14 @@ const C = props => {
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Username"
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
 
           <Form.Item
-            help={touched.password && errors.password ? errors.password : ''}
+            help={touched.password && errors.password ? errors.password : ""}
             validateStatus={
-              touched.password && errors.password ? 'error' : undefined
+              touched.password && errors.password ? "error" : undefined
             }
           >
             <Input.Password
@@ -143,7 +144,7 @@ const C = props => {
               value={values.password}
               onBlur={handleBlur}
               onChange={handleChange}
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
 
@@ -178,23 +179,23 @@ const C = props => {
 };
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required('Please provide a username'),
+  username: yup.string().required("Please provide a username"),
   first_name: yup
     .string()
-    .required('Please provide your first name')
-    .min(2, 'Name is too short'),
+    .required("Please provide your first name")
+    .min(2, "Name is too short"),
   last_name: yup
     .string()
-    .required('Please provide your last name')
-    .min(2, 'Name is too short'),
+    .required("Please provide your last name")
+    .min(2, "Name is too short"),
   email: yup
     .string()
-    .email('Email is not valid')
-    .required('Please provide an email'),
+    .email("Email is not valid")
+    .required("Please provide an email"),
   password: yup
     .string()
-    .required('Please provide a password')
-    .min(8, 'Password too short')
+    .required("Please provide a password")
+    .min(8, "Password too short")
   // password2: yup
   //   .string()
   //   .required('Confirm password')
@@ -203,11 +204,11 @@ const validationSchema = yup.object().shape({
 
 const BoardMemberRegister = withFormik({
   mapPropsToValues: () => ({
-    first_name: '',
-    last_name: '',
-    password: '',
-    email: '',
-    username: '',
+    first_name: "",
+    last_name: "",
+    password: "",
+    email: "",
+    username: "",
     isBoardMember: 1
   }),
   handleSubmit: (values, { props, setSubmitting }) => {

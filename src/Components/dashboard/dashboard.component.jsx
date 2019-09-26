@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LayoutWrapper from '../layout/layout.component';
 import { connect } from 'react-redux';
 import styles from './dashboard.module.less';
-
+import axios from "axios";
 import DashBoardMenu from '../dashboard-menu/dashboard-menu.component';
 import SingleIssue from '../single-issue/single-issue.component';
 import IssueList from '../IssueList/IssueList';
@@ -14,17 +14,32 @@ function Dashboard(props) {
   const [ issueType, setIssueType ] = useState('clear');
   const [query, setQuery] = useState('');
   const [token, setToken] = useState('');
+  const [issuesList, setIssuesList] = useState([]);
+  const [newIssues, setNewIssues] = useState({});
 
   // interactions with Redux Store
-  const{getIssueList}=props
+  
   const { getCommentList } = props
 
-  // fetch data from Redux Store
+  
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      getIssueList();
-      getCommentList();
+    if (localStorage.getItem("token")) {
+      axios
+        .get("https://internationalrsr.herokuapp.com/issues/")
+        .then(res => {
+          console.log(res.data);
+          setIssuesList(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  }, [newIssues]);
+// fetch data from Redux Store
+  useEffect(() => {
+    
+      getCommentList();
+    
   }, []);
 
   function Set_IssueType( type ){
@@ -38,7 +53,7 @@ function Dashboard(props) {
 
   function findIssue( id ){
     // return the issue object from the list of issues with an id attribute that matches 'id'
-    return props.issues.reduce( ( match , issue) => {
+    return issuesList.reduce( ( match , issue) => {
         return issue.id === id ? match = issue : match;
     }, {})
   }
@@ -59,23 +74,23 @@ function Dashboard(props) {
   return (
     <LayoutWrapper>
       <div className={styles.contentContainer}>
-        <DashBoardMenu
-          setQuery={setQuery}
-        />
+        <DashBoardMenu setQuery={setQuery} />
         <div className={styles.issueContainer}>
           <IssueList
-            Set_IssueType={ Set_IssueType }
-            setIssue= {setIssue }
+            Set_IssueType={Set_IssueType}
+            setIssue={setIssue}
             userData={props.userInfo}
-            issueData={props.issues}
+            issueData={issuesList}
             query={query}
+            updateIssues={setNewIssues}
           />
-          <SingleIssue 
+          <SingleIssue
             userData={props.userInfo}
-            issue={ currentIssue }
-            issueType={ issueType }
-            Set_IssueType={ Set_IssueType }
-            />
+            issue={currentIssue}
+            issueType={issueType}
+            Set_IssueType={Set_IssueType}
+            updateIssues={setNewIssues}
+          />
         </div>
       </div>
     </LayoutWrapper>
@@ -85,7 +100,7 @@ function Dashboard(props) {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    issues: state.issues,
+    //issues: state.issues,
     userInfo: state.userInfo,
     comments: state.comments,
     isFetching: state.isFetching

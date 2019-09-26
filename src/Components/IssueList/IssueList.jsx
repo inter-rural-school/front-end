@@ -30,6 +30,7 @@ function IssueList(props) {
         props.issueData.filter(issue => issue.status.includes(props.query)).map(issue => {
           return (
             <IssueListItem
+              {...props}
               data={issue}
               key={issue.id}
               setIssue={ props.setIssue }

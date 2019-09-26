@@ -1,19 +1,20 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 
-import Login from '../Components/Login';
-import Register from '../Components/Register/Register';
-import SchoolStaffRegister from '../Components/Register/SchoolStaffRegister';
-import BoardMemberRegister from '../Components/Register/BoardMemberRegister';
+import Login from "../Components/Login";
+import Header from "../Components/Header";
+import Register from "../Components/Register/Register";
+import SchoolStaffRegister from "../Components/Register/SchoolStaffRegister";
+import BoardMemberRegister from "../Components/Register/BoardMemberRegister";
 // import SchoolStaffPage from "../components/SchoolStaff/SchoolStaffPage";
 // import SSIssueView from "../components/SchoolStaff/SSIssueView";
 // import BoardMemberPage from '../components/BoardMember/BoardMemberPage';
 // import BMIssueView from '../components/BoardMember/BMIssueView'
-import Dashboard from '../Components/dashboard/dashboard.component';
-import SingleIssueForm from '../Components/single-issue/singleissue-form.component';
+import Dashboard from "../Components/dashboard/dashboard.component";
+import SingleIssueForm from "../Components/single-issue/singleissue-form.component";
 //import SingleIssueView from '../Components/IssueList/IssueList-Item.component';
-import newIssueForm from '../Components/single-issue/NewIssueForm';
+import newIssueForm from "../Components/single-issue/NewIssueForm";
 
 const Routes = () => {
   return (
@@ -21,6 +22,7 @@ const Routes = () => {
       <Route exact path="/home" render={() => <Redirect to="/" />} />
       <Route exact path="/" render={() => <Redirect to="/login" />} />
       <Route exact path="/login" component={Login} />
+      <Route path="/dashboard" component={Header} />
       <Route exact path="/new_user" component={Register} />
       <Route
         exact
