@@ -47,22 +47,22 @@ const Image = styled.img`
 `;
 
 const BlueBtn = styled(Button)`
-    background-color: #6FA0D0;
-    border-radius: 10px;
-    color: #fff;
-    border: 2px solid #6FA0D0 !important;
-    transition: background-color 0.5s;
-    font-family: "Open Sans", sans-serif;
+  background-color: #6fa0d0;
+  border-radius: 10px;
+  color: #fff;
+  border: 2px solid #6fa0d0 !important;
+  transition: background-color 0.5s;
+  font-family: "Open Sans", sans-serif;
 
-    &:hover{
-      background-color: #fff;
-      color:  #6FA0D0;
-    }
+  &:hover {
+    background-color: #fff;
+    color: #6fa0d0;
+  }
 
-    &:focus{
-      background-color: #fff;
-      color: #6FA0D0;
-    }
+  &:focus {
+    background-color: #fff;
+    color: #6fa0d0;
+  }
 `;
 
 const ErrorMessageBox = styled.div`

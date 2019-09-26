@@ -136,6 +136,9 @@ function IssuesListItem(props) {
             <Icon 
               type="delete" 
               id={ props.data.id }
+              onClick={() => {
+                props.deleteIssue(props.data.id, props);
+              }}
               style={{fontSize: '2rem'}}/>
         </Col>
       )}
