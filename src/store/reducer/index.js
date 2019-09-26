@@ -8,10 +8,13 @@ import {
   SAVE_ISSUE,
   FETCHING_ISSUES_START,
   FETCHING_ISSUES_SUCCESS,
-  FETCHING_ISSUES_FAILURE
+  FETCHING_ISSUES_FAILURE,
+  FETCHING_COMMENTS_START,
+  FETCHING_COMMENTS_SUCCESS,
+  FETCHING_COMMENTS_FAILURE
 } from '../actions';
 
-const initialState = {
+export const initialState = {
   isFetching: false,
   isLogined: false,
   isLoading: false,
@@ -75,6 +78,18 @@ function rootReducer(state = initialState, action) {
         issues: [...state.issues, action.payload],
         isFetching: false
       };
+    case FETCHING_COMMENTS_START:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case FETCHING_COMMENTS_SUCCESS:
+      return {
+        ...state,
+        comments: [...state.comments, ...action.payload],
+        isFetching: false
+      };
+
     default:
       return state;
   }

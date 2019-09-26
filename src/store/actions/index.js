@@ -76,6 +76,22 @@ export const getIssueList = () => dispatch => {
     });
 };
 
+export const FETCHING_COMMENTS_START = 'FETCHING_COMMENTS_START';
+export const FETCHING_COMMENTS_SUCCESS = 'FETCHING_COMMENTS_SUCCESS';
+export const FETCHING_COMMENTS_FAILURE = 'FETCHING_COMMENTS_FAILURE';
+
+export const getCommentList = () => dispatch => {
+  dispatch({ type: FETCHING_COMMENTS_START });
+  axios
+    .get('https://internationalrsr.herokuapp.com/comments/')
+    .then(res => {
+      console.log('comments  from server :',res);
+      dispatch({ type: FETCHING_COMMENTS_SUCCESS, payload: res.data });
+      })
+    .catch(err => {
+      console.log(err);
+    });
+};
 export const getIssueView = props => {
   props.history.push('/dashboard/issue_view/101');
 };
