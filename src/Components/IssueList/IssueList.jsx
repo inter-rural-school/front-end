@@ -27,15 +27,17 @@ function IssueList(props) {
       </Row>
 
       {props.issueData &&
-        props.issueData.filter(issue => issue.status.includes(props.query)).map(issue => {
-          return (
-            <IssueListItem
-              data={issue}
-              key={issue.id}
-              setIssue={ props.setIssue }
-            />
-          );
-        })}
+        props.issueData
+          .filter(issue => issue.status.includes(props.query))
+          .map(issue => {
+            return (
+              <IssueListItem 
+                {...props}
+                data={issue}
+                key={issue.id}
+              />
+            );
+          })}
     </div>
   );
 }

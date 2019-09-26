@@ -19,12 +19,7 @@ export const initialState = {
   isLogined: false,
   isLoading: false,
   getErrorMessage: false,
-  userInfo: {
-    isBoardMember: false,
-    name: 'Tom Steve',
-    school: 'Country School',
-    school_id: 100000000
-  },
+  userInfo: {},
   issues: []
 };
 
@@ -45,7 +40,6 @@ function rootReducer(state = initialState, action) {
         getErrorMessage: true
       };
     case LOGIN_START:
-      console.log(action.payload);
       return {
         ...state,
         getErrorMessage: false,
@@ -54,7 +48,18 @@ function rootReducer(state = initialState, action) {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isLogined: true
+        isLogined: true,
+        userInfo: {
+          admin_id: action.payload.admin_id,
+          board_id: action.payload.board_id,
+          email: action.payload.email,
+          first_name: action.payload.first_name,
+
+          isBoardMember: action.payload.isBoardMember,
+          last_name: action.payload.last_name,
+          school: 'Country School',
+          school_id: 100000000
+        }
       };
     case LOGIN_FAILURE:
       return {
@@ -73,6 +78,7 @@ function rootReducer(state = initialState, action) {
         isFetching: true
       };
     case FETCHING_ISSUES_SUCCESS:
+      console.log(action.payload);
       return {
         ...state,
         issues: [...state.issues, action.payload],

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LayoutWrapper from '../layout/layout.component';
 import { connect } from 'react-redux';
 import styles from './dashboard.module.less';
-
+import axios from 'axios'
 import DashBoardMenu from '../dashboard-menu/dashboard-menu.component';
 import SingleIssue from '../single-issue/single-issue.component';
 import IssueList from '../IssueList/IssueList';

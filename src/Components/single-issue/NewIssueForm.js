@@ -31,7 +31,6 @@ const C = props => {
     handleSubmit
   } = props;
 
-  console.log('singleIssue-form issueData', props);
   return (
     <>
       <Title>New Issue Form</Title>
@@ -130,7 +129,7 @@ const NewIssueForm = withFormik({
       status: 'Needs Attention',
       school_id: 1 //values.user.userInfo.school_id
     };
-    console.log(typeof issueInfo.date);
+    console.log(props);
     console.log(issueInfo);
     props.saveIssue(issueInfo, props);
     setSubmitting(false);

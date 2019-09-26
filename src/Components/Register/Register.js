@@ -6,7 +6,7 @@ import { Button, Input, Icon, Typography, Form } from 'antd';
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 92vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: row;

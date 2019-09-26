@@ -31,7 +31,7 @@ export const getLogin = (info, props) => dispatch => {
     .post('/login', info)
     .then(res => {
       console.log(res);
-      dispatch({ type: LOGIN_SUCCESS });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
       localStorage.setItem('token', res.data.token);
       props.history.push('/dashboard');
     })
@@ -43,17 +43,16 @@ export const getLogin = (info, props) => dispatch => {
 
 export const SAVE_ISSUE = 'SAVE_ISSUE';
 
-export const saveIssue = (info, props) => dispatch => {
+export const saveIssue = info => dispatch => {
   console.log(info);
   axios
     .post('https://internationalrsr.herokuapp.com/issues/', info)
     .then(res => {
       console.log(res);
       dispatch({ type: SAVE_ISSUE, payload: info });
-      // props.history.push('/dashboard');
     })
     .catch(err => {
-      console.log(err.response.status);
+      console.log(err);
     });
 };
 
@@ -62,14 +61,33 @@ export const FETCHING_ISSUES_SUCCESS = 'FETCHING_ISSUES_SUCCESS';
 export const FETCHING_ISSUES_FAILURE = 'FETCHING_ISSUES_FAILURE';
 
 export const getIssueList = () => dispatch => {
-  dispatch({ type: FETCHING_ISSUES_START });
+  // dispatch({ type: FETCHING_ISSUES_START });
+  // axios
+  //   .get('https://internationalrsr.herokuapp.com/issues/')
+  //   .then(res => {
+  //     console.log(res);
+  //     res.data.forEach(data => {
+  //       dispatch({ type: FETCHING_ISSUES_SUCCESS, payload: data });
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+};
+
+export const getIssueView = props => dispatch => {
+  props.history.push('/dashboard/issue_view/:id');
+};
+
+export const deleteIssue = (id, props) => dispatch => {
+  console.log(props);
   axios
-    .get('https://internationalrsr.herokuapp.com/issues/')
+    .delete(`https://internationalrsr.herokuapp.com/issues/${id}`)
     .then(res => {
-      console.log('issues  from server :',res);
-      res.data.forEach(data => {
-        dispatch({ type: FETCHING_ISSUES_SUCCESS, payload: data });
-      });
+      console.log(res);
+      props.updateIssues({ id });
+      //dispatch({ type: DELETING_FRIENDS, payload: friend });
+      // props.history.push('/dashboard');
     })
     .catch(err => {
       console.log(err);
@@ -94,9 +112,7 @@ export const getCommentList = () => dispatch => {
       console.log(err);
     });
 };
-export const getIssueView = props => {
-  props.history.push('/dashboard/issue_view/101');
-};
+
 
 export const updateForm = (id, data) => dispatch => {
   

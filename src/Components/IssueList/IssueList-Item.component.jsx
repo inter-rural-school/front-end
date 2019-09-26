@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
-
+import { connect } from 'react-redux';
+import { deleteIssue} from '../../store/actions'
 import styles from './IssueList-Item.module.less';
 
 /*
@@ -10,7 +11,7 @@ import styles from './IssueList-Item.module.less';
       <Icon type="exclamation-circle" />
       */
 
-export default function IssuesListItem(props) {
+function IssuesListItem(props) {
   let iconType = '';
 
   // set the correct status icon
@@ -93,49 +94,77 @@ export default function IssuesListItem(props) {
            >View</button>
         </Col>
 
-        <Col 
-         xs={{
+      <Col
+        xs={{
           span: 8,
-          }}
-         xl={{
-          span: 0,
-          }}
-          >
-          <button 
-            id={ props.data.id }
-            >Delete</button>
-        </Col>
-        
+          offset: 3
+        }}
+        xl={{
+          span: 0
+        }}
+      >
+        <button
+          id={props.data.id}
+          onClick={() => props.setIssue(props.data.id)}
+        >
+          View
+        </button>
+      </Col>
 
-        <Col 
-         xs={{
-          span: 0,
+      <Col
+        xs={{
+          span: 8
+        }}
+        xl={{
+          span: 0
+        }}
+      >
+        <button
+          id={props.data.id}
+          onClick={() => props.deleteIssue(props.data.id,{...props})}
+        >
+          Delete
+        </button>
+      </Col>
+
+      <Col
+        xs={{
+          span: 0
+        }}
+        xl={{
+          span: 2
+        }}
+      >
+        <Icon
+          type="eye"
+          id={props.data.id}
+          onClick={() => props.setIssue(props.data.id)}
+          style={{ fontSize: '2rem' }}
+        />
+      </Col>
+      {!props.isBM && (
+        <Col
+          xs={{
+            span: 0
           }}
-         xl={{
-          span: 2,
+          xl={{
+            span: 2
           }}
-          >
-            <Icon 
-              type="eye" 
-              id={ props.data.id }
-              onClick={ ()=> props.setIssue( props.data.id ) }
-              style={{fontSize: '2rem'}}/>
+        >
+          <Icon type="delete" id={props.data.id} onClick={() => props.deleteIssue(props.data.id,{...props})} style={{ fontSize: '2rem' }} />
         </Col>
-      { !props.isBM && 
-        <Col 
-         xs={{
-          span: 0,
-          }}
-         xl={{
-          span: 2,
-          }}
-          >
-            <Icon 
-              type="delete" 
-              id={ props.data.id }
-              style={{fontSize: '2rem'}}/>
-        </Col>
-            }
-          </Row>
+      )}
+    </Row>
   );
 }
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { deleteIssue }
+)(IssuesListItem);

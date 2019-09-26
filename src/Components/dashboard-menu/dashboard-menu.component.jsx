@@ -29,7 +29,6 @@ label{
 export default function DashBoardMenu( props) {
 
   const handleChange = (value) => {
-
     props.setQuery(value);
   }
   return (
