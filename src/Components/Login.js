@@ -46,9 +46,25 @@ const Image = styled.img`
   }
 `;
 
-const StyledButton = styled(Button)`
-  font-family: "Open Sans", sans-serif;
+const BlueBtn = styled(Button)`
+    background-color: #6FA0D0;
+    border-radius: 10px;
+    color: #fff;
+    border: 2px solid #6FA0D0 !important;
+    transition: background-color 0.5s;
+    font-family: "Open Sans", sans-serif;
+
+    &:hover{
+      background-color: #fff;
+      color:  #6FA0D0;
+    }
+
+    &:focus{
+      background-color: #fff;
+      color: #6FA0D0;
+    }
 `;
+
 const ErrorMessageBox = styled.div`
   color: red;
 `;
@@ -106,9 +122,9 @@ const C = props => {
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
             />
           </Form.Item>
-          <StyledButton type="primary" htmlType="submit">
+          <BlueBtn type="primary" htmlType="submit">
             Login
-          </StyledButton>
+          </BlueBtn>
           <ErrorMessageBox>
             {props.getErrorMessage ? (
               <p>Error! Incorrect username or password</p>
@@ -119,7 +135,7 @@ const C = props => {
         <div>
           <p>Need to register? </p>
           <Link to="./new_user">
-            <StyledButton htmlType="submit">Register here!</StyledButton>
+            <BlueBtn htmlType="submit">Register here!</BlueBtn>
           </Link>
         </div>
       </InnerDiv>

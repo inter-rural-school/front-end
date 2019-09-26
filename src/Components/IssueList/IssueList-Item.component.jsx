@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col, Button, Icon } from 'antd';
-
+import { connect } from "react-redux";
 import styles from './IssueList-Item.module.less';
-
+import { deleteIssue} from '../../store/actions'
 /*
       <Icon type="close-circle" />
       <Icon type="clock-circle" />
@@ -10,9 +10,9 @@ import styles from './IssueList-Item.module.less';
       <Icon type="exclamation-circle" />
       */
 
-export default function IssuesListItem(props) {
+function IssuesListItem(props) {
   let iconType = '';
-
+//console.log('issuelistitem', props)
   // set the correct status icon
   switch (props.data.status) {
     case 'Needs Attention':
@@ -102,7 +102,10 @@ export default function IssuesListItem(props) {
           }}
           >
           <button 
-            id={ props.data.id }
+          id={props.data.id}
+          onClick={() => {
+            props.deleteIssue(props.data.id, props);
+          }}
             >Delete</button>
         </Col>
         
@@ -121,7 +124,7 @@ export default function IssuesListItem(props) {
               onClick={ ()=> props.setIssue( props.data.id ) }
               style={{fontSize: '2rem'}}/>
         </Col>
-      { !props.isBM && 
+      { !props.isBM && (
         <Col 
          xs={{
           span: 0,
@@ -135,7 +138,18 @@ export default function IssuesListItem(props) {
               id={ props.data.id }
               style={{fontSize: '2rem'}}/>
         </Col>
-            }
+      )}
           </Row>
   );
 }
+const mapStateToProps = state => {
+  
+  return {
+
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { deleteIssue}
+)(IssuesListItem);

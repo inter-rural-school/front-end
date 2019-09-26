@@ -25,10 +25,24 @@
       background-color: #fff;
       color: @warning;
     }
+    
+  }
 
-    &:active{
+#blueButton(){
+    background-color: @primary-color;
+    border-radius: @border-round;
+    color: #fff;
+    border: 2px solid @primary-color;
+    transition: background-color 0.5s;
+
+    &:hover{
       background-color: #fff;
-      color: @warning;
+      color: @primary-color;
+    }
+
+    &:focus{
+      background-color: #fff;
+      color: @primary-color;
     }
     
   }

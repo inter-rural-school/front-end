@@ -11,7 +11,7 @@ flex-direction: column;
 justify-content: center;
 align-items:center;
 margin: 1rem;
-background-color: #3cc93e;
+background-color: #6FA0D0;
 border-radius: 10px;
 
 label{

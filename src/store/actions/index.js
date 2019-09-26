@@ -44,22 +44,13 @@ export const getLogin = (info, props) => dispatch => {
 export const SAVE_ISSUE = "SAVE_ISSUE";
 
 export const saveIssue = (info, props) => dispatch => {
-  // console.log(info);
-  // axios
-  //   .post('https://internationalrsr.herokuapp.com/issues/', info)
-  //   .then(res => {
-  //     console.log(res);
-  //     dispatch({ type: SAVE_ISSUE, payload: info });
-  //     // props.history.push('/dashboard');
-  //   })
-  //   .catch(err => {
-  //     console.log(err.response.status);
-  //   });
-  console.log(info);
+  
+  console.log( "save issue: ",props);
   axios
     .post("https://internationalrsr.herokuapp.com/issues/", info)
     .then(res => {
       console.log(res);
+      props.updateIssues(info);
       //console.log(props);
       //props.location.props.updateIssues(info);
       //props.history.push("/dashboard");
@@ -110,18 +101,14 @@ export const getIssueView = props => {
   props.history.push("/dashboard/issue_view/101");
 };
 
-export const updateForm = (id, data) => dispatch => {
+export const updateForm = (id, data, props) => dispatch => {
   console.log("updateform :", id, data);
-  const updatedData = {
-    date: data.date,
-    issue_description: data.description,
-    status: data.statusSelect,
-    issue_title: data.title
-  };
+console.log( "updateform : props", props)
   axios
-    .put(`https://internationalrsr.herokuapp.com/issues/${id}`, updatedData)
+    .put(`https://internationalrsr.herokuapp.com/issues/${id}`,data)
     .then(res => {
       console.log("updateform :", res);
+      props.updateIssues(data);
     })
     .catch(err => {
       console.log(err);

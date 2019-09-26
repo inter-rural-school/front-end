@@ -6,7 +6,7 @@ import {
   Select 
 } from 'antd'
 import {  Form, Field, ErrorMessage } from 'formik'
-import { updateForm, saveIssue } from '../../store/actions'
+import { updateForm, saveIssue, deleteIssue } from '../../store/actions'
 import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
 import { formatDate } from '../../utils/utils'
@@ -163,7 +163,11 @@ function SingleIssueForm( props ) {
         </Col>
       </Row>
       <div className={styles['singleIssue--footer']}>
-          { !isBM &&  <button>Delete</button>}
+        {!isBM && <button onClick={() => {
+          
+          props.deleteIssue(id, props);
+          //props.updateIssues(issueInfo)
+        }}>Delete</button>}
 
           <button type='button' onClick={ () => props.Set_IssueType('clear')}>Close</button>
 
@@ -180,8 +184,8 @@ function SingleIssueForm( props ) {
                };
                console.log("submit button update", props.values)
                console.log("update form", issueInfo)
-               props.updateForm(id, issueInfo);
-               props.updateIssues(issueInfo);
+               props.updateForm(id, issueInfo, props);
+               //props.updateIssues(issueInfo);
              }}
              >Submit Changes</button>
                 }
@@ -199,8 +203,8 @@ function SingleIssueForm( props ) {
                                 school_id: 1 //values.user.userInfo.school_id
                               };
                console.log("submit button",props.values)
-                              props.saveIssue(issueInfo);
-                              props.updateIssues(issueInfo)
+                              props.saveIssue(issueInfo,props);
+                              //props.updateIssues(issueInfo)
                             }}
              >Create</button>}
       </div>
@@ -236,5 +240,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { updateForm , saveIssue}
+  { updateForm, saveIssue, deleteIssue}
 )(SingleIssueForm);

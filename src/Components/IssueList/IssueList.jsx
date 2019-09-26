@@ -41,7 +41,7 @@ function IssueList(props) {
   );
 }
 const mapStateToProps = state => {
-  console.log(state);
+  
   return {
     
   };

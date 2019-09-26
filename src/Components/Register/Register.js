@@ -43,9 +43,26 @@ const Image = styled.img`
     display: none;
   }
 `;
-const StyledButton = styled(Button)`
-  font-family: "Open Sans", sans-serif;
+
+const BlueBtn = styled(Button)`
+    background-color: #6FA0D0;
+    border-radius: 10px;
+    color: #fff;
+    border: 2px solid #6FA0D0 !important;
+    transition: background-color 0.5s;
+    font-family: "Open Sans", sans-serif;
+
+    &:hover{
+      background-color: #fff;
+      color:  #6FA0D0;
+    }
+
+    &:focus{
+      background-color: #fff;
+      color: #6FA0D0;
+    }
 `;
+
 const Register = () => {
   return (
     <Container>
@@ -53,19 +70,19 @@ const Register = () => {
       <InnerDiv>
         <p>I am a </p>
         <Link to="/new_user/school_staff">
-          <StyledButton type="primary" htmlType="submit">
+          <BlueBtn type="primary" htmlType="submit">
             School Staff Member
-          </StyledButton>
+          </BlueBtn>
         </Link>
         <Link to="/new_user/board_member">
-          <StyledButton type="primary" htmlType="submit">
+          <BlueBtn type="primary" htmlType="submit">
             Board Member
-          </StyledButton>
+          </BlueBtn>
         </Link>
         <div>
           <p>Already registered? </p>
           <Link to="/login">
-            <StyledButton htmlType="submit">Login here!</StyledButton>
+            <BlueBtn htmlType="submit">Login here!</BlueBtn>
           </Link>
         </div>
       </InnerDiv>
