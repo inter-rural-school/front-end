@@ -46,18 +46,19 @@ let {
       and if the user wants to create a new issue or edit an existing one.
        */}
        <Formik
-      initialValues={    {...SSView}  }
-      status={ {stuff:'test status'}}
+        enableReinitialize
+        initialValues={    {...SSView}  }
+        status={ {stuff:'test status'}}
 
-      onSubmit={ (values, { resetForm }) => {
-        console.log(values)
-        resetForm()
-      } }
+        onSubmit={ (values, { resetForm }) => {
+          console.log(values)
+          resetForm()
+        } }
 
-      render={ props => (
-        <SingleIssueForm 
-        {...props}
-        isBM={ isBoardMember }
+        render={ props => (
+          <SingleIssueForm 
+          {...props}
+          isBM={ isBoardMember }
         />
       )}
 

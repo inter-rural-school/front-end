@@ -44,7 +44,7 @@ function Dashboard(props) {
   }
 
   // console.log('issues in Redux state: ',props.issues);
-  console.log('Comments in Redux state: ',props.comments);
+  // console.log('Comments in Redux state: ',props.comments);
 
 // console.log('currentIssue',currentIssue);
 
