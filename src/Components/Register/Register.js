@@ -15,6 +15,7 @@ const Container = styled.div`
 `;
 
 const InnerDiv = styled.div`
+  
   height: 70vh;
   flex-basis: 40vw;
   background-color: white;
@@ -23,7 +24,7 @@ const InnerDiv = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 0 50px;
+  padding: 250px 50px;
   border-radius: 0 10px 10px 0;
   @media (max-width: 1200px) {
     flex-basis: 100%;
@@ -68,7 +69,7 @@ const Register = () => {
     <Container>
       <Image src="/images/rsz_school.jpg" alt="School" />
       <InnerDiv>
-        <p>I am a </p>
+        
         <Link to="/new_user/school_staff">
           <BlueBtn type="primary" htmlType="submit">
             School Staff Member

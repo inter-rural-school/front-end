@@ -10,6 +10,7 @@ const Div = styled.div`
   align-items: center;
   margin: 0 50px;
   height: 60px;
+  margin-top: 1rem;
 `;
 const Info = styled.div`
   display: flex;
@@ -35,13 +36,20 @@ const BlueBtn = styled(Button)`
   }
 `;
 
+const Greeting = styled.p`
+    margin: 0 auto;
+    font-size: 1.25rem;
+`;
+
 const Header = (props) => {
+  
   return (
     <Div className="HeaderContainer">
       <img src="/images/logo.png" alt="logo" width="50px" />
       <h1>International Rural School</h1>
+      { props.userInfo.first_name &&localStorage.getItem("token")?(
       <Info>
-        <p>Hi! {props.userInfo.first_name}</p>
+        <Greeting>Hi! {props.userInfo.first_name}</Greeting>
         <Link
           to="/"
           onClick={() => {
@@ -51,6 +59,7 @@ const Header = (props) => {
           <BlueBtn>Log Out</BlueBtn>
         </Link>
       </Info>
+      ):(<div></div>)}
     </Div>
   );
 };

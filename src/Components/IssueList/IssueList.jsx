@@ -23,7 +23,7 @@ function IssueList(props) {
         <Col xl={6}>Title</Col>
         <Col xl={5}>Status</Col>
         <Col xl={2}>View</Col>
-        <Col xl={2}>Delete</Col>
+        { !props.userInfo.isBoardMember && <Col xl={2}>Delete</Col>}
       </Row>
 
       {props.issueData &&
@@ -43,7 +43,7 @@ function IssueList(props) {
 const mapStateToProps = state => {
   
   return {
-    
+    userInfo: state.userInfo,
   };
 };
 

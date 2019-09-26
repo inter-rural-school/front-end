@@ -60,7 +60,7 @@ function rootReducer(state = initialState, action) {
           isBoardMember: action.payload.isBoardMember,
           last_name: action.payload.last_name,
           school: "Country School",
-          school_id: 100000000
+          school_id: 10
         }
       };
     case LOGIN_FAILURE:

@@ -126,7 +126,7 @@ function IssuesListItem(props) {
               onClick={ ()=> props.setIssue( props.data.id ) }
               style={{fontSize: '2rem'}}/>
         </Col>
-      { !props.isBM && (
+      { !props.userData.isBoardMember && (
         <Col 
          xs={{
           span: 0,
@@ -140,7 +140,6 @@ function IssuesListItem(props) {
               id={ props.data.id }
             onClick={() => {
               showDeleteConfirmIssueList(props.data.id, props)
-                //props.deleteIssue(props.data.id, props);
               }}
               style={{fontSize: '2rem'}}/>
         </Col>
@@ -151,7 +150,7 @@ function IssuesListItem(props) {
 const mapStateToProps = state => {
   
   return {
-
+   userInfo: state.userInfo
   };
 };
 
