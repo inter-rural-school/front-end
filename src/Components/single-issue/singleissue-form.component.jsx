@@ -9,7 +9,7 @@ import {  Form, Field, ErrorMessage } from 'formik'
 import { updateForm, saveIssue, deleteIssue } from '../../store/actions'
 import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
-import { formatDate } from '../../utils/utils'
+import { formatDate, showDeleteConfirm} from '../../utils/utils'
 import { differenceInCalendarDays } from 'date-fns'
 
 const { Option } = Select;
@@ -164,8 +164,8 @@ function SingleIssueForm( props ) {
       </Row>
       <div className={styles['singleIssue--footer']}>
         {!isBM && <button onClick={() => {
-          
-          props.deleteIssue(id, props);
+          showDeleteConfirm(id, props)
+          //props.deleteIssue(id, props);
           //props.updateIssues(issueInfo)
         }}>Delete</button>}
 

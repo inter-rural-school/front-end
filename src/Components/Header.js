@@ -11,14 +11,19 @@ const Div = styled.div`
   margin: 0 50px;
   height: 60px;
 `;
-
+const Info = styled.div`
+  display: flex;
+  align-items: center;
+  
+  height: 60px;
+`;
 const BlueBtn = styled(Button)`
   background-color: #6fa0d0;
   border-radius: 10px;
   color: #fff;
   border: 2px solid #6fa0d0 !important;
   transition: background-color 0.5s;
-
+  margin: 0 10px;
   &:hover {
     background-color: #fff;
     color: #6fa0d0;
@@ -30,26 +35,30 @@ const BlueBtn = styled(Button)`
   }
 `;
 
-const Header = () => {
+const Header = (props) => {
   return (
     <Div className="HeaderContainer">
       <img src="/images/logo.png" alt="logo" width="50px" />
       <h1>International Rural School</h1>
-
-      <Link
-        to="/"
-        onClick={() => {
-          localStorage.removeItem("token");
-        }}
-      >
-        <BlueBtn>Log Out</BlueBtn>
-      </Link>
+      <Info>
+        <p>Hi! {props.userInfo.first_name}</p>
+        <Link
+          to="/"
+          onClick={() => {
+            localStorage.removeItem("token");
+          }}
+        >
+          <BlueBtn>Log Out</BlueBtn>
+        </Link>
+      </Info>
     </Div>
   );
 };
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    userInfo: state.userInfo
+  };
 };
 export default connect(
   mapStateToProps,
