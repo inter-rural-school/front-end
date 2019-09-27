@@ -99,7 +99,8 @@ console.log("singleIssue component:", props)
       style={ showSingle }
       >
       <div className={styles["singleIssue--header"]}>
-        {showForm && <p>ID: {props.issue.id}</p>}
+        {showForm && props.issueType === 'edit' && <p>ID: {props.issue.id}</p>}
+        {showForm && props.issueType === 'createnew' && <p>Create New Issue</p>}
         {/* Message which shows when page first renders, user click 'close',  
     or submits the form, or deletes an issue */}
         {!showForm && (
