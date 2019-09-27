@@ -17,7 +17,7 @@ const { confirm } = Modal;
 
 export function showDeleteConfirm(id, props) {
   confirm({
-    title: `Delete issue ${props.values.props.issue.issue_title} created by ${props.values.createdBy}?`,
+    title: `Are you sure you want to delete ${props.data.issue_title}?`,
     //content: "Some descriptions",
     okText: "Yes",
     okType: "danger",
@@ -35,7 +35,7 @@ export function showDeleteConfirm(id, props) {
 export function showDeleteConfirmIssueList(id, props) {
   //console.log("showDeleteConfirmIssueList", id, props);
   confirm({
-    title: `Delete issue ${props.data.issue_title} created by ${props.userData.first_name} ${props.userData.last_name}?`,
+    title: `Are you sure you want to delete ${props.data.issue_title}?`,
     //content: "Some descriptions",
     okText: "Yes",
     okType: "danger",
