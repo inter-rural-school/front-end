@@ -17,20 +17,20 @@ const Container = styled.div`
 `;
 
 const InnerDiv = styled.div`
-  height: 70vh;
-  flex-basis: 40vw;
-  background-color: white;
-  border: 1px solid grey;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 50px;
-  border-radius: 0 10px 10px 0;
-  @media (max-width: 1200px) {
-    flex-basis: 100%;
-    height: 100%;
-    background-color: #c5dcd9;
+  background-color: #c5dcd9;
+  padding: 0 2rem;
+
+  @media screen and (min-width: 1200px) {
+    height: 70vh;
+    flex-basis: 40vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 50px;
+    border: 1px solid grey;
+    border-radius: 0 10px 10px 0;
   }
 `;
 
@@ -52,6 +52,7 @@ const BlueBtn = styled(Button)`
   border: 2px solid #6fa0d0 !important;
   transition: background-color 0.5s;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: 1rem;
 
   &:hover {
     background-color: #fff;
@@ -124,6 +125,7 @@ const C = props => {
           <BlueBtn type="primary" htmlType="submit">
             Login
           </BlueBtn>
+          {props.isLoading && !props.getErrorMessage? (<p>isLoading........</p>):null}
           <ErrorMessageBox>
             {props.getErrorMessage ? (
               <p>Error! Incorrect username or password</p>
@@ -164,7 +166,8 @@ const Login = withFormik({
 const mapStateToProps = state => {
   console.log(state);
   return {
-    getErrorMessage: state.getErrorMessage
+    getErrorMessage: state.getErrorMessageLogin,
+    isLoading:state.isLoading,
   };
 };
 

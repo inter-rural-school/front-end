@@ -4,11 +4,18 @@ import { connect } from 'react-redux';
 import styles from './IssueList.module.less'
 
 import IssueListItem from './IssueList-Item.component'
+import { NONAME } from 'dns';
+
 
 function IssueList(props) {
+
+  let showIssues = (props.winWidth >= 1200 || props.issueType === 'clear')? { display: 'flex' } : { display : 'none'} ;
   
   return (
-    <div className={styles['issues--container']}>
+    <div 
+      className={styles['issues--container']} 
+      style={ showIssues }
+      >
       <div className={styles['issues--header']}>
         <p style={{ margin: 0 }}>{props.userData.school}</p>
 

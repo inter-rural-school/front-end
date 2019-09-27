@@ -17,6 +17,23 @@
 
 }
 
+.issues--container--hidden{
+  margin : 1rem;
+  // display: none;
+  border: 1px solid @success;
+  background-color: #fff;
+  border-radius: @border-round; 
+
+  @media screen and (min-width: 1200px){
+    height: 45vh;
+    overflow: hidden scroll;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+  }
+
+}
+
 .issues--header{
   display: flex;
   flex-direction: column;

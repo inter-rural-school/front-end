@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import styled from "styled-components";
@@ -9,12 +9,17 @@ const Div = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  height: 60px;
+  height: 76px;
+  width: 100vw;
   padding: 0.5rem 0.5rem 0.5rem 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 10000;
 
 @media screen and (min-width: 1200px){
-  margin-top: 1rem;
-  padding: 0.5rem 1rem 0.5rem 1.5rem;
+  padding: 1.5rem 1rem 0.5rem 1.5rem;
     }
 `;
 
@@ -55,30 +60,35 @@ const BigTitle = styled.h1`
 `;
 const Header = (props) => {
   
+
   return (
     <Div className="HeaderContainer">
       <img src="/images/logo.png" alt="logo" width="50px" />
       <BigTitle>International Rural School</BigTitle>
-      {/* { props.userInfo.first_name &&localStorage.getItem("token")?( */}
-      <Info>
+     { localStorage.getItem("token") ?(
+      <Info> 
         <Greeting>Hi! {props.userInfo.first_name}</Greeting>
+        
         <Link
           to="/"
           onClick={() => {
             localStorage.removeItem("token");
+            
           }}
         >
           <BlueBtn>Log Out</BlueBtn>
         </Link>
+      
       </Info>
-      {/* ):(<div></div>)}  */}
+       ):<div></div>}  
     </Div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    userInfo: state.userInfo
+    userInfo: state.userInfo,
+    isLogined:state.isLogined,
   };
 };
 export default connect(

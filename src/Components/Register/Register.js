@@ -61,6 +61,9 @@ const BlueBtn = styled(Button)`
       background-color: #fff;
       color: #6FA0D0;
     }
+    @media (max-width: 1200px) {
+    margin: 15px 0;
+  }
 `;
 
 const Register = () => {
