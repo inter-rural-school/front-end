@@ -10,7 +10,6 @@ import BoardMemberRegister from "../Components/Register/BoardMemberRegister";
 
 import Dashboard from "../Components/dashboard/dashboard.component";
 
-import newIssueForm from "../Components/single-issue/NewIssueForm";
 
 const Routes = () => {
   return (
@@ -32,7 +31,6 @@ const Routes = () => {
       />
       <PrivateRoute exact path="/dashboard" component={Dashboard} />
      
-      <PrivateRoute exact path="/dashboard/issue_form" component={newIssueForm} />
       
 
     </div>
