@@ -22,7 +22,7 @@ const Routes = () => {
       <Route exact path="/home" render={() => <Redirect to="/" />} />
       <Route exact path="/" render={() => <Redirect to="/login" />} />
       <Route exact path="/login" component={Login} />
-      {/* <Route path="/dashboard" component={Header} /> */}
+      <Route path="/" component={Header} />
       <Route exact path="/new_user" component={Register} />
       <Route
         exact

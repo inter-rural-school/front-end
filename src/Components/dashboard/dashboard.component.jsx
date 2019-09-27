@@ -6,8 +6,8 @@ import axios from "axios";
 import DashBoardMenu from '../dashboard-menu/dashboard-menu.component';
 import SingleIssue from '../single-issue/single-issue.component';
 import IssueList from '../IssueList/IssueList';
-
-import { getIssueView, getIssueList, getCommentList } from '../../store/actions';
+import { GetWindowSize } from '../../utils/window_size_hook'
+import { getIssueList, getCommentList } from '../../store/actions';
 
 function Dashboard(props) {
   const [currentIssue, setCurrentIssue ] = useState({})
@@ -65,6 +65,9 @@ function Dashboard(props) {
     Set_IssueType('edit')
   }
 
+  // used to show or hide IssueList and SingleIssue
+  let windowSize = GetWindowSize()
+
   // console.log('issues in Redux state: ',props.issues);
   // console.log('Comments in Redux state: ',props.comments);
 // console.log('User Info:', props.userInfo );
@@ -78,6 +81,8 @@ function Dashboard(props) {
         <div className={styles.issueContainer}>
           <IssueList
             Set_IssueType={Set_IssueType}
+            winWidth={ windowSize[0]}
+            issueType={issueType}
             setIssue={setIssue}
             userData={props.userInfo}
             issueData={issuesList}
@@ -87,6 +92,7 @@ function Dashboard(props) {
           <SingleIssue
             userData={props.userInfo}
             issue={currentIssue}
+            winWidth={ windowSize[0]}
             issueType={issueType}
             Set_IssueType={Set_IssueType}
             updateIssues={setNewIssues}
@@ -108,5 +114,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { getIssueView, getIssueList, getCommentList }
+  {  getIssueList, getCommentList }
 )(Dashboard);

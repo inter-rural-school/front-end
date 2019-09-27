@@ -38,9 +38,11 @@
 
 .form--body{
   padding: 1rem;
-  overflow: hidden scroll;
   color: #fff;
   // #devBorder()  
+  @media screen and (min-width: 1200px){
+    overflow: hidden scroll;
+  }
 }
 
 .singleIssue--footer{
@@ -51,9 +53,11 @@
   font-size: 1.25rem;
   align-items: center;
   background-color: @success;
+  color: @success;
   flex-grow: 0;
 
   button{
+    color: #000;
     #yellowButton();
     margin: 0 0.5rem;
     &:focus{

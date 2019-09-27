@@ -77,7 +77,21 @@ function IssuesListItem(props) {
         >
           <p> { props.data.status } </p>
         </Col>
- 
+
+{/* spacer for BM dashboard */}
+         { props.userInfo.isBoardMember && (
+        <Col 
+         xs={{
+          span: 8,
+          }}
+         xl={{
+          span: 0,
+          }}
+          >
+            <div></div>
+        </Col>
+  )}
+
         <Col 
          xs={{
           span: 8,
@@ -94,7 +108,9 @@ function IssuesListItem(props) {
            >View</button>
         </Col>
 
-        <Col 
+
+
+        { !props.userInfo.isBoardMember && (<Col 
          xs={{
           span: 8,
           }}
@@ -106,10 +122,10 @@ function IssuesListItem(props) {
           id={props.data.id}
           onClick={() => {
             showDeleteConfirmIssueList(props.data.id, props)
-            //props.deleteIssue(props.data.id, props);
           }}
             >Delete</button>
         </Col>
+        )}
         
 
         <Col 

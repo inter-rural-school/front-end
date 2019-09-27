@@ -7,7 +7,6 @@ import { Button, Input, Icon, Typography, Form } from "antd";
 const Container = styled.div`
   background-color: #c5dcd9;
   height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -62,6 +61,9 @@ const BlueBtn = styled(Button)`
       background-color: #fff;
       color: #6FA0D0;
     }
+    @media (max-width: 1200px) {
+    margin: 15px 0;
+  }
 `;
 
 const Register = () => {

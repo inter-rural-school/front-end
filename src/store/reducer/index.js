@@ -11,14 +11,18 @@ import {
   FETCHING_ISSUES_FAILURE,
   FETCHING_COMMENTS_START,
   FETCHING_COMMENTS_SUCCESS,
-  FETCHING_COMMENTS_FAILURE
+  FETCHING_COMMENTS_FAILURE,
+  SAVING_COMMENTS_START,
+SAVING_COMMENTS_SUCCESS,
+SAVING_COMMENTS_FAILURE,
 } from "../actions";
 
 export const initialState = {
   isFetching: false,
   isLogined: false,
   isLoading: false,
-  getErrorMessage: false,
+  getErrorMessageLogin: false,
+  getErrorMessageRegister: false,
   userInfo: {},
   issues: [],
   comments: []
@@ -29,22 +33,25 @@ function rootReducer(state = initialState, action) {
     case REGISTER_START:
       return {
         ...state,
-        getErrorMessage: false
+        isLoading:true,
+        getErrorMessageRegister: false
       };
     case REGISTER_SUCCESS:
       return {
-        ...state
+        ...state,
+        isLoading:false,
       };
     case REGISTER_FAILURE:
       return {
         ...state,
-        getErrorMessage: true
+        getErrorMessageRegister: true
       };
     case LOGIN_START:
       return {
         ...state,
-        getErrorMessage: false,
-        isLogined: false
+        getErrorMessageLogin: false,
+        isLogined: false,
+        isLoading:true,
       };
     case LOGIN_SUCCESS:
       console.log(action.payload);
@@ -61,12 +68,13 @@ function rootReducer(state = initialState, action) {
           last_name: action.payload.last_name,
           school: "Country School",
           school_id: 10
-        }
+        },
+        isLoading:false,
       };
     case LOGIN_FAILURE:
       return {
         ...state,
-        getErrorMessage: true
+        getErrorMessageLogin: true
       };
 
     case SAVE_ISSUE:
@@ -96,7 +104,18 @@ function rootReducer(state = initialState, action) {
         comments: [...state.comments, action.payload],
         isFetching: false
       };
-
+case SAVING_COMMENTS_START:
+      return {
+        ...state,
+        
+      };
+    case SAVING_COMMENTS_SUCCESS:
+      console.log(action.payload)
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+        
+      };
     default:
       return state;
   }

@@ -97,9 +97,7 @@ export const getCommentList = () => dispatch => {
       console.log(err);
     });
 };
-export const getIssueView = props => {
-  props.history.push("/dashboard/issue_view/101");
-};
+
 
 export const updateForm = (id, data, props) => dispatch => {
   console.log("updateform :", id, data);
@@ -124,6 +122,27 @@ export const deleteIssue = (id, props) => dispatch => {
       props.updateIssues({ id });
       //dispatch({ type: DELETING_FRIENDS, payload: friend });
       // props.history.push('/dashboard');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+
+export const SAVING_COMMENTS_START = "SAVING_COMMENTS_START";
+export const SAVING_COMMENTS_SUCCESS = "SAVING_COMMENTS_SUCCESS";
+export const SAVING_COMMENTS_FAILURE = "SAVING_COMMENTS_FAILURE";
+
+export const saveComment = (data) => dispatch => {
+  console.log("comments saving from server :", data);
+  dispatch({ type: SAVING_COMMENTS_START });
+  axios
+    .post("https://internationalrsr.herokuapp.com/comments/", data)
+    .then(res => {
+      console.log("comments saving from server :", res);
+      
+        dispatch({ type: SAVING_COMMENTS_SUCCESS, payload: data });
+      
     })
     .catch(err => {
       console.log(err);

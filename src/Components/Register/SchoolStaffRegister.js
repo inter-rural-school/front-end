@@ -10,29 +10,33 @@ import { getRegister } from "../../store/actions";
 
 const Container = styled.div`
   background-color: #c5dcd9;
-  height: 92vh;
-  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width : 1200px){
+    
+  } 
 `;
 
 const InnerDiv = styled.div`
-  height: 80vh;
-  flex-basis: 40vw;
-  background-color: white;
-  border: 1px solid grey;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 50px;
-  border-radius: 0 10px 10px 0;
-  @media (max-width: 1200px) {
-    flex-basis: 100%;
-    height: 100%;
     background-color: #c5dcd9;
+    padding: 80px 2rem 0 2rem;
+
+  @media screen and (min-width: 1200px) {
+    padding: 0;
+    height: 80vh;
+    flex-basis: 40vw;
+    background-color: white;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 50px;
+    border-radius: 0 10px 10px 0;
   }
 `;
 
@@ -184,6 +188,7 @@ const C = props => {
           <BlueBtn type="primary" htmlType="submit">
             Register
           </BlueBtn>
+           {props.isLoading && !props.getErrorMessage? (<p>isLoading........</p>):null}
           <ErrorMessageBox>
             {props.getErrorMessage ? (
               <p>Error! Please check your infomation!</p>
@@ -238,7 +243,8 @@ const SchoolStaffRegister = withFormik({
 
 const mapStateToProps = state => {
   return {
-    getErrorMessage: state.getErrorMessage
+    getErrorMessage: state.getErrorMessageRegister,
+    isLoading:state.isLoading,
   };
 };
 export default connect(

@@ -19,6 +19,7 @@ console.log("singleIssue component:", props)
   //storing function in variable so that it can be passed to SingleIssueForm 
   const SIT = props.Set_IssueType; 
   const updateIssues = props.updateIssues;
+  let showSingle = (props.winWidth >= 1200 || props.issueType !== 'clear')? { display: 'flex' } : { display : 'none'} ;
   // destructuring user data
   let { 
     first_name ,
@@ -93,7 +94,10 @@ console.log("singleIssue component:", props)
   return (
     // hide the single issue view on mobile until user clicks view or edit button
     // <div className={ (props.dashState.viewIssue )? styles['singleIssue--container']: styles.hide }>
-    <div className={styles["singleIssue--container"]}>
+    <div 
+      className={styles["singleIssue--container"]}
+      style={ showSingle }
+      >
       <div className={styles["singleIssue--header"]}>
         {showForm && <p>ID: {props.issue.id}</p>}
         {/* Message which shows when page first renders, user click 'close',  
