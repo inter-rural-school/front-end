@@ -27,6 +27,7 @@
   top: 0;
   left: 0;
   z-index: 100;
+  border-radius: @border-round @border-round  0 0;
   
   &:first-child{
     display: flex;
@@ -34,6 +35,11 @@
     padding:  0.5rem 1rem;
     justify-content: space-between;
     width: 100%;
+    border-radius: @border-round @border-round  0 0;
+
+  @media screen and (min-width: 1200px){
+    border-radius: @border-round 0  0 0;
+  }
   }
 
   p{
@@ -54,6 +60,7 @@
 
   @media screen and (min-width: 1200px){
     justify-content: space-between;
+    border-radius: @border-round 0  0 0;
   }
 }
 

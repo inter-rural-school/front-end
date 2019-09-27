@@ -8,16 +8,22 @@ const Div = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 50px;
+  margin: 0 auto;
   height: 60px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+
+@media screen and (min-width: 1200px){
   margin-top: 1rem;
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
+    }
 `;
+
 const Info = styled.div`
   display: flex;
   align-items: center;
-  
   height: 60px;
 `;
+
 const BlueBtn = styled(Button)`
   background-color: #6fa0d0;
   border-radius: 10px;
@@ -41,12 +47,18 @@ const Greeting = styled.p`
     font-size: 1.25rem;
 `;
 
+const BigTitle = styled.h1`
+    display: none;
+  @media screen and (min-width: 1200px){
+    display: block;
+}
+`;
 const Header = (props) => {
   
   return (
     <Div className="HeaderContainer">
       <img src="/images/logo.png" alt="logo" width="50px" />
-      <h1>International Rural School</h1>
+      <BigTitle>International Rural School</BigTitle>
       {/* { props.userInfo.first_name &&localStorage.getItem("token")?( */}
       <Info>
         <Greeting>Hi! {props.userInfo.first_name}</Greeting>
@@ -59,7 +71,7 @@ const Header = (props) => {
           <BlueBtn>Log Out</BlueBtn>
         </Link>
       </Info>
-      {/* ):(<div></div>)} */}
+      {/* ):(<div></div>)}  */}
     </Div>
   );
 };

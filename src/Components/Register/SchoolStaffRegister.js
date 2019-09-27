@@ -11,7 +11,6 @@ import { getRegister } from "../../store/actions";
 const Container = styled.div`
   background-color: #c5dcd9;
   height: 92vh;
-  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -12,10 +12,10 @@ function IssueList(props) {
       <div className={styles['issues--header']}>
         <p style={{ margin: 0 }}>{props.userData.school}</p>
 
-         <button 
+        { !props.userInfo.isBoardMember && <button 
            onClick={ () =>  props.Set_IssueType( 'createnew') }
            className={styles['issues--header--btn']}>New Issue
-          </button> 
+        </button> }
 
       </div>
       <Row className={styles['issues--col-names']}>
