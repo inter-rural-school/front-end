@@ -187,7 +187,7 @@ function SingleIssueForm( props ) {
                props.updateForm(id, issueInfo, props);
                //props.updateIssues(issueInfo);
              }}
-             >Submit Changes</button>
+             >Submit</button>
                 }
 
           { props.issueType === 'createnew' && 
