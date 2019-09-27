@@ -17,7 +17,7 @@ const { confirm } = Modal;
 
 export function showDeleteConfirm(id, props) {
   confirm({
-    title: `Are you sure you want to delete ${props.data.issue_title}?`,
+    title: `Are you sure you want to delete ${props.values.props.issue.issue_title}?`,
     //content: "Some descriptions",
     okText: "Yes",
     okType: "danger",
