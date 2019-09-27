@@ -115,7 +115,7 @@ export function addCommentsToIssues( issues, comments ){
      comments.forEach( comment => {
        if((issue.issue_title == comment.issue_title) &&  (issue.issue_description == comment.issue_description)) { match['comment']=  comment.comment }}) 
       console.log('match', match)
-      /* if  issue.issue_title === comment.issueTitle &&  issue.issue_des === comment.issue_des 
+      /* if  issue.issue_title === comment.issue_title &&  issue.issue_des === comment.issue_des 
         insert comment into issue. 
         else, return issue.
       */
