@@ -13,7 +13,7 @@ import styles from './single-issue.module.less'
 
 
 function SingleIssue( props ) {
-console.log("singleIssue component:", props)
+//console.log("singleIssue component:", props)
   let issueType = props.issueType;
   let showForm = ( issueType === 'clear')? false : true;
   //storing function in variable so that it can be passed to SingleIssueForm 
@@ -93,7 +93,6 @@ console.log("singleIssue component:", props)
 
   return (
     // hide the single issue view on mobile until user clicks view or edit button
-    // <div className={ (props.dashState.viewIssue )? styles['singleIssue--container']: styles.hide }>
     <div 
       className={styles["singleIssue--container"]}
       style={ showSingle }
@@ -116,7 +115,6 @@ console.log("singleIssue component:", props)
           initialValues={{ ...initObject, props}}
           onSubmit={(values, { resetForm, setSubmitting  }) => {
             setSubmitting(true);
-            console.log(values);
             // send data to server
             submitAction(values);
             // reset form
@@ -134,7 +132,6 @@ console.log("singleIssue component:", props)
               isBM={isBoardMember}
               issueType={issueType}
               Set_IssueType={SIT}
-              //updateData={updateData}
               updateIssues={updateIssues}
             />
           )}
@@ -145,7 +142,7 @@ console.log("singleIssue component:", props)
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  //console.log(state);
   return {
     getErrorMessage: state.getErrorMessage
   };

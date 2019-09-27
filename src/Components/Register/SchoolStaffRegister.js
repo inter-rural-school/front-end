@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, Icon, Typography, Form } from "antd";
+import { Button, Input, Icon, Form } from "antd";
 import styled from "styled-components";
 import { withFormik } from "formik";
 
@@ -15,10 +15,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width : 1200px){
-    
-  } 
 `;
 
 const InnerDiv = styled.div`
@@ -74,7 +70,6 @@ const BlueBtn = styled(Button)`
 const ErrorMessageBox = styled.div`
   color: red;
 `;
-const { Title } = Typography;
 
 const StyledTitle = styled.h1`
   font-size: 30px ;
@@ -243,7 +238,7 @@ const SchoolStaffRegister = withFormik({
     isBoardMember: 0
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(values);
+    // console.log(values);
 
     props.getRegister(values, props);
     setSubmitting(false);

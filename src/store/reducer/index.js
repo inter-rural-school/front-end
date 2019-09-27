@@ -6,21 +6,22 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   SAVE_ISSUE,
-  FETCHING_ISSUES_START,
-  FETCHING_ISSUES_SUCCESS,
-  FETCHING_ISSUES_FAILURE,
+  // FETCHING_ISSUES_START,
+  // FETCHING_ISSUES_SUCCESS,
+  // FETCHING_ISSUES_FAILURE,
   FETCHING_COMMENTS_START,
   FETCHING_COMMENTS_SUCCESS,
-  FETCHING_COMMENTS_FAILURE,
+  //FETCHING_COMMENTS_FAILURE,
   SAVING_COMMENTS_START,
 SAVING_COMMENTS_SUCCESS,
-SAVING_COMMENTS_FAILURE,
+//SAVING_COMMENTS_FAILURE,
 } from "../actions";
 
 export const initialState = {
   isFetching: false,
   isLogined: false,
-  isLoading: false,
+  loginIsLoading: false,
+  registerIsLoading: false,
   getErrorMessageLogin: false,
   getErrorMessageRegister: false,
   userInfo: {},
@@ -33,13 +34,13 @@ function rootReducer(state = initialState, action) {
     case REGISTER_START:
       return {
         ...state,
-        isLoading:true,
+        registerIsLoading:true,
         getErrorMessageRegister: false
       };
     case REGISTER_SUCCESS:
       return {
         ...state,
-        isLoading:false,
+        registerIsLoading:false,
       };
     case REGISTER_FAILURE:
       return {
@@ -51,10 +52,10 @@ function rootReducer(state = initialState, action) {
         ...state,
         getErrorMessageLogin: false,
         isLogined: false,
-        isLoading:true,
+        loginIsLoading:true,
       };
     case LOGIN_SUCCESS:
-      console.log(action.payload);
+      console.log("user information: ",action.payload);
       return {
         ...state,
         isLogined: true,
@@ -69,7 +70,7 @@ function rootReducer(state = initialState, action) {
           school: "Country School",
           school_id: 10
         },
-        isLoading:false,
+        loginIsLoading:false,
       };
     case LOGIN_FAILURE:
       return {
@@ -82,17 +83,17 @@ function rootReducer(state = initialState, action) {
         ...state,
         issues: [...state.issues, action.payload]
       };
-    case FETCHING_ISSUES_START:
-      return {
-        ...state,
-        isFetching: true
-      };
-    case FETCHING_ISSUES_SUCCESS:
-      return {
-        ...state,
-        issues: [...state.issues, action.payload],
-        isFetching: false
-      };
+    // case FETCHING_ISSUES_START:
+    //   return {
+    //     ...state,
+    //     isFetching: true
+    //   };
+    // case FETCHING_ISSUES_SUCCESS:
+    //   return {
+    //     ...state,
+    //     issues: [...state.issues, action.payload],
+    //     isFetching: false
+    //   };
     case FETCHING_COMMENTS_START:
       return {
         ...state,

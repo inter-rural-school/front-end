@@ -155,7 +155,7 @@ const validationSchema = yup.object().shape({
 const Login = withFormik({
   mapPropsToValues: () => ({ username: "", password: "" }),
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(values);
+    // console.log(values);
     props.getLogin(values, props);
     setSubmitting(false);
   },
@@ -164,10 +164,10 @@ const Login = withFormik({
 })(C);
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return {
     getErrorMessage: state.getErrorMessageLogin,
-    isLoading:state.isLoading,
+    isLoading:state.loginIsLoading,
   };
 };
 

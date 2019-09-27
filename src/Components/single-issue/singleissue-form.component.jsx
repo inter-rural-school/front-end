@@ -3,16 +3,13 @@ import {
   Row, 
   Col , 
   Input, 
-  Select 
 } from 'antd'
 import {  Form, Field, ErrorMessage } from 'formik'
 import { updateForm, saveIssue, deleteIssue, saveComment } from '../../store/actions'
 import { connect } from 'react-redux';
 import styles from './singleissue-form.module.less'
-import { formatDate, showDeleteConfirm} from '../../utils/utils'
+import { showDeleteConfirm} from '../../utils/utils'
 import { differenceInCalendarDays } from 'date-fns'
-
-const { Option } = Select;
 
 function Stat( { label, data }){
   return(
@@ -25,7 +22,7 @@ function Stat( { label, data }){
 
 function SingleIssueForm( props ) {
 
-    console.log('SingleIssueForm props', props);
+    //console.log('SingleIssueForm props', props);
 
   let {
     values,
@@ -181,8 +178,6 @@ function SingleIssueForm( props ) {
           <button
             onClick={() => {
               showDeleteConfirm(id, props);
-              //props.deleteIssue(id, props);
-              //props.updateIssues(issueInfo)
             }}
           >
             Delete
@@ -207,10 +202,9 @@ function SingleIssueForm( props ) {
                 status: status,
                 school_id: 1 //values.user.userInfo.school_id
               };
-              console.log("submit button update", props.values);
-              console.log("update form", issueInfo);
+              // console.log("submit button update", props.values);
+              // console.log("update form", issueInfo);
               props.updateForm(id, issueInfo, props);
-              //props.updateIssues(issueInfo);
             }}
           >
             Submit
@@ -234,8 +228,8 @@ function SingleIssueForm( props ) {
                 issue_id: id,
                 board_id: props.userInfo.board_id
               };
-              console.log("submit button update", props.values);
-              console.log("saving form", comment);
+              // console.log("submit button update", props.values);
+              // console.log("saving form", comment);
               props.updateForm(id, issueInfo, props);
               props.saveComment(comment);
             }}
@@ -258,7 +252,6 @@ function SingleIssueForm( props ) {
               };
               console.log("submit button", props.values);
               props.saveIssue(issueInfo, props);
-              //props.updateIssues(issueInfo)
             }}
           >
             Create
@@ -287,7 +280,7 @@ function BMSelectStatus({  field, form, ...props} ){
 
 
 const mapStateToProps = state => {
-  console.log(state);
+  //console.log(state);
   return {
     userInfo: state.userInfo,
     getErrorMessage: state.getErrorMessage
