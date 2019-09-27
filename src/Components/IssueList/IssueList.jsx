@@ -41,6 +41,7 @@ function IssueList(props) {
               data={issue}
               key={issue.id}
               setIssue={ props.setIssue }
+              Set_IssueType={ props.Set_IssueType }
             />
           );
         })}

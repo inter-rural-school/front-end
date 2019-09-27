@@ -174,10 +174,10 @@ function SingleIssueForm( props ) {
         </Col>
       </Row>
       <div className={styles["singleIssue--footer"]}>
-        {!isBM && (
+        {!isBM && props.issueType === 'edit' && (
           <button
             onClick={() => {
-              showDeleteConfirm(id, props);
+              showDeleteConfirm(id, props, props.Set_IssueType);
             }}
           >
             Delete
