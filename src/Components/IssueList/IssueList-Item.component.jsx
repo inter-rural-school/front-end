@@ -4,12 +4,6 @@ import { connect } from "react-redux";
 import styles from './IssueList-Item.module.less';
 import { deleteIssue } from '../../store/actions'
 import {  showDeleteConfirmIssueList } from "../../utils/utils";
-/*
-      <Icon type="close-circle" />
-      <Icon type="clock-circle" />
-      <Icon type="check-circle" />
-      <Icon type="exclamation-circle" />
-      */
 
 function IssuesListItem(props) {
   let iconType = '';
@@ -142,6 +136,7 @@ function IssuesListItem(props) {
               onClick={ ()=> props.setIssue( props.data.id ) }
               style={{fontSize: '2rem'}}/>
         </Col>
+
       { !props.userData.isBoardMember && (
         <Col 
          xs={{

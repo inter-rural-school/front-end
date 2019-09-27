@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Input, Icon, Typography, Form } from "antd";
+import { Button } from "antd";
 
 const Container = styled.div`
   background-color: #c5dcd9;

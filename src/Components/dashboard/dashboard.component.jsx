@@ -7,13 +7,12 @@ import DashBoardMenu from '../dashboard-menu/dashboard-menu.component';
 import SingleIssue from '../single-issue/single-issue.component';
 import IssueList from '../IssueList/IssueList';
 import { GetWindowSize } from '../../utils/window_size_hook'
-import { getIssueList, getCommentList } from '../../store/actions';
+import {  getCommentList } from '../../store/actions';
 
 function Dashboard(props) {
   const [currentIssue, setCurrentIssue ] = useState({})
   const [ issueType, setIssueType ] = useState('clear');
   const [query, setQuery] = useState('');
-  const [token, setToken] = useState('');
   const [issuesList, setIssuesList] = useState([]);
   const [newIssues, setNewIssues] = useState({});
 
@@ -27,7 +26,7 @@ function Dashboard(props) {
       axios
         .get("https://internationalrsr.herokuapp.com/issues/")
         .then(res => {
-          console.log(res.data);
+          console.log("get IssueList action",res.data);
           setIssuesList(res.data);
         })
         .catch(err => {
@@ -104,9 +103,8 @@ function Dashboard(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  //console.log(state);
   return {
-    //issues: state.issues,
     userInfo: state.userInfo,
     comments: state.comments,
     isFetching: state.isFetching
@@ -114,5 +112,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  {  getIssueList, getCommentList }
+  {   getCommentList }
 )(Dashboard);

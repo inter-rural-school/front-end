@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, Icon, Typography, Form } from "antd";
+import { Button, Input, Icon, Form } from "antd";
 import styled from "styled-components";
 import { withFormik } from "formik";
 import * as yup from "yup";
@@ -73,7 +73,6 @@ const BlueBtn = styled(Button)`
 const ErrorMessageBox = styled.div`
   color: red;
 `;
-const { Title } = Typography;
 
 const StyledTitle = styled.h1`
   font-size: 30px ;
@@ -242,7 +241,7 @@ const BoardMemberRegister = withFormik({
     isBoardMember: 1
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log(values);
+    // console.log(values);
 
     props.getRegister(values, props);
     setSubmitting(false);
@@ -253,7 +252,7 @@ const BoardMemberRegister = withFormik({
 const mapStateToProps = state => {
   return {
     getErrorMessage: state.getErrorMessageRegister,
-    isLoading:state.isLoading
+    isLoading:state.registerIsLoading
   };
 };
 export default connect(

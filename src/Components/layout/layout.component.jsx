@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 
 import styles from './layout.module.less'
 
-const { Header, Content } = Layout;
+const {  Content } = Layout;
 
 export default function LayoutWrapper( props ) {
   return (
