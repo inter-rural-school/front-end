@@ -47,7 +47,7 @@ const Header = (props) => {
     <Div className="HeaderContainer">
       <img src="/images/logo.png" alt="logo" width="50px" />
       <h1>International Rural School</h1>
-      { props.userInfo.first_name &&localStorage.getItem("token")?(
+      {/* { props.userInfo.first_name &&localStorage.getItem("token")?( */}
       <Info>
         <Greeting>Hi! {props.userInfo.first_name}</Greeting>
         <Link
@@ -59,7 +59,7 @@ const Header = (props) => {
           <BlueBtn>Log Out</BlueBtn>
         </Link>
       </Info>
-      ):(<div></div>)}
+      {/* ):(<div></div>)} */}
     </Div>
   );
 };
