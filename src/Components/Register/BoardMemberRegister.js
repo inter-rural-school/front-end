@@ -75,6 +75,15 @@ const ErrorMessageBox = styled.div`
 `;
 const { Title } = Typography;
 
+const StyledTitle = styled.h1`
+  font-size: 30px ;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 1200px) {
+      font-size: 38px;
+    }
+`;
+
 const C = props => {
   const {
     values,
@@ -88,7 +97,7 @@ const C = props => {
     <Container>
       <Image src="/images/rsz_school.jpg" alt="School" />
       <InnerDiv>
-        <Title>Register as Board Member</Title>
+        <StyledTitle>Register as Board Member</StyledTitle>
         <form onSubmit={handleSubmit}>
           <Form.Item
             help={touched.name && errors.name ? errors.name : ""}
