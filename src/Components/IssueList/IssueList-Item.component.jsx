@@ -115,7 +115,7 @@ function IssuesListItem(props) {
           <button 
           id={props.data.id}
           onClick={() => {
-            showDeleteConfirmIssueList(props.data.id, props)
+            showDeleteConfirmIssueList(props.data.id, props, props.Set_IssueType)
           }}
             >Delete</button>
         </Col>
@@ -150,7 +150,7 @@ function IssuesListItem(props) {
               type="delete" 
               id={ props.data.id }
             onClick={() => {
-              showDeleteConfirmIssueList(props.data.id, props)
+            showDeleteConfirmIssueList(props.data.id, props, props.Set_IssueType)
               }}
               style={{fontSize: '2rem'}}/>
         </Col>
