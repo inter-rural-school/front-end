@@ -47,6 +47,7 @@ function Dashboard(props) {
     edit: shows issue user clicked on
     createnew: blank form for creating  a new issue
     */
+   console.log('setIssueType called');
     setIssueType( type )
   }
 

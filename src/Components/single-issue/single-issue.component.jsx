@@ -61,32 +61,6 @@ function SingleIssue( props ) {
 
   let initObject = ( issueType === 'edit' ) ? InitEdit : InitNewIssue;
 
-  function submitNew( values ){
-    const issueInfo = {
-      issue_title: values.title,
-      issue_description: values.description,
-      date: values.date,
-      status: values.status,
-      school_id: 1 //values.user.userInfo.school_id
-    };
-    console.log('data to be submitted:', issueInfo );
-    // props.saveIssue(issueInfo, props);
-  }
-
-  function editExisting(values){
-    const issueInfo = {
-      issue_title: values.title,
-      issue_description: values.description,
-      date: values.date,
-      status: values.status,
-      school_id: 1 //values.user.userInfo.school_id
-    };
-    console.log('data to be submitted:', issueInfo );
-  }
-
-  // set handleSubmit function
-  let submitAction = (issueType === 'edit')? editExisting : submitNew;
-
   // console.log( 'single-issue props.issue: ', props.issue);
   // console.log( 'single-issue props.userData: ',props.userData);
   // console.log('issueType prop of singleIssue:', props.issueType);
@@ -113,19 +87,16 @@ function SingleIssue( props ) {
         <Formik
           enableReinitialize
           initialValues={{ ...initObject, props}}
+
           onSubmit={(values, { resetForm, setSubmitting  }) => {
-            setSubmitting(true);
-            // send data to server
-            submitAction(values);
-            // reset form
-            props.Set_IssueType("clear");
-            setSubmitting(false);
             resetForm();
           }}
+
           validationSchema={yup.object().shape({
             title: yup.string().required("Please provide a title"),
             description: yup.string().required("Please provide decription")
           })}
+
           render={props => (
             <SingleIssueForm
               {...props}

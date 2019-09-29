@@ -118,7 +118,7 @@ export const deleteIssue = (id, props) => dispatch => {
   axios
     .delete(`https://internationalrsr.herokuapp.com/issues/${id}`)
     .then(res => {
-      console.log("Delete Issue action: ",res);
+      // console.log("Delete Issue action: ",res);
       props.updateIssues({ id });
       //dispatch({ type: DELETING_FRIENDS, payload: friend });
       // props.history.push('/dashboard');

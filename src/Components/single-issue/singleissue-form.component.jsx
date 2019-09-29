@@ -175,9 +175,9 @@ function SingleIssueForm( props ) {
       </Row>
       <div className={styles["singleIssue--footer"]}>
         {!isBM && props.issueType === 'edit' && (
-          <button
-            onClick={() => {
-              showDeleteConfirm(id, props, props.Set_IssueType);
+          <button 
+            onClick={ () => {
+               showDeleteConfirm( id, props, title, props.Set_IssueType )
             }}
           >
             Delete
@@ -205,6 +205,8 @@ function SingleIssueForm( props ) {
               // console.log("submit button update", props.values);
               // console.log("update form", issueInfo);
               props.updateForm(id, issueInfo, props);
+              props.Set_IssueType('clear')
+
             }}
           >
             Submit
@@ -232,6 +234,7 @@ function SingleIssueForm( props ) {
               // console.log("saving form", comment);
               props.updateForm(id, issueInfo, props);
               props.saveComment(comment);
+              props.Set_IssueType('clear')
             }}
           >
             Submit 
@@ -252,6 +255,7 @@ function SingleIssueForm( props ) {
               };
               console.log("submit button", props.values);
               props.saveIssue(issueInfo, props);
+              props.Set_IssueType('clear')
             }}
           >
             Create
