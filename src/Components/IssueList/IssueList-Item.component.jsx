@@ -1,9 +1,9 @@
 import React from 'react';
-import { Row, Col, Button, Icon } from 'antd';
+import { Row, Col, Icon } from 'antd';
 import { connect } from "react-redux";
 import styles from './IssueList-Item.module.less';
 import { deleteIssue } from '../../store/actions'
-import {  showDeleteConfirmIssueList } from "../../utils/utils";
+import { showDeleteConfirm } from "../../utils/utils";
 
 function IssuesListItem(props) {
   let iconType = '';
@@ -115,7 +115,7 @@ function IssuesListItem(props) {
           <button 
           id={props.data.id}
           onClick={() => {
-            showDeleteConfirmIssueList(props.data.id, props, props.Set_IssueType)
+            showDeleteConfirm( props.data.id, props, props.data.issue_title , props.Set_IssueType )
           }}
             >Delete</button>
         </Col>
@@ -150,7 +150,7 @@ function IssuesListItem(props) {
               type="delete" 
               id={ props.data.id }
             onClick={() => {
-            showDeleteConfirmIssueList(props.data.id, props, props.Set_IssueType)
+            showDeleteConfirm( props.data.id, props, props.data.issue_title , props.Set_IssueType )
               }}
               style={{fontSize: '2rem'}}/>
         </Col>

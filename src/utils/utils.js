@@ -15,40 +15,21 @@ export function formatDate() {
 
 const { confirm } = Modal;
 
-export function showDeleteConfirm(id, props, cb) {
+export function showDeleteConfirm(  id, props, title, cb ) {
   confirm({
-    title: `Are you sure you want to delete ${props.values.props.issue.issue_title}?`,
+    title: `Are you sure you want to delete ${ title }?`,
     //content: "Some descriptions",
     okText: "Yes",
     okType: "danger",
     cancelText: "No",
     onOk() {
-      console.log("OK", props);
+      // console.log("OK", props);
 
       props.deleteIssue(id, props);
       cb('clear');
     },
     onCancel() {
-      console.log("Cancel");
-    }
-  });
-}
-export function showDeleteConfirmIssueList(id, props, cb) {
-  //console.log("showDeleteConfirmIssueList", id, props);
-  confirm({
-    title: `Are you sure you want to delete ${props.data.issue_title}?`,
-    //content: "Some descriptions",
-    okText: "Yes",
-    okType: "danger",
-    cancelText: "No",
-    onOk() {
-      console.log("OK", props);
-
-      props.deleteIssue(id, props);
-      cb('clear')
-    },
-    onCancel() {
-      console.log("Cancel");
+      // console.log("Cancel");
     }
   });
 }
